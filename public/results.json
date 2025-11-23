@@ -1,0 +1,47 @@
+[
+  {
+    "roll": "1001",
+    "name": "Aarav Sharma",
+    "father": "Rajesh Sharma",
+    "school": "City Public School",
+    "class": "10",
+    "total_marks": 485,
+    "category": "Talentfull"
+  },
+  {
+    "roll": "1002",
+    "name": "Sneha Gupta",
+    "father": "Amit Gupta",
+    "school": "Green Valley High",
+    "class": "10",
+    "total_marks": 350,
+    "category": "normal"
+  },
+  {
+    "roll": "1003",
+    "name": "Rohan Verma",
+    "father": "Suresh Verma",
+    "school": "St. Xavier's",
+    "class": "12",
+    "total_marks": 290,
+    "category": "genral"
+  },
+  {
+    "roll": "1004",
+    "name": "Ishita Patel",
+    "father": "Vikram Patel",
+    "school": "City Public School",
+    "class": "10",
+    "total_marks": 492,
+    "category": "Talentfull"
+  },
+  {
+    "roll": "1005",
+    "name": "Kabir Singh",
+    "father": "Manish Singh",
+    "school": "Modern Academy",
+    "class": "8",
+    "total_marks": 310,
+    "category": "normal"
+  }
+]
