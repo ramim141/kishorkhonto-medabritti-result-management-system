@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // import logo from '../assets/images/Logo.png';
-import logo from '../assets/images/Logo4.png';
+import logo from '../assets/images/logo4.png';
 // import logo from '../assets/images/Logo.png';
 
 const Navbar = ({ onNavigate, currentView }) => {
