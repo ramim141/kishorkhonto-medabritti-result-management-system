@@ -8,12 +8,12 @@ import ContactInfo from './home/ContactInfo';
 
 const Home = () => {
   return (
-    <div className="animate-fade-in">
+    <div className="min-h-screen bg-white animate-fade-in">
       <Hero />
       <About />
       <Activities />
-      <Committee />
       <CallToAction />
+      <Committee />
       <ContactInfo />
     </div>
   );
