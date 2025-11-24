@@ -5,7 +5,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'bengali': ['SolaimanLipi', 'sans-serif'],
+        'sans': ['SolaimanLipi', 'system-ui', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }

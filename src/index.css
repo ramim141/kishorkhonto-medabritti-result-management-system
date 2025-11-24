@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Bengali font - SolaimanLipi */
+body {
+  font-family: 'SolaimanLipi', sans-serif;
+}

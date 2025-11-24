@@ -37,7 +37,7 @@ const App = () => {
   const resetSearch = () => { setResult(null); setInputRoll(''); };
 
   return (
-    <div className="flex flex-col min-h-screen font-sans bg-gray-50">
+    <div className="flex flex-col min-h-screen overflow-x-hidden font-sans bg-gray-50">
       <Navbar onNavigate={setView} currentView={view} />
 
       <main className="container flex flex-col items-center flex-grow px-4 py-10 mx-auto">

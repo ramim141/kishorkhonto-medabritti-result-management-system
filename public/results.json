@@ -1,182 +1,237 @@
 [
   {
-    "roll": "3010",
-    "name": "Abdullah Al Mamun",
-    "father": "Rashid Al Mamun",
-    "school": "Blue Bird High School",
-    "class": "3",
+    "roll": "৩০১০",
+    "name": "আব্দুল্লাহ আল মামুন",
+    "father": "রশিদ আল মামুন",
+    "school": "ব্লু বার্ড হাই স্কুল",
+    "class": "৩",
     "total_marks": 580,
-    "category": "Talentpool"
+    "category": "ট্যালেন্টপুল"
   },
   {
-    "roll": "3011",
-    "name": "Fatema Akter",
-    "father": "Abdul Malek",
-    "school": "Sylhet Govt. Pilot High School",
-    "class": "3",
+    "roll": "৩০১১",
+    "name": "ফাতেমা আক্তার",
+    "father": "আব্দুল মালেক",
+    "school": "সিলেট সরকারি পাইলট উচ্চ বিদ্যালয়",
+    "class": "৩",
     "total_marks": 450,
-    "category": "General"
+    "category": "সাধারণ"
   },
   {
-    "roll": "3012",
-    "name": "Rahim Uddin",
-    "father": "Salim Uddin",
-    "school": "Shahjalal Jamia Islamia",
-    "class": "3",
+    "roll": "৩০১২",
+    "name": "রহিম উদ্দিন",
+    "father": "সেলিম উদ্দিন",
+    "school": "শাহজালাল জামেয়া ইসলামিয়া",
+    "class": "৩",
     "total_marks": 420,
-    "category": "General"
+    "category": "সাধারণ"
   },
   {
-    "roll": "4020",
-    "name": "Sadia Islam",
-    "father": "Rafiqul Islam",
-    "school": "Scholarshome",
-    "class": "4",
+    "roll": "৪০২০",
+    "name": "সাদিয়া ইসলাম",
+    "father": "রফিকুল ইসলাম",
+    "school": "স্কলার্সহোম",
+    "class": "৪",
     "total_marks": 565,
-    "category": "Talentpool"
+    "category": "ট্যালেন্টপুল"
   },
   {
-    "roll": "4021",
-    "name": "Karim Ahmed",
-    "father": "Jamal Ahmed",
-    "school": "Amberkhana Girls School",
-    "class": "4",
+    "roll": "৪০২১",
+    "name": "করিম আহমেদ",
+    "father": "জামাল আহমেদ",
+    "school": "আম্বরখানা বালিকা বিদ্যালয়",
+    "class": "৪",
     "total_marks": 480,
-    "category": "General"
+    "category": "সাধারণ"
   },
   {
-    "roll": "4022",
-    "name": "Sumaiya Begum",
-    "father": "Abdul Hai",
-    "school": "The Aided High School",
-    "class": "4",
+    "roll": "৪০২২",
+    "name": "সুমাইয়া বেগম",
+    "father": "আব্দুল হাই",
+    "school": "দি এইডেড হাই স্কুল",
+    "class": "৪",
     "total_marks": 550,
-    "category": "Talentpool"
+    "category": "ট্যালেন্টপুল"
   },
   {
-    "roll": "4023",
-    "name": "Mahir Rahman",
-    "father": "Mukhlesur Rahman",
-    "school": "Blue Bird High School",
-    "class": "4",
+    "roll": "৪০২৩",
+    "name": "মাহির রহমান",
+    "father": "মুখলেসুর রহমান",
+    "school": "ব্লু বার্ড হাই স্কুল",
+    "class": "৪",
     "total_marks": 410,
-    "category": "General"
+    "category": "সাধারণ"
   },
   {
-    "roll": "5001",
-    "name": "Rafiqul Islam",
-    "father": "Nazrul Islam",
-    "school": "Jalalabad Cantonment Public",
-    "class": "5",
+    "roll": "৫০০১",
+    "name": "রফিকুল ইসলাম",
+    "father": "নজরুল ইসলাম",
+    "school": "জালালাবাদ ক্যান্টনমেন্ট পাবলিক",
+    "class": "৫",
     "total_marks": 590,
-    "category": "Talentpool"
+    "category": "ট্যালেন্টপুল"
   },
   {
-    "roll": "5002",
-    "name": "Nargis Sultana",
-    "father": "Kamal Hossain",
-    "school": "Kishore Kantho School",
-    "class": "5",
+    "roll": "৫০০২",
+    "name": "নার্গিস সুলতানা",
+    "father": "কামাল হোসেন",
+    "school": "কিশোরকণ্ঠ স্কুল",
+    "class": "৫",
     "total_marks": 495,
-    "category": "General"
+    "category": "সাধারণ"
   },
   {
-    "roll": "5003",
-    "name": "Hasan Mahmud",
-    "father": "Abul Kalam",
-    "school": "Sylhet Govt. Pilot High School",
-    "class": "5",
+    "roll": "৫০০৩",
+    "name": "হাসান মাহমুদ",
+    "father": "আবুল কালাম",
+    "school": "সিলেট সরকারি পাইলট উচ্চ বিদ্যালয়",
+    "class": "৫",
     "total_marks": 460,
-    "category": "General"
+    "category": "সাধারণ"
   },
   {
-    "roll": "5004",
-    "name": "Tasnim Jahan",
-    "father": "Shahidul Alam",
-    "school": "Scholarshome",
-    "class": "5",
+    "roll": "৫০০৪",
+    "name": "তাসনিম জাহান",
+    "father": "শহিদুল আলম",
+    "school": "স্কলার্সহোম",
+    "class": "৫",
     "total_marks": 575,
-    "category": "Talentpool"
+    "category": "ট্যালেন্টপুল"
   },
   {
-    "roll": "5005",
-    "name": "Arif Chowdhury",
-    "father": "Enamul Haque Chowdhury",
-    "school": "Border Guard Public School",
-    "class": "5",
+    "roll": "৫০০৫",
+    "name": "আরিফ চৌধুরী",
+    "father": "এনামুল হক চৌধুরী",
+    "school": "বর্ডার গার্ড পাবলিক স্কুল",
+    "class": "৫",
     "total_marks": 440,
-    "category": "General"
+    "category": "সাধারণ"
   },
   {
-    "roll": "8010",
-    "name": "Jubayer Ahmed",
-    "father": "Foyez Ahmed",
-    "school": "Sylhet Govt. Pilot High School",
-    "class": "8",
+    "roll": "৮০১০",
+    "name": "জুবায়ের আহমেদ",
+    "father": "ফয়েজ আহমেদ",
+    "school": "সিলেট সরকারি পাইলট উচ্চ বিদ্যালয়",
+    "class": "৮",
     "total_marks": 585,
-    "category": "Talentpool"
+    "category": "ট্যালেন্টপুল"
   },
   {
-    "roll": "8011",
-    "name": "Marium Khatun",
-    "father": "Sultan Ahmed",
-    "school": "Agragami Girls High School",
-    "class": "8",
+    "roll": "৮০১১",
+    "name": "মরিয়ম খাতুন",
+    "father": "সুলতান আহমেদ",
+    "school": "অগ্রগামী বালিকা উচ্চ বিদ্যালয়",
+    "class": "৮",
     "total_marks": 470,
-    "category": "General"
+    "category": "সাধারণ"
   },
   {
-    "roll": "8012",
-    "name": "Sakib Al Hasan",
-    "father": "Masud Rana",
-    "school": "Police Lines High School",
-    "class": "8",
+    "roll": "৮০১২",
+    "name": "সাকিব আল হাসান",
+    "father": "মাসুদ রানা",
+    "school": "পুলিশ লাইন্স উচ্চ বিদ্যালয়",
+    "class": "৮",
     "total_marks": 595,
-    "category": "Talentpool"
+    "category": "ট্যালেন্টপুল"
   },
   {
-    "roll": "8013",
-    "name": "Ayesha Siddiqua",
-    "father": "Abu Bakkar",
-    "school": "Blue Bird High School",
-    "class": "8",
+    "roll": "৮০১৩",
+    "name": "আয়েশা সিদ্দিকা",
+    "father": "আবু বক্কর",
+    "school": "ব্লু বার্ড হাই স্কুল",
+    "class": "৮",
     "total_marks": 485,
-    "category": "General"
+    "category": "সাধারণ"
   },
   {
-    "roll": "9001",
-    "name": "Tanvir Hossain",
-    "father": "Delwar Hossain",
-    "school": "MC Academy",
-    "class": "9",
+    "roll": "৯০০১",
+    "name": "তানভীর হোসেন",
+    "father": "দেলোয়ার হোসেন",
+    "school": "এমসি একাডেমি",
+    "class": "৯",
     "total_marks": 560,
-    "category": "Talentpool"
+    "category": "ট্যালেন্টপুল"
   },
   {
-    "roll": "9002",
-    "name": "Jannatul Ferdous",
-    "father": "Mustafizur Rahman",
-    "school": "Shahjalal Uposhahar High School",
-    "class": "9",
+    "roll": "৯০০২",
+    "name": "জান্নাতুল ফেরদৌস",
+    "father": "মুস্তাফিজুর রহমান",
+    "school": "শাহজালাল উপশহর উচ্চ বিদ্যালয়",
+    "class": "৯",
     "total_marks": 490,
-    "category": "General"
+    "category": "সাধারণ"
   },
   {
-    "roll": "1001",
-    "name": "Farhana Yeasmin",
-    "father": "Sirajul Islam",
-    "school": "Govt. Agragami Girls High School",
-    "class": "10",
+    "roll": "১০০১",
+    "name": "ফারহানা ইয়াসমিন",
+    "father": "সিরাজুল ইসলাম",
+    "school": "সরকারি অগ্রগামী বালিকা উচ্চ বিদ্যালয়",
+    "class": "১০",
     "total_marks": 588,
-    "category": "Talentpool"
+    "category": "ট্যালেন্টপুল"
   },
   {
-    "roll": "1002",
-    "name": "Mahbub Alam",
-    "father": "Jahangir Alam",
-    "school": "Sylhet Govt. Pilot High School",
-    "class": "10",
+    "roll": "১০০১",
+    "name": "ফারহানা ইয়াসমিন",
+    "father": "সিরাজুল ইসলাম",
+    "school": "সরকারি অগ্রগামী বালিকা উচ্চ বিদ্যালয়",
+    "class": "১০",
+    "total_marks": 588,
+    "category": "ট্যালেন্টপুল"
+  },
+  {
+    "roll": "১০০১",
+    "name": "ফারহানা ইয়াসমিন",
+    "father": "সিরাজুল ইসলাম",
+    "school": "সরকারি অগ্রগামী বালিকা উচ্চ বিদ্যালয়",
+    "class": "১০",
+    "total_marks": 588,
+    "category": "ট্যালেন্টপুল"
+  },
+  {
+    "roll": "১০০১",
+    "name": "ফারহানা ইয়াসমিন",
+    "father": "সিরাজুল ইসলাম",
+    "school": "সরকারি অগ্রগামী বালিকা উচ্চ বিদ্যালয়",
+    "class": "১০",
+    "total_marks": 588,
+    "category": "ট্যালেন্টপুল"
+  },
+  
+  {
+    "roll": "১০০২",
+    "name": "মাহবুব আলম",
+    "father": "জাহাঙ্গীর আলম",
+    "school": "সিলেট সরকারি পাইলট উচ্চ বিদ্যালয়",
+    "class": "১০",
     "total_marks": 475,
-    "category": "General"
+    "category": "সাধারণ"
+  },
+  {
+    "roll": "১০০২",
+    "name": "মাহবুব আলম",
+    "father": "জাহাঙ্গীর আলম",
+    "school": "সিলেট সরকারি পাইলট উচ্চ বিদ্যালয়",
+    "class": "১০",
+    "total_marks": 475,
+    "category": "সাধারণ"
+  },
+  {
+    "roll": "১০০২",
+    "name": "মাহবুব আলম",
+    "father": "জাহাঙ্গীর আলম",
+    "school": "সিলেট সরকারি পাইলট উচ্চ বিদ্যালয়",
+    "class": "১০",
+    "total_marks": 475,
+    "category": "সাধারণ"
+  },
+   {
+    "roll": "১০০৮",
+    "name": "আবু তাহের চৌধুরী",
+    "father": "হাশেম আলী চৌধুরী",
+    "school": "সিলেট সরকারি পাইলট উচ্চ বিদ্যালয়",
+    "class": "১০",
+    "total_marks": 475,
+    "category": "বিশেষ"
   }
 ]
