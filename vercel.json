@@ -4,7 +4,9 @@
   "outputDirectory": "dist",
   "devCommand": "npm run dev",
   "installCommand": "npm install",
-  "ignoreCommand": "git diff --quiet HEAD^ HEAD ./ || echo 'Changes detected'",
+  "git": {
+    "ignoreCommand": "exit 0"
+  },
   "env": {
     "NODE_VERSION": "20"
   }
