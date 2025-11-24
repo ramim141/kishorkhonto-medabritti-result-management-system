@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import Home from './components/Home'; // ইমেজের মতো ল্যান্ডিং পেজ
+import ResultList from './components/ResultList'; // রোল নাম্বার লিস্ট
 import SearchForm from './components/SearchForm';
 import ResultCard from './components/ResultCard';
-import Home from './components/Home'; // নতুন হোম কম্পোনেন্ট
 
 const App = () => {
-  // Navigation State ('home' or 'search')
   const [view, setView] = useState('home'); 
-
-  // Search Logic State
   const [inputRoll, setInputRoll] = useState('');
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -18,23 +16,16 @@ const App = () => {
   const handleSearch = async (e) => {
     e.preventDefault();
     if (!inputRoll) return;
-
     setLoading(true);
     setError('');
     setResult(null);
-
     try {
       const response = await fetch('/results.json');
       if (!response.ok) throw new Error('Failed to load data');
-      
       const data = await response.json();
       const student = data.find((s) => s.roll === inputRoll.trim());
-
-      if (student) {
-        setResult(student);
-      } else {
-        setError('No result found for this Roll Number.');
-      }
+      if (student) setResult(student);
+      else setError('No result found for this Roll Number.');
     } catch (err) {
       setError('Error fetching data.');
     } finally {
@@ -42,34 +33,24 @@ const App = () => {
     }
   };
 
-  const handlePrint = () => {
-    window.print();
-  };
-
-  const resetSearch = () => {
-    setResult(null);
-    setInputRoll('');
-  };
+  const handlePrint = () => window.print();
+  const resetSearch = () => { setResult(null); setInputRoll(''); };
 
   return (
-    <div className="min-h-screen bg-gray-50 font-sans flex flex-col">
-      
-      {/* Navigation - Pass view handler */}
+    <div className="flex flex-col min-h-screen font-sans bg-gray-50">
       <Navbar onNavigate={setView} currentView={view} />
 
-      {/* Main Content Area */}
-      <main className="flex-grow container mx-auto px-4 py-10 flex flex-col items-center">
+      <main className="container flex flex-col items-center flex-grow px-4 py-10 mx-auto">
         
-        {/* VIEW: HOME LIST */}
-        {view === 'home' && (
-          <Home />
-        )}
+        {/* LANDING PAGE (Image Design) */}
+        {view === 'home' && <Home />}
 
-        {/* VIEW: SEARCH RESULT */}
+        {/* ROLL LIST PAGE */}
+        {view === 'list' && <ResultList />}
+
+        {/* SEARCH PAGE */}
         {view === 'search' && (
-          <div className="w-full flex flex-col items-center">
-            
-            {/* Show Search Form only if no result is displayed */}
+          <div className="flex flex-col items-center w-full">
             {!result && (
               <SearchForm 
                 onSearch={handleSearch}
@@ -79,8 +60,6 @@ const App = () => {
                 error={error}
               />
             )}
-
-            {/* Show Result Card if result exists */}
             {result && (
               <ResultCard 
                 data={result}
@@ -90,7 +69,6 @@ const App = () => {
             )}
           </div>
         )}
-
       </main>
 
       <Footer />
