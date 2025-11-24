@@ -13,22 +13,22 @@ const Hero = () => {
           </span>
 
           {/* Main Title */}
-          <h1 className="mb-4 text-4xl font-extrabold leading-tight text-transparent md:text-6xl bg-clip-text bg-gradient-to-r from-emerald-700 to-teal-600 animate-fade-in-up font-serif">
+          <h1 className="mb-4 text-4xl font-extrabold md:text-6xl bg-gradient-to-r from-emerald-700 to-teal-600 animate-fade-in-up" style={{ WebkitTextFillColor: 'transparent', WebkitBackgroundClip: 'text', backgroundClip: 'text' }}>
             কিশোরকণ্ঠ পাঠক ফোরাম
           </h1>
           
           {/* Subtitle */}
-          <h2 className="mb-8 text-2xl font-semibold text-amber-600 md:text-3xl animate-fade-in-up delay-100">
+          <h2 className="mb-8 text-2xl font-semibold delay-100 text-amber-600 md:text-3xl animate-fade-in-up">
             সিলেট মহানগর
           </h2>
 
           {/* Description */}
-          <p className="max-w-2xl mb-10 text-lg text-gray-600 md:text-xl animate-fade-in-up delay-200">
+          <p className="max-w-2xl mb-10 text-lg text-gray-600 delay-200 md:text-xl animate-fade-in-up">
             নৈতিকতা ও মেধার সমন্বয়ে এক নতুন প্রজন্ম গড়ার প্রত্যয়ে আমাদের পথচলা।
           </p>
 
           {/* Image Container with Glass Effect */}
-          <div className="relative w-full max-w-7xl p-2 mx-auto mt-8 bg-white rounded-2xl shadow-2xl animate-fade-in-up delay-300 ring-1 ring-gray-200/50">
+          <div className="relative w-full p-2 mx-auto mt-8 delay-300 bg-white shadow-2xl max-w-7xl rounded-2xl animate-fade-in-up ring-1 ring-gray-200/50">
             <div className="relative overflow-hidden rounded-xl aspect-video">
               <img 
                 src={heroBanner} 
@@ -49,8 +49,8 @@ const Hero = () => {
       </div>
       
       {/* Decorative Background Elements */}
-      <div className="absolute top-0 left-0 w-64 h-64 bg-emerald-200/30 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-teal-200/30 rounded-full blur-3xl translate-x-1/3 translate-y-1/3"></div>
+      <div className="absolute top-0 left-0 w-64 h-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-200/30 blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 rounded-full w-96 h-96 bg-teal-200/30 blur-3xl translate-x-1/3 translate-y-1/3"></div>
     </div>
   );
 };

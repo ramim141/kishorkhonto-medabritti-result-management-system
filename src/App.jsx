@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './components/Home'; // ইমেজের মতো ল্যান্ডিং পেজ
 import ResultList from './components/ResultList'; // রোল নাম্বার লিস্ট
+import ScholarshipDetails from './components/ScholarshipDetails'; // মেধাবৃত্তি বিস্তারিত
 import SearchForm from './components/SearchForm';
 import ResultCard from './components/ResultCard';
 
@@ -43,10 +44,13 @@ const App = () => {
       <main className="flex flex-col flex-grow w-full">
         
         {/* LANDING PAGE (Image Design) */}
-        {view === 'home' && <Home />}
+        {view === 'home' && <Home onNavigate={setView} />}
 
         {/* ROLL LIST PAGE */}
         {view === 'list' && <ResultList />}
+
+        {/* SCHOLARSHIP DETAILS PAGE */}
+        {view === 'details' && <ScholarshipDetails />}
 
         {/* SEARCH PAGE */}
         {view === 'search' && (
@@ -71,7 +75,7 @@ const App = () => {
         )}
       </main>
 
-      <Footer />
+      <Footer onNavigate={setView} />
     </div>
   );
 };

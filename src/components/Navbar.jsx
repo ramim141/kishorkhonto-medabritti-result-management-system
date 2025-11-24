@@ -100,8 +100,11 @@ const Navbar = ({ onNavigate, currentView }) => {
             হোম
           </div>
 
-          <div className="px-6 py-3 border-b border-gray-50 font-medium text-gray-700 hover:text-[#1a5d45]">
-            আমাদের সম্পর্কে
+          <div 
+            onClick={() => handleMobileNavigate('details')} 
+            className={`px-6 py-3 border-b border-gray-50 font-medium ${currentView === 'details' ? 'text-[#1a5d45] bg-green-50' : 'text-gray-700'}`}
+          >
+            মেধাবৃত্তির বিস্তারিত
           </div>
 
           <div 

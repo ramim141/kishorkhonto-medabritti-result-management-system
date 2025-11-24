@@ -6,13 +6,13 @@ import Committee from './home/Committee';
 import CallToAction from './home/CallToAction';
 import ContactInfo from './home/ContactInfo';
 
-const Home = () => {
+const Home = ({ onNavigate }) => {
   return (
     <div className="min-h-screen bg-white animate-fade-in">
       <Hero />
       <About />
       <Activities />
-      <CallToAction />
+      <CallToAction onNavigate={onNavigate} />
       <Committee />
       <ContactInfo />
     </div>
