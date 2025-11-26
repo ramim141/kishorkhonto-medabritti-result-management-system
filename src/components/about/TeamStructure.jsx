@@ -8,14 +8,15 @@ const TeamStructure = () => {
       icon: HiUserGroup,
       color: 'from-emerald-500 to-teal-500',
       bgColor: 'from-emerald-50 to-teal-50',
-      description: 'সংগঠনের নীতিনির্ধারণ, সিদ্ধান্ত গ্রহণ এবং সামগ্রিক দিকনির্দেশনা প্রদান করে। প্রধান কার্যনির্বাহী, সভাপতি, সাধারণ সম্পাদক ও কোষাধ্যক্ষ নিয়ে গঠিত।',
+      description: 'সংগঠনের নীতিনির্ধারণ, সিদ্ধান্ত গ্রহণ এবং সামগ্রিক দিকনির্দেশনা প্রদান করে। প্রধান কার্যনির্বাহী, চেয়ারম্যান, ভাইস চেয়ারম্যান ও নির্বাহী সম্পাদকের নিয়ে গঠিত।',
       responsibilities: [
         'বার্ষিক পরিকল্পনা প্রণয়ন',
         'বাজেট অনুমোদন ও আর্থিক ব্যবস্থাপনা',
         'কৌশলগত সিদ্ধান্ত গ্রহণ',
-        'স্টেকহোল্ডারদের সাথে সম্পর্ক রক্ষা'
+        'স্টেকহোল্ডারদের সাথে সম্পর্ক রক্ষা',
+        'পরীক্ষা পরিচালনা টিমকে তত্ত্বাবধান'
       ],
-      members: 7
+      members: "১১"
     },
     {
       name: 'পরীক্ষা পরিচালনা টিম',
@@ -29,7 +30,7 @@ const TeamStructure = () => {
         'উত্তরপত্র মূল্যায়ন ও যাচাই',
         'রেজাল্ট ঘোষণা ও সংরক্ষণ'
       ],
-      members: 15
+      members: "২৮"
     },
     {
       name: 'যোগাযোগ ও মিডিয়া টিম',
@@ -40,25 +41,12 @@ const TeamStructure = () => {
       responsibilities: [
         'সোশ্যাল মিডিয়া কন্টেন্ট তৈরি',
         'প্রচার প্রচারণা ক্যাম্পেইন পরিচালনা',
-        'মিডিয়া কভারেজ সমন্বয়',
+        'মিডিয়া কাভারেজ সমন্বয়',
         'ব্র্যান্ড ইমেজ ম্যানেজমেন্ট'
       ],
-      members: 8
+      members: "৮"
     },
-    {
-      name: 'কন্টেন্ট ও এডিটোরিয়াল টিম',
-      icon: HiPencilSquare,
-      color: 'from-blue-500 to-purple-500',
-      bgColor: 'from-blue-50 to-purple-50',
-      description: 'সকল প্রকার কন্টেন্ট তৈরি, সম্পাদনা এবং প্রকাশনার কাজ করে। ওয়েবসাইট কন্টেন্ট, মাসিক ম্যাগাজিন, পরীক্ষা সিলেবাস এবং শিক্ষা উপকরণ প্রস্তুত করে।',
-      responsibilities: [
-        'ওয়েবসাইট কন্টেন্ট লেখা ও সম্পাদনা',
-        'শিক্ষা উপকরণ ডিজাইন',
-        'মাসিক ম্যাগাজিন প্রকাশ',
-        'সিলেবাস ও গাইড প্রস্তুতকরণ'
-      ],
-      members: 10
-    },
+    
     {
       name: 'ফটোগ্রাফি ও ডিজাইন টিম',
       icon: HiCamera,
@@ -71,22 +59,9 @@ const TeamStructure = () => {
         'সার্টিফিকেট ও ক্রেস্ট ডিজাইন',
         'মার্কেটিং ম্যাটেরিয়াল তৈরি'
       ],
-      members: 6
+      members: "৮"
     },
-    {
-      name: 'আইটি ও টেকনিক্যাল টিম',
-      icon: HiComputerDesktop,
-      color: 'from-pink-500 to-rose-500',
-      bgColor: 'from-pink-50 to-rose-50',
-      description: 'ওয়েবসাইট, অনলাইন রেজিস্ট্রেশন সিস্টেম, রেজাল্ট ম্যানেজমেন্ট এবং ডাটাবেস পরিচালনার দায়িত্ব পালন করে। ডিজিটাল সলিউশন ডেভেলপ ও মেইনটেইন করে।',
-      responsibilities: [
-        'ওয়েবসাইট ডেভেলপমেন্ট ও রক্ষণাবেক্ষণ',
-        'অনলাইন রেজিস্ট্রেশন সিস্টেম পরিচালনা',
-        'ডাটাবেস ম্যানেজমেন্ট',
-        'সাইবার সিকিউরিটি নিশ্চিতকরণ'
-      ],
-      members: 5
-    }
+   
   ];
 
   return (
@@ -163,7 +138,7 @@ const TeamStructure = () => {
           <div className="grid gap-6 md:grid-cols-3">
             <div className="text-center">
               <div className="mb-2 text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600">
-                51
+                ৫৫
               </div>
               <div className="text-lg font-semibold text-gray-700">মোট সদস্য সংখ্যা</div>
               <div className="text-sm text-gray-600">সকল টিম মিলিয়ে</div>
@@ -171,7 +146,7 @@ const TeamStructure = () => {
 
             <div className="text-center">
               <div className="mb-2 text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-600">
-                6
+                ৪
               </div>
               <div className="text-lg font-semibold text-gray-700">বিভাগ/টিম</div>
               <div className="text-sm text-gray-600">বিশেষায়িত দক্ষতা</div>
@@ -179,7 +154,7 @@ const TeamStructure = () => {
 
             <div className="text-center">
               <div className="mb-2 text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-600">
-                24/7
+                ২৪/৭ 
               </div>
               <div className="text-lg font-semibold text-gray-700">সেবা প্রদান</div>
               <div className="text-sm text-gray-600">অনলাইন সহায়তা</div>

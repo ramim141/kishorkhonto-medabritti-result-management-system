@@ -7,13 +7,13 @@ import CallToAction from './home/CallToAction';
 import ContactInfo from './home/ContactInfo';
 import FAQ from './home/FAQ';
 
-const Home = ({ onNavigate }) => {
+const Home = () => {
   return (
     <div className="min-h-screen bg-white animate-fade-in">
       <Hero />
       <About />
       <Activities />
-      <CallToAction onNavigate={onNavigate} />
+      <CallToAction />
       <Committee />
       <FAQ />
       {/* <ContactInfo /> */}

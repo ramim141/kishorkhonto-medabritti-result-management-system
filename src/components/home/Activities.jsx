@@ -21,6 +21,19 @@ const Activities = () => {
   const [selectedActivity, setSelectedActivity] = useState(null);
 
   const items = [
+    
+    {
+      title: "মেধাবৃত্তি কার্যক্রম",
+      content: "বার্ষিক মেধাবৃত্তি পরীক্ষা আয়োজন এবং কৃতী শিক্ষার্থীদের পুরস্কৃত করা।",
+      details: "শিক্ষার্থীদের সুপ্ত প্রতিভা অন্বেষণে প্রতি বছর আমরা আয়োজন করি বিশাল মেধাবৃত্তি পরীক্ষা। পরীক্ষার মাধ্যমে কৃতী শিক্ষার্থীদের চিহ্নিত করে তাদেরকে বিভিন্ন পুরস্কার ও বৃত্তি প্রদান করা হয়। এই কার্যক্রমের মাধ্যমে আমরা শিক্ষার্থীদের মধ্যে পড়াশোনার প্রতি উৎসাহ বৃদ্ধি এবং মেধার বিকাশে সহায়তা করি।",
+      icon: HiAcademicCap,
+      gradient: "from-lime-500 to-cyan-500",
+      bgColor: "bg-blue-50",
+      textColor: "text-yellow-600",
+      hoverBg: "group-hover:bg-gradient-to-br group-hover:from-blue-500 group-hover:to-cyan-500",
+      iconBg: "bg-blue-100",
+      badge: "মেধাবৃত্তি"
+    },
     { 
       title: "শিক্ষা কার্যক্রম", 
       content: "মেধাবৃত্তি পরীক্ষা আয়োজন, কুইজ প্রতিযোগিতা, এবং শিক্ষা সফর। শিক্ষার্থীদের মেধা বিকাশে আমরা নিয়মিত বিভিন্ন শিক্ষামূলক কর্মসূচী পালন করি।",
@@ -30,7 +43,7 @@ const Activities = () => {
       bgColor: "bg-blue-50",
       textColor: "text-blue-600",
       hoverBg: "group-hover:bg-gradient-to-br group-hover:from-blue-500 group-hover:to-cyan-500",
-      iconBg: "bg-blue-100",
+      iconBg: "bg-yellow-100",
       badge: "শিক্ষা"
     },
     { 

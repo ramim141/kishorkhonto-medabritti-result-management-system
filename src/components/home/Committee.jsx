@@ -1,6 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { FaFacebookF, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
+import { FaFacebookF } from 'react-icons/fa';
 import { HiSparkles, HiChevronLeft, HiChevronRight } from 'react-icons/hi2';
+
+import AbuJubayer_chairman from '../../assets/images/jubayer.jpg';
+import Tofayel_vicechairman from '../../assets/images/tofayel.jpg';
+import MahmudurRahman_assistant_poricalok from '../../assets/images/mahmudurrahman.jpg';
+import M_ahmedamim_assistant_poricalok from '../../assets/images/m_Ahmedamim.jpg';
+import mufakkir_assistant_poricalok from '../../assets/images/mufakkhir.jpg';
+import riyaz_assistant_poricalok from '../../assets/images/riyazuddin.jpg';
+import sultan_assistant_poricalok from '../../assets/images/sultanmahmud.jpg';
+import yeasin_assistant_poricalok from '../../assets/images/yasinahmed.jpg';
+import taher_assistant_poricalok from '../../assets/images/taher.jpg';
+import abu_taher_nirbahi from '../../assets/images/abutaherchowdhury.jpg';
+import moynulIslam_assistant_poricalok from '../../assets/images/moynulislam.jpg';
+import coverPhotoCommittee from '../../assets/images/cover-photo-commitee.jpg';
 
 const Committee = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -8,46 +21,81 @@ const Committee = () => {
 
   const members = [
     { 
-      name: "নাবিল মাহমুদ নিলয়", 
-      role: "পরিচালক", 
-      img: "https://i.pravatar.cc/150?img=11",
-      coverImage: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=500&auto=format&fit=crop" // ডামি কভার ইমেজ
+      name: "আবু জুবায়ের", 
+      role: "চেয়ারম্যান", 
+      img: AbuJubayer_chairman,
+      coverImage: coverPhotoCommittee,
+      facebook: '#'
     },
     { 
-      name: "আহসান হাবীব", 
+      name: "তোফায়েল আহমদ", 
+      role: "ভাইস চেয়ারম্যান", 
+      img: Tofayel_vicechairman,
+      coverImage: coverPhotoCommittee,
+      facebook: 'https://www.facebook.com/tufael.ahmed.54922'
+    },
+    { 
+      name: "মাহমুদুর রহমান", 
       role: "সহকারী পরিচালক", 
-      img: "https://i.pravatar.cc/150?img=13",
-      coverImage: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=500&auto=format&fit=crop"
+      img: MahmudurRahman_assistant_poricalok,
+      coverImage: coverPhotoCommittee,
+      facebook: '#'
     },
     { 
-      name: "মুফাসসির আহমদ চৌধুরী", 
+      name: "এম আহমদ আমীম",   
       role: "সহকারী পরিচালক", 
-      img: "https://i.pravatar.cc/150?img=60",
-      coverImage: "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=500&auto=format&fit=crop"
+      img: M_ahmedamim_assistant_poricalok,
+      coverImage: coverPhotoCommittee,
+      facebook: 'https://www.facebook.com/ahmed.amim.1'
     },
     { 
-      name: "আব্দুল্লাহ আল মামুন", 
-      role: "সদস্য", 
-      img: "https://i.pravatar.cc/150?img=33",
-      coverImage: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=500&auto=format&fit=crop"
+      name: "শেখ মুফাক্কির হোসাইন", 
+      role: "সহকারী পরিচালক",  
+      img: mufakkir_assistant_poricalok,
+      coverImage: coverPhotoCommittee,
+      facebook: 'https://www.facebook.com/sheikh.mufakkir'
     },
     { 
-      name: "রাকিবুল ইসলাম", 
-      role: "সদস্য", 
-      img: "https://i.pravatar.cc/150?img=59",
-      coverImage: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=500&auto=format&fit=crop"
+      name: "আবু তাহের চৌধুরী", 
+      role: "নির্বাহী সম্পাদক", 
+      img: abu_taher_nirbahi,
+      coverImage: coverPhotoCommittee,
+      facebook: 'https://www.facebook.com/mataher.chowdhury.1'
     },
     { 
-      name: "তানভীর আহমেদ", 
-      role: "সদস্য", 
-      img: "https://i.pravatar.cc/150?img=12",
-      coverImage: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=500&auto=format&fit=crop"
+      name: "রিয়াজ উদ্দিন", 
+      role: "সহকারী পরিচালক", 
+      img: riyaz_assistant_poricalok,
+      coverImage: coverPhotoCommittee,
+      facebook: 'https://www.facebook.com/riyaj.uddin.7146'
     },
-    { 
-      name: "মাহমুদুল হাসান", 
-      role: "সদস্য", 
-      img: "https://i.pravatar.cc/150?img=68",
-      coverImage: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=500&auto=format&fit=crop"
+    {
+      name: "সুলতান মাহমুদ",
+      role: "সহকারী পরিচালক",  
+      img: sultan_assistant_poricalok,
+      coverImage: coverPhotoCommittee,
+      facebook: 'https://www.facebook.com/sultan.mahmud.239321'
+    },
+    {
+      name: "ইয়াসিন আহমদ",
+      role: "সহকারী পরিচালক",   
+      img: yeasin_assistant_poricalok,
+      coverImage: coverPhotoCommittee,
+      facebook: 'https://www.facebook.com/yasinahmed.yasinahmed.549'
+    },
+    {
+      name: "ময়নুল ইসলাম",
+      role: "সহকারী পরিচালক",   
+      img: moynulIslam_assistant_poricalok,
+      coverImage: coverPhotoCommittee,
+      facebook: 'https://www.facebook.com/mdmoynulislam.mayon.3'
+    },
+    {
+      name: "আবু তাহের",
+      role: "সহকারী পরিচালক",  
+      img: taher_assistant_poricalok,
+      coverImage: coverPhotoCommittee,
+      facebook: 'https://www.facebook.com/taher200135'
     }
   ];
 
@@ -148,14 +196,8 @@ const Committee = () => {
                           />
                           
                           <div className="absolute inset-0 flex items-center justify-center gap-2 bg-black/40 backdrop-blur-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <a href="#" className="p-2 text-white transition-colors rounded-full bg-white/20 hover:bg-emerald-500">
+                            <a href={member.facebook} target="_blank" rel="noopener noreferrer" className="p-2 text-white transition-colors rounded-full bg-white/20 hover:bg-emerald-500">
                               <FaFacebookF size={14} />
-                            </a>
-                            <a href="#" className="p-2 text-white transition-colors rounded-full bg-white/20 hover:bg-sky-500">
-                              <FaTwitter size={14} />
-                            </a>
-                            <a href="#" className="p-2 text-white transition-colors rounded-full bg-white/20 hover:bg-blue-600">
-                              <FaLinkedinIn size={14} />
                             </a>
                           </div>
                         </div>

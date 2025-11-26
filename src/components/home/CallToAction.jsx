@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const CallToAction = ({ onNavigate }) => {
+const CallToAction = () => {
   return (
     <section className="py-16">
       <div className="container px-4 mx-auto">
@@ -23,12 +24,12 @@ const CallToAction = ({ onNavigate }) => {
               আমাদের বার্ষিক বৃত্তি কার্যক্রম শুরু হতে যাচ্ছে। আগ্রহী শিক্ষার্থীদের জন্য নিবন্ধন খোলা রয়েছে। 
               আজই আপনার সন্তানের উজ্জ্বল ভবিষ্যতের জন্য নিবন্ধন করুন।
             </p>
-            <button 
-              onClick={() => onNavigate('details')}
-              className="px-8 py-4 text-lg font-bold text-emerald-700 transition-transform transform bg-white rounded-full shadow-lg hover:scale-105 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
+            <Link 
+              to="/details"
+              className="inline-block px-8 py-4 text-lg font-bold text-emerald-700 transition-transform transform bg-white rounded-full shadow-lg hover:scale-105 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
             >
               বৃত্তি সম্পর্কে জানুন
-            </button>
+            </Link>
           </div>
         </div>
       </div>

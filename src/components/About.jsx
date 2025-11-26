@@ -1,6 +1,7 @@
 import React from 'react';
 import AboutHero from './about/AboutHero';
 import MissionVision from './about/MissionVision';
+import CoreValues from './about/CoreValues';
 import HistoryTimeline from './about/HistoryTimeline';
 import Achievements from './about/Achievements';
 import TeamStructure from './about/TeamStructure';
@@ -11,7 +12,8 @@ const About = () => {
       <AboutHero />
       <HistoryTimeline />
       <MissionVision />
-      <Achievements />
+      <CoreValues />
+      {/* <Achievements /> */}
       <TeamStructure />
     </div>
   );

@@ -539,10 +539,10 @@ const ContactCTA = () => (
       মেধাবৃত্তি সম্পর্কে আরও বিস্তারিত জানতে আমাদের অফিসে যোগাযোগ করুন।
     </p>
     <div className="flex flex-wrap justify-center gap-4">
-      <a href="tel:+8801711000000" className="px-8 py-3 font-semibold transition-all transform bg-white rounded-lg text-emerald-600 hover:scale-105 hover:shadow-lg">
+      <a href="tel:+8801791629996" className="px-8 py-3 font-semibold transition-all transform bg-white rounded-lg text-emerald-600 hover:scale-105 hover:shadow-lg">
         ফোন করুন
       </a>
-      <a href="mailto:info@kishorkhonto.com" className="px-8 py-3 font-semibold text-white transition-all transform border-2 border-white rounded-lg hover:bg-white hover:text-emerald-600 hover:scale-105">
+      <a href="mailto:kishorkanthasylwest@gmail.com" className="px-8 py-3 font-semibold text-white transition-all transform border-2 border-white rounded-lg hover:bg-white hover:text-emerald-600 hover:scale-105">
         ইমেইল করুন
       </a>
     </div>

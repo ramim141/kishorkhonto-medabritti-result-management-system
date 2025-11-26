@@ -40,7 +40,7 @@ const Hero = () => {
               
               {/* Bottom Text on Image */}
               <div className="absolute bottom-0 left-0 w-full p-6 text-left text-white">
-                <p className="text-lg font-medium md:text-xl">মেধাবীদের সংবর্ধনা ও পুরস্কার বিতরণী অনুষ্ঠান</p>
+                <p className="text-lg font-medium md:text-xl">২০২৪ সালের কিশোরকণ্ঠ মেধাবৃত্তি পরীক্ষায় বিশেষ বৃত্তিপ্রাপ্ত মেধাবী শিক্ষার্থীরা</p>
               </div>
             </div>
           </div>
