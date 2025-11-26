@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './components/Home'; // ইমেজের মতো ল্যান্ডিং পেজ
+import About from './components/About'; // আমাদের সম্পর্কে পেজ
 import ResultList from './components/ResultList'; // রোল নাম্বার লিস্ট
 import ScholarshipDetails from './components/ScholarshipDetails'; // মেধাবৃত্তি বিস্তারিত
 import SearchForm from './components/SearchForm';
@@ -45,6 +46,9 @@ const App = () => {
         
         {/* LANDING PAGE (Image Design) */}
         {view === 'home' && <Home onNavigate={setView} />}
+
+        {/* ABOUT PAGE */}
+        {view === 'about' && <About />}
 
         {/* ROLL LIST PAGE */}
         {view === 'list' && <ResultList />}

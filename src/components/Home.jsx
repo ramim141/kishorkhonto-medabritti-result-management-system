@@ -5,6 +5,7 @@ import Activities from './home/Activities';
 import Committee from './home/Committee';
 import CallToAction from './home/CallToAction';
 import ContactInfo from './home/ContactInfo';
+import FAQ from './home/FAQ';
 
 const Home = ({ onNavigate }) => {
   return (
@@ -14,7 +15,8 @@ const Home = ({ onNavigate }) => {
       <Activities />
       <CallToAction onNavigate={onNavigate} />
       <Committee />
-      <ContactInfo />
+      <FAQ />
+      {/* <ContactInfo /> */}
     </div>
   );
 };

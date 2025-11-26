@@ -13,13 +13,13 @@ const Hero = () => {
           </span>
 
           {/* Main Title */}
-          <h1 className="mb-4 text-4xl font-extrabold md:text-6xl bg-gradient-to-r from-emerald-700 to-teal-600 animate-fade-in-up" style={{ WebkitTextFillColor: 'transparent', WebkitBackgroundClip: 'text', backgroundClip: 'text' }}>
+          <h1 className="pt-6 mb-4 text-4xl font-extrabold md:text-6xl bg-gradient-to-r from-emerald-700 to-teal-600 animate-fade-in-up" style={{ WebkitTextFillColor: 'transparent', WebkitBackgroundClip: 'text', backgroundClip: 'text' }}>
             কিশোরকণ্ঠ পাঠক ফোরাম
           </h1>
           
           {/* Subtitle */}
           <h2 className="mb-8 text-2xl font-semibold delay-100 text-amber-600 md:text-3xl animate-fade-in-up">
-            সিলেট মহানগর
+            সিলেট জেলা পশ্চিম
           </h2>
 
           {/* Description */}

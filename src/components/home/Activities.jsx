@@ -1,69 +1,97 @@
 import React, { useState, useEffect } from 'react';
+import { 
+  HiAcademicCap, 
+  HiMusicalNote, 
+  HiUserGroup, 
+  HiTrophy, 
+  HiRocketLaunch, 
+  HiBookOpen,
+  HiChevronLeft,
+  HiChevronRight,
+  HiSparkles,
+  HiXMark // ক্লোজ আইকন
+} from 'react-icons/hi2';
 
 const Activities = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsToShow, setItemsToShow] = useState(3);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+  
+  // মডালের জন্য স্টেট
+  const [selectedActivity, setSelectedActivity] = useState(null);
 
   const items = [
     { 
       title: "শিক্ষা কার্যক্রম", 
-      content: "মেধাবৃত্তি পরীক্ষা আয়োজন, কুইজ প্রতিযোগিতা, এবং শিক্ষা সফর। শিক্ষার্থীদের মেধা বিকাশে আমরা নিয়মিত বিভিন্ন শিক্ষামূলক কর্মসূচী পালন করি।",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.499 5.221 69.17 69.17 0 00-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
-        </svg>
-      ),
-      color: "bg-blue-50 text-blue-600"
+      content: "মেধাবৃত্তি পরীক্ষা আয়োজন, কুইজ প্রতিযোগিতা, এবং শিক্ষা সফর। শিক্ষার্থীদের মেধা বিকাশে আমরা নিয়মিত বিভিন্ন শিক্ষামূলক কর্মসূচী পালন করি।",
+      details: "আমাদের শিক্ষা কার্যক্রমের মূল লক্ষ্য হলো শিক্ষার্থীদের পুঁথিগত বিদ্যার পাশাপাশি সৃজনশীল মেধার বিকাশ ঘটানো। আমরা প্রতি বছর বিশাল পরিসরে মেধাবৃত্তি পরীক্ষার আয়োজন করি যেখানে হাজার হাজার শিক্ষার্থী অংশগ্রহণ করে। এছাড়াও কুইজ প্রতিযোগিতা, বিতর্ক প্রতিযোগিতা এবং বিজ্ঞান মেলার মাধ্যমে আমরা তাদের সুপ্ত প্রতিভা বিকাশে সহায়তা করি। কৃতী শিক্ষার্থীদের জন্য আমরা বিশেষ শিক্ষা সফরের ব্যবস্থাও করে থাকি।",
+      icon: HiAcademicCap,
+      gradient: "from-blue-500 to-cyan-500",
+      bgColor: "bg-blue-50",
+      textColor: "text-blue-600",
+      hoverBg: "group-hover:bg-gradient-to-br group-hover:from-blue-500 group-hover:to-cyan-500",
+      iconBg: "bg-blue-100",
+      badge: "শিক্ষা"
     },
     { 
       title: "সাংস্কৃতিক কার্যক্রম", 
       content: "হামদ-নাত, ক্বিরাত প্রতিযোগিতা, এবং সাহিত্য আসর। সুস্থ সংস্কৃতির চর্চা ও বিকাশে আমরা বদ্ধপরিকর।",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.164zm0 0V2.25a2.25 2.25 0 00-2.25-2.25H13.5a2.25 2.25 0 00-2.25 2.25v10.5m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.164z" />
-        </svg>
-      ),
-      color: "bg-purple-50 text-purple-600"
+      details: "সুস্থ সংস্কৃতি মানুষকে সুন্দর মনের অধিকারী করে। আমরা নিয়মিত হামদ-নাত, ক্বিরাত, এবং দেশাত্মবোধক গানের প্রতিযোগিতার আয়োজন করি। আমাদের সাহিত্য আসরে উদীয়মান লেখকরা তাদের লেখা পাঠ করার সুযোগ পায়। এছাড়াও আবৃত্তি, অভিনয় এবং দেয়ালিকা প্রকাশের মাধ্যমে আমরা সাহিত্য ও সংস্কৃতির চর্চা অব্যাহত রাখি। অপসংস্কৃতির সয়লাব থেকে যুবসমাজকে রক্ষা করাই আমাদের উদ্দেশ্য।",
+      icon: HiMusicalNote,
+      gradient: "from-purple-500 to-pink-500",
+      bgColor: "bg-purple-50",
+      textColor: "text-purple-600",
+      hoverBg: "group-hover:bg-gradient-to-br group-hover:from-purple-500 group-hover:to-pink-500",
+      iconBg: "bg-purple-100",
+      badge: "সংস্কৃতি"
     },
     { 
       title: "সামাজিক কার্যক্রম", 
-      content: "শীতবস্ত্র বিতরণ, রক্তদান কর্মসূচি, এবং বৃক্ষরোপণ অভিযান। সমাজের সুবিধাবঞ্চিত মানুষের পাশে দাঁড়ানো আমাদের নৈতিক দায়িত্ব।",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
-        </svg>
-      ),
-      color: "bg-emerald-50 text-emerald-600"
+      content: "শীতবস্ত্র বিতরণ, রক্তদান কর্মসূচি, এবং বৃক্ষরোপণ অভিযান। সমাজের সুবিধাবঞ্চিত মানুষের পাশে দাঁড়ানো আমাদের নৈতিক দায়িত্ব।",
+      details: "মানুষ মানুষের জন্য। আমরা সমাজের সুবিধাবঞ্চিত মানুষের পাশে দাঁড়াতে সর্বদা প্রস্তুত। প্রতি শীতে আমরা গরিব ও অসহায়দের মাঝে শীতবস্ত্র বিতরণ করি। আমাদের নিজস্ব ব্লাড ডোনার গ্রুপের মাধ্যমে মুমূর্ষু রোগীদের রক্তদান করা হয়। পরিবেশ রক্ষায় আমরা নিয়মিত বৃক্ষরোপণ অভিযান পরিচালনা করি। এছাড়াও বন্যা বা প্রাকৃতিক দুর্যোগে আমরা ত্রাণ সহায়তা নিয়ে মানুষের পাশে দাঁড়াই।",
+      icon: HiUserGroup,
+      gradient: "from-emerald-500 to-teal-500",
+      bgColor: "bg-emerald-50",
+      textColor: "text-emerald-600",
+      hoverBg: "group-hover:bg-gradient-to-br group-hover:from-emerald-500 group-hover:to-teal-500",
+      iconBg: "bg-emerald-100",
+      badge: "সামাজিক"
     },
     { 
       title: "পুরস্কার বিতরণী", 
-      content: "কৃতী শিক্ষার্থীদের সংবর্ধনা ও পুরস্কার প্রদান। মেধার স্বীকৃতি প্রদানে আমরা প্রতি বছর বর্ণাঢ্য অনুষ্ঠানের আয়োজন করি।",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0V5.625a2.25 2.25 0 11-4.5 0v7.125M12 3.75v-1.5" />
-        </svg>
-      ),
-      color: "bg-amber-50 text-amber-600"
+      content: "কৃতী শিক্ষার্থীদের সংবর্ধনা ও পুরস্কার প্রদান। মেধার স্বীকৃতি প্রদানে আমরা প্রতি বছর বর্ণাঢ্য অনুষ্ঠানের আয়োজন করি।",
+      details: "মেধাবীদের মূল্যায়ন করা আমাদের অন্যতম প্রধান কাজ। যারা আমাদের বিভিন্ন প্রতিযোগিতায় ভালো ফলাফল করে, তাদের আমরা জাঁকজমকপূর্ণ অনুষ্ঠানের মাধ্যমে পুরস্কৃত করি। ক্রেস্ট, সার্টিফিকেট, বই এবং নগদ অর্থ বৃত্তির মাধ্যমে তাদের উৎসাহিত করা হয়। এই স্বীকৃতি তাদের ভবিষ্যতে আরও ভালো কিছু করার অনুপ্রেরণা যোগায়।",
+      icon: HiTrophy,
+      gradient: "from-amber-500 to-orange-500",
+      bgColor: "bg-amber-50",
+      textColor: "text-amber-600",
+      hoverBg: "group-hover:bg-gradient-to-br group-hover:from-amber-500 group-hover:to-orange-500",
+      iconBg: "bg-amber-100",
+      badge: "পুরস্কার"
     },
     { 
       title: "ক্যারিয়ার গাইডলাইন", 
-      content: "শিক্ষার্থীদের ভবিষ্যৎ গঠনে সঠিক দিকনির্দেশনা প্রদান। উচ্চশিক্ষা ও পেশা নির্বাচনে আমরা পরামর্শ দিয়ে থাকি।",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-        </svg>
-      ),
-      color: "bg-cyan-50 text-cyan-600"
+      content: "শিক্ষার্থীদের ভবিষ্যৎ গঠনে সঠিক দিকনির্দেশনা প্রদান। উচ্চশিক্ষা ও পেশা নির্বাচনে আমরা পরামর্শ দিয়ে থাকি।",
+      details: "সঠিক সময়ে সঠিক সিদ্ধান্ত নেওয়া সফলতার চাবিকাঠি। আমরা এসএসসি ও এইচএসসি পরবর্তী শিক্ষার্থীদের জন্য ক্যারিয়ার গাইডলাইন সেমিনারের আয়োজন করি। দেশসেরা বিশ্ববিদ্যালয় ও বিভিন্ন পেশার অভিজ্ঞ মেন্টররা এখানে শিক্ষার্থীদের দিকনির্দেশনা দেন। কোন বিষয়ে পড়লে ভবিষ্যতে ভালো করা যাবে এবং নিজের দক্ষতা কীভাবে বাড়ানো যায়, সে বিষয়ে আমরা পরামর্শ দেই।",
+      icon: HiRocketLaunch,
+      gradient: "from-cyan-500 to-blue-500",
+      bgColor: "bg-cyan-50",
+      textColor: "text-cyan-600",
+      hoverBg: "group-hover:bg-gradient-to-br group-hover:from-cyan-500 group-hover:to-blue-500",
+      iconBg: "bg-cyan-100",
+      badge: "ক্যারিয়ার"
     },
     { 
       title: "পাঠাগার কার্যক্রম", 
-      content: "বই পড়ার অভ্যাস গড়ে তোলা ও জ্ঞান চর্চায় উৎসাহিত করা। আমাদের সমৃদ্ধ পাঠাগার সকলের জন্য উন্মুক্ত।",
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
-        </svg>
-      ),
-      color: "bg-rose-50 text-rose-600"
+      content: "বই পড়ার অভ্যাস গড়ে তোলা ও জ্ঞান চর্চায় উৎসাহিত করা। আমাদের সমৃদ্ধ পাঠাগার সকলের জন্য উন্মুক্ত।",
+      details: "বই মানুষের অকৃত্রিম বন্ধু। আমরা বিশ্বাস করি একটি শিক্ষিত জাতি গঠনে পাঠাগারের বিকল্প নেই। আমাদের পাঠাগারে সাহিত্য, ইতিহাস, বিজ্ঞান, ধর্ম এবং সমসাময়িক বিশ্বের নানা ধরনের বই রয়েছে। সদস্যরা বিনামূল্যে বই বাসায় নিয়ে পড়ার সুযোগ পান। আমরা নিয়মিত পাঠচক্রের আয়োজন করি যেখানে নির্দিষ্ট বইয়ের ওপর আলোচনা হয়।",
+      icon: HiBookOpen,
+      gradient: "from-rose-500 to-red-500",
+      bgColor: "bg-rose-50",
+      textColor: "text-rose-600",
+      hoverBg: "group-hover:bg-gradient-to-br group-hover:from-rose-500 group-hover:to-red-500",
+      iconBg: "bg-rose-100",
+      badge: "পাঠাগার"
     }
   ];
 
@@ -79,6 +107,15 @@ const Activities = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Modal Scroll Lock
+  useEffect(() => {
+    if (selectedActivity) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [selectedActivity]);
+
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % (items.length - itemsToShow + 1));
   };
@@ -89,47 +126,144 @@ const Activities = () => {
 
   // Auto play
   useEffect(() => {
+    if (selectedActivity) return; // মডাল ওপেন থাকলে অটো প্লে বন্ধ থাকবে
     const interval = setInterval(() => {
       setCurrentIndex((prev) => {
         if (prev + 1 > items.length - itemsToShow) return 0;
         return prev + 1;
       });
-    }, 4000);
+    }, 5000);
     return () => clearInterval(interval);
-  }, [itemsToShow, items.length]);
+  }, [itemsToShow, items.length, selectedActivity]);
 
   return (
-    <section className="py-16 bg-gradient-to-b from-white to-emerald-50/30">
-      <div className="container px-4 mx-auto">
-        <div className="mb-12 text-center">
-          <h2 className="text-3xl font-bold text-gray-800 md:text-4xl">আমাদের কার্যক্রম</h2>
-          <div className="w-24 h-1 mx-auto mt-4 rounded bg-emerald-500"></div>
+    <section className="relative py-20 overflow-hidden bg-gradient-to-b from-white via-emerald-50/30 to-white">
+      
+      {/* Background Decorations */}
+      <div className="absolute top-0 left-0 w-64 h-64 rounded-full bg-emerald-200 mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+      <div className="absolute top-0 right-0 w-64 h-64 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+      <div className="absolute bottom-0 w-64 h-64 bg-pink-200 rounded-full left-1/2 mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+
+      <div className="container relative px-4 mx-auto">
+        
+        {/* Section Header */}
+        <div className="mb-16 text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 mb-4 text-sm font-semibold rounded-full bg-emerald-100 text-emerald-700">
+            <HiSparkles className="w-5 h-5" />
+            আমাদের কার্যক্রম
+          </div>
+          <h2 className="text-4xl font-bold text-gray-800 md:text-5xl">
+            যা আমরা <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600">করে থাকি</span>
+          </h2>
+          <p className="max-w-2xl mx-auto mt-4 text-lg text-gray-600">
+            শিক্ষা, সংস্কৃতি ও সমাজ উন্নয়নে আমাদের বিভিন্ন কার্যক্রম
+          </p>
+          <div className="w-24 h-1.5 mx-auto mt-6 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500"></div>
         </div>
         
-        <div className="relative max-w-7xl mx-auto">
+        <div className="relative mx-auto max-w-7xl">
           {/* Slider Container */}
-          <div className="overflow-hidden">
+          <div className="pt-5 pb-10 overflow-hidden"> {/* Added padding to prevent shadow cut-off */}
             <div 
-              className="flex transition-transform duration-500 ease-in-out"
+              className="flex transition-transform duration-700 ease-out"
               style={{ transform: `translateX(-${currentIndex * (100 / itemsToShow)}%)` }}
             >
-              {items.map((item, index) => (
-                <div 
-                  key={index} 
-                  className="flex-shrink-0 px-4"
-                  style={{ width: `${100 / itemsToShow}%` }}
-                >
-                  <div className="h-full p-8 transition-all duration-300 bg-white shadow-lg rounded-2xl hover:-translate-y-2 hover:shadow-xl group border border-gray-100">
-                    <div className={`inline-flex items-center justify-center w-16 h-16 mb-6 rounded-xl ${item.color} group-hover:scale-110 transition-transform duration-300`}>
-                      {item.icon}
+              {items.map((item, index) => {
+                const Icon = item.icon;
+                const isHovered = hoveredIndex === index;
+                
+                return (
+                  <div 
+                    key={index} 
+                    className="flex-shrink-0 px-4"
+                    style={{ width: `${100 / itemsToShow}%` }}
+                    onMouseEnter={() => setHoveredIndex(index)}
+                    onMouseLeave={() => setHoveredIndex(null)}
+                    onClick={() => setSelectedActivity(item)} // ক্লিক ইভেন্ট যোগ করা হয়েছে
+                  >
+                    <div className={`
+                      relative h-full p-8 overflow-hidden transition-all duration-500 bg-white shadow-lg rounded-2xl 
+                      group cursor-pointer border-2 border-transparent
+                      hover:border-white
+                      hover:shadow-2xl hover:shadow-emerald-500/20
+                      ${item.hoverBg}
+                      hover:-translate-y-3
+                    `}>
+                      
+                      {/* Gradient Overlay */}
+                      <div className={`
+                        absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500
+                        bg-gradient-to-br ${item.gradient}
+                      `}></div>
+
+                      {/* Content */}
+                      <div className="relative z-10">
+                        
+                        {/* Badge */}
+                        <div className={`
+                          inline-block px-3 py-1 mb-4 text-xs font-bold rounded-full
+                          ${item.bgColor} ${item.textColor}
+                          group-hover:bg-white/20 group-hover:text-white
+                          transition-all duration-300
+                        `}>
+                          {item.badge}
+                        </div>
+
+                        {/* Icon Container */}
+                        <div className="relative mb-6">
+                          <div className={`
+                            inline-flex items-center justify-center w-20 h-20 rounded-2xl
+                            ${item.iconBg} ${item.textColor}
+                            group-hover:bg-white/20 group-hover:text-white
+                            group-hover:scale-110 group-hover:rotate-6
+                            transition-all duration-500
+                            shadow-lg
+                          `}>
+                            <Icon className="w-10 h-10" />
+                          </div>
+                        </div>
+
+                        {/* Title */}
+                        <h3 className={`
+                          mb-4 text-2xl font-bold
+                          ${item.textColor}
+                          group-hover:text-white
+                          transition-colors duration-300
+                        `}>
+                          {item.title}
+                        </h3>
+
+                        {/* Content */}
+                        <p className={`
+                          leading-relaxed text-gray-600
+                          group-hover:text-white/90
+                          transition-colors duration-300
+                          line-clamp-3
+                        `}>
+                          {item.content}
+                        </p>
+
+                        {/* Hover Arrow */}
+                        <div className={`
+                          flex items-center gap-2 mt-6 font-semibold
+                          ${item.textColor}
+                          group-hover:text-white
+                          opacity-0 group-hover:opacity-100
+                          transform translate-x-0 group-hover:translate-x-2
+                          transition-all duration-300
+                        `}>
+                          <span>আরও জানুন</span>
+                          <HiChevronRight className="w-5 h-5" />
+                        </div>
+                      </div>
+
+                      {/* Decorative Elements */}
+                      <div className="absolute top-0 right-0 w-32 h-32 -mt-16 -mr-16 transition-transform duration-700 rounded-full bg-white/10 group-hover:scale-150"></div>
+                      <div className="absolute bottom-0 left-0 w-24 h-24 -mb-12 -ml-12 transition-transform duration-700 rounded-full bg-white/10 group-hover:scale-150"></div>
                     </div>
-                    <h3 className="mb-4 text-xl font-bold text-gray-800">{item.title}</h3>
-                    <p className="leading-relaxed text-gray-600">
-                      {item.content}
-                    </p>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
@@ -137,34 +271,116 @@ const Activities = () => {
           <button 
             onClick={prevSlide}
             disabled={currentIndex === 0}
-            className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 p-3 rounded-full shadow-lg bg-white text-emerald-600 hover:bg-emerald-50 transition-all ${currentIndex === 0 ? 'opacity-50 cursor-not-allowed' : 'opacity-100'}`}
+            className={`
+              hidden md:block
+              absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16
+              p-4 rounded-full shadow-xl
+              bg-gradient-to-br from-emerald-500 to-teal-500
+              text-white
+              hover:from-emerald-600 hover:to-teal-600
+              hover:scale-110 hover:shadow-2xl hover:shadow-emerald-500/50
+              transition-all duration-300
+              disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100
+              z-10
+              border-4 border-white
+            `}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-            </svg>
+            <HiChevronLeft className="w-6 h-6" />
           </button>
           
           <button 
             onClick={nextSlide}
             disabled={currentIndex >= items.length - itemsToShow}
-            className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 p-3 rounded-full shadow-lg bg-white text-emerald-600 hover:bg-emerald-50 transition-all ${currentIndex >= items.length - itemsToShow ? 'opacity-50 cursor-not-allowed' : 'opacity-100'}`}
+            className={`
+              hidden md:block
+              absolute right-0 top-1/2 -translate-y-1/2 translate-x-16
+              p-4 rounded-full shadow-xl
+              bg-gradient-to-br from-emerald-500 to-teal-500
+              text-white
+              hover:from-emerald-600 hover:to-teal-600
+              hover:scale-110 hover:shadow-2xl hover:shadow-emerald-500/50
+              transition-all duration-300
+              disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100
+              z-10
+              border-4 border-white
+            `}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-            </svg>
+            <HiChevronRight className="w-6 h-6" />
           </button>
 
           {/* Dots Indicators */}
-          <div className="flex justify-center gap-2 mt-8">
+          <div className="flex justify-center gap-3 mt-4">
             {Array.from({ length: items.length - itemsToShow + 1 }).map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setCurrentIndex(idx)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${currentIndex === idx ? 'bg-emerald-600 w-6' : 'bg-emerald-200'}`}
+                className={`
+                  h-3 rounded-full transition-all duration-500
+                  ${currentIndex === idx 
+                    ? 'bg-gradient-to-r from-emerald-500 to-teal-500 w-12 shadow-lg shadow-emerald-500/50' 
+                    : 'bg-emerald-200 hover:bg-emerald-300 w-3'
+                  }
+                `}
+                aria-label={`Go to slide ${idx + 1}`}
               />
             ))}
           </div>
         </div>
+
+        {/* ============ MODAL (বিস্তারিত তথ্য) ============ */}
+        {selectedActivity && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-black/60 backdrop-blur-sm animate-fade-in">
+            {/* Modal Overlay to Close */}
+            <div className="absolute inset-0" onClick={() => setSelectedActivity(null)}></div>
+            
+            {/* Modal Content */}
+            <div className="relative w-full max-w-2xl overflow-hidden bg-white shadow-2xl rounded-2xl animate-scale-up">
+              
+              {/* Header with Gradient */}
+              <div className={`p-6 text-white bg-gradient-to-r ${selectedActivity.gradient}`}>
+                <button 
+                  onClick={() => setSelectedActivity(null)}
+                  className="absolute p-2 text-white transition rounded-full bg-white/20 top-4 right-4 hover:bg-white/40"
+                >
+                  <HiXMark className="w-6 h-6" />
+                </button>
+                
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center justify-center w-16 h-16 text-white bg-white/20 rounded-xl backdrop-blur-sm">
+                    {React.createElement(selectedActivity.icon, { className: "w-8 h-8" })}
+                  </div>
+                  <div>
+                    <span className="px-2 py-1 text-xs font-bold text-black bg-white rounded-full bg-opacity-90">
+                      {selectedActivity.badge}
+                    </span>
+                    <h3 className="mt-1 text-2xl font-bold">{selectedActivity.title}</h3>
+                  </div>
+                </div>
+              </div>
+
+              {/* Body */}
+              <div className="p-6 md:p-8 max-h-[60vh] overflow-y-auto">
+                <h4 className="mb-3 text-lg font-semibold text-gray-800">কার্যক্রমের বিবরণ:</h4>
+                <p className="leading-relaxed text-gray-600 whitespace-pre-line text-md">
+                  {selectedActivity.details}
+                </p>
+              </div>
+
+              {/* Footer */}
+              <div className="flex justify-end p-4 border-t border-gray-100 bg-gray-50">
+                {/*<button 
+                  onClick={() => setSelectedActivity(null)}
+                  className="px-6 py-2 text-sm font-semibold text-white transition bg-gray-800 rounded-lg hover:bg-gray-900"
+                >
+                  বন্ধ করুন
+                </button>
+                */}
+              </div>
+            </div>
+          </div>
+        )}
+        {/* ============================================== */}
+
       </div>
     </section>
   );

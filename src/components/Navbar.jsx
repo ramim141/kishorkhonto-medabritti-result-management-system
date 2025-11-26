@@ -43,8 +43,8 @@ const Navbar = ({ onNavigate, currentView }) => {
             হোম
           </li>
           
-          {/* ২. About (আপাতত ডামি) */}
-          <li className="text-white/90 hover:text-white hover:drop-shadow-md hover:scale-110 cursor-pointer font-bold text-[19px] transition-all duration-200">
+          {/* ২. আমাদের সম্পর্কে */}
+          <li onClick={() => onNavigate('about')} className={getLinkClass('about')}>
             আমাদের সম্পর্কে
           </li>
           
@@ -98,6 +98,13 @@ const Navbar = ({ onNavigate, currentView }) => {
             className={`px-6 py-3 border-b border-gray-50 font-medium ${currentView === 'home' ? 'text-[#1a5d45] bg-green-50' : 'text-gray-700'}`}
           >
             হোম
+          </div>
+
+          <div 
+            onClick={() => handleMobileNavigate('about')} 
+            className={`px-6 py-3 border-b border-gray-50 font-medium ${currentView === 'about' ? 'text-[#1a5d45] bg-green-50' : 'text-gray-700'}`}
+          >
+            আমাদের সম্পর্কে
           </div>
 
           <div 
