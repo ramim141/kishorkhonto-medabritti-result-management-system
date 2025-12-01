@@ -108,7 +108,7 @@ const AboutContent = ({ description, features }) => (
     </div>
 
     <div className="pt-4">
-      <button className="px-8 py-3 font-semibold text-white transition-all transform rounded-lg shadow-lg bg-emerald-600 hover:bg-emerald-700 hover:-translate-y-1">
+      <button href="/about" className="px-8 py-3 font-semibold text-white transition-all transform rounded-lg shadow-lg bg-emerald-600 hover:bg-emerald-700 hover:-translate-y-1">
         আরও জানুন
       </button>
     </div>

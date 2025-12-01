@@ -25,7 +25,7 @@ const CallToAction = () => {
               আজই আপনার সন্তানের উজ্জ্বল ভবিষ্যতের জন্য নিবন্ধন করুন।
             </p>
             <Link 
-              to="/details"
+              to="/scholarship"
               className="inline-block px-8 py-4 text-lg font-bold text-emerald-700 transition-transform transform bg-white rounded-full shadow-lg hover:scale-105 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
             >
               বৃত্তি সম্পর্কে জানুন

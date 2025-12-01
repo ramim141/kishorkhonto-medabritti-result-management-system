@@ -119,7 +119,7 @@ const Navbar = () => {
           </NavLink>
 
           <NavLink 
-            to="/details" 
+            to="/scholarship" 
             onClick={closeMobileMenu}
             className={getMobileLinkClass}
           >

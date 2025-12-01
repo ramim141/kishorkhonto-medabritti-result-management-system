@@ -383,31 +383,107 @@ const FAQ = () => {
           </div>
 
           {/* Statistics */}
-          <div className="grid grid-cols-1 gap-6 mt-12 md:grid-cols-3">
-            <div className="p-6 text-center transition-all duration-300 transform bg-white border-2 border-gray-100 shadow-lg rounded-2xl hover:scale-105 hover:shadow-xl hover:border-emerald-100">
-              <div className="inline-flex items-center justify-center w-16 h-16 mb-4 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl">
-                <HiQuestionMarkCircle className="w-8 h-8 text-white" />
+        <div className="grid grid-cols-1 gap-6 mt-12 sm:grid-cols-2 md:grid-cols-3">
+          
+          {/* Card 1 - প্রশ্ন ও উত্তর */}
+          <div className="relative p-6 overflow-hidden transition-all duration-500 bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_50px_-10px_rgba(16,185,129,0.25)] group hover:-translate-y-2 border border-gray-100/50">
+            
+            {/* Gradient Accent Line */}
+            <div className="absolute top-0 left-0 right-0 h-1 transition-all duration-500 bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 opacity-80 group-hover:h-1.5"></div>
+            
+            {/* Background Glow */}
+            <div className="absolute transition-opacity duration-500 rounded-full opacity-0 -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-emerald-400/20 to-teal-400/20 blur-3xl group-hover:opacity-100"></div>
+            
+            <div className="relative z-10 text-center">
+              {/* Icon with Ring */}
+              <div className="relative inline-flex items-center justify-center mb-5">
+                <div className="absolute w-24 h-24 transition-all duration-500 border-2 border-dashed rounded-full opacity-0 border-emerald-200 group-hover:opacity-100 group-hover:animate-spin-slow"></div>
+                <div className="flex items-center justify-center w-18 h-18 p-5 transition-all duration-500 shadow-lg bg-gradient-to-br from-emerald-500 via-emerald-500 to-teal-500 rounded-2xl group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-emerald-400/40">
+                  <HiQuestionMarkCircle className="w-9 h-9 text-white" />
+                </div>
               </div>
-              <h4 className="mb-1 text-3xl font-bold text-gray-800">{faqs.length}+</h4>
-              <p className="text-sm text-gray-600">প্রশ্ন ও উত্তর</p>
-            </div>
-
-            <div className="p-6 text-center transition-all duration-300 transform bg-white border-2 border-gray-100 shadow-lg rounded-2xl hover:scale-105 hover:shadow-xl hover:border-purple-100">
-              <div className="inline-flex items-center justify-center w-16 h-16 mb-4 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl">
-                <HiAcademicCap className="w-8 h-8 text-white" />
+              
+              {/* Number */}
+              <div className="mb-2">
+                <span className="text-5xl font-black tracking-tight text-gray-800">
+                  {faqs.length.toString().replace(/0/g, '০').replace(/1/g, '১').replace(/2/g, '২').replace(/3/g, '৩').replace(/4/g, '৪').replace(/5/g, '৫').replace(/6/g, '৬').replace(/7/g, '৭').replace(/8/g, '৮').replace(/9/g, '৯')}
+                </span>
+                <span className="ml-1 text-3xl font-bold text-emerald-500">+</span>
               </div>
-              <h4 className="mb-1 text-3xl font-bold text-gray-800">{categories.length - 1}</h4>
-              <p className="text-sm text-gray-600">বিভিন্ন ক্যাটাগরি</p>
-            </div>
-
-            <div className="p-6 text-center transition-all duration-300 transform bg-white border-2 border-gray-100 shadow-lg rounded-2xl hover:scale-105 hover:shadow-xl hover:border-blue-100">
-              <div className="inline-flex items-center justify-center w-16 h-16 mb-4 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl">
-                <HiLightBulb className="w-8 h-8 text-white" />
+              
+              {/* Label */}
+              <p className="font-semibold tracking-wide text-gray-500 uppercase text-sm">প্রশ্ন ও উত্তর</p>
+              
+              {/* Bottom Decorative Dots */}
+              <div className="flex justify-center gap-1.5 mt-4">
+                <div className="w-2 h-2 transition-all duration-300 rounded-full bg-emerald-400 group-hover:w-4"></div>
+                <div className="w-2 h-2 transition-all duration-300 delay-75 rounded-full bg-teal-400 group-hover:w-4"></div>
+                <div className="w-2 h-2 transition-all duration-300 delay-150 rounded-full bg-cyan-400 group-hover:w-4"></div>
               </div>
-              <h4 className="mb-1 text-3xl font-bold text-gray-800">24/7</h4>
-              <p className="text-sm text-gray-600">সহায়তা উপলব্ধ</p>
             </div>
           </div>
+
+          {/* Card 2 - ক্যাটাগরি */}
+          <div className="relative p-6 overflow-hidden transition-all duration-500 bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_50px_-10px_rgba(168,85,247,0.25)] group hover:-translate-y-2 border border-gray-100/50">
+            
+            <div className="absolute top-0 left-0 right-0 h-1 transition-all duration-500 bg-gradient-to-r from-purple-400 via-pink-400 to-rose-400 opacity-80 group-hover:h-1.5"></div>
+            
+            <div className="absolute transition-opacity duration-500 rounded-full opacity-0 -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-purple-400/20 to-pink-400/20 blur-3xl group-hover:opacity-100"></div>
+            
+            <div className="relative z-10 text-center">
+              <div className="relative inline-flex items-center justify-center mb-5">
+                <div className="absolute w-24 h-24 transition-all duration-500 border-2 border-purple-200 border-dashed rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-spin-slow"></div>
+                <div className="flex items-center justify-center w-18 h-18 p-5 transition-all duration-500 shadow-lg bg-gradient-to-br from-purple-500 via-purple-500 to-pink-500 rounded-2xl group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-purple-400/40">
+                  <HiAcademicCap className="w-9 h-9 text-white" />
+                </div>
+              </div>
+              
+              <div className="mb-2">
+                <span className="text-5xl font-black tracking-tight text-gray-800">
+                  {(categories.length - 1).toString().replace(/0/g, '০').replace(/1/g, '১').replace(/2/g, '২').replace(/3/g, '৩').replace(/4/g, '৪').replace(/5/g, '৫').replace(/6/g, '৬').replace(/7/g, '৭').replace(/8/g, '৮').replace(/9/g, '৯')}
+                </span>
+              </div>
+              
+              <p className="text-sm font-semibold tracking-wide text-gray-500 uppercase">বিভিন্ন ক্যাটাগরি</p>
+              
+              <div className="flex justify-center gap-1.5 mt-4">
+                <div className="w-2 h-2 transition-all duration-300 bg-purple-400 rounded-full group-hover:w-4"></div>
+                <div className="w-2 h-2 transition-all duration-300 delay-75 bg-pink-400 rounded-full group-hover:w-4"></div>
+                <div className="w-2 h-2 transition-all duration-300 delay-150 rounded-full bg-rose-400 group-hover:w-4"></div>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 3 - সহায়তা */}
+          <div className="relative p-6 overflow-hidden transition-all duration-500 bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_50px_-10px_rgba(59,130,246,0.25)] group hover:-translate-y-2 border border-gray-100/50 sm:col-span-2 md:col-span-1">
+            
+            <div className="absolute top-0 left-0 right-0 h-1 transition-all duration-500 bg-gradient-to-r from-blue-400 via-indigo-400 to-violet-400 opacity-80 group-hover:h-1.5"></div>
+            
+            <div className="absolute transition-opacity duration-500 rounded-full opacity-0 -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-blue-400/20 to-indigo-400/20 blur-3xl group-hover:opacity-100"></div>
+            
+            <div className="relative z-10 text-center">
+              <div className="relative inline-flex items-center justify-center mb-5">
+                <div className="absolute w-24 h-24 transition-all duration-500 border-2 border-blue-200 border-dashed rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-spin-slow"></div>
+                <div className="flex items-center justify-center w-18 h-18 p-5 transition-all duration-500 shadow-lg bg-gradient-to-br from-blue-500 via-blue-500 to-indigo-500 rounded-2xl group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-blue-400/40">
+                  <HiLightBulb className="w-9 h-9 text-white" />
+                </div>
+              </div>
+              
+              <div className="mb-2">
+                <span className="text-5xl font-black tracking-tight text-gray-800">২৪/৭</span>
+              </div>
+              
+              <p className="text-sm font-semibold tracking-wide text-gray-500 uppercase">সহায়তা উপলব্ধ</p>
+              
+              <div className="flex justify-center gap-1.5 mt-4">
+                <div className="w-2 h-2 transition-all duration-300 bg-blue-400 rounded-full group-hover:w-4"></div>
+                <div className="w-2 h-2 transition-all duration-300 delay-75 rounded-full bg-indigo-400 group-hover:w-4"></div>
+                <div className="w-2 h-2 transition-all duration-300 delay-150 bg-violet-400 rounded-full group-hover:w-4"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
 
           {/* Contact CTA */}
           <div className="relative p-8 mt-12 overflow-hidden text-center border-2 border-dashed rounded-2xl bg-gradient-to-br from-emerald-50 via-white to-teal-50 border-emerald-200">

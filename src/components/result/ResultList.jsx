@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import bannerImage from '../assets/images/result-list-banner2.jpg';
+import bannerImage from '../../assets/images/result-list-banner2.jpg';
 
 const ResultList = () => {
   const [groupedData, setGroupedData] = useState({});
