@@ -220,27 +220,27 @@ const FAQ = () => {
           {/* Search Bar */}
           <div className="mb-8">
             <div className="relative max-w-2xl mx-auto">
-              <HiMagnifyingGlass className="absolute w-6 h-6 text-gray-400 transform -translate-y-1/2 left-4 top-1/2" />
+              <HiMagnifyingGlass className="absolute w-5 h-5 text-gray-400 transform -translate-y-1/2 md:w-6 md:h-6 left-3 md:left-4 top-1/2" />
               <input
                 type="text"
                 placeholder="প্রশ্ন খুঁজুন..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full py-4 pl-12 pr-12 text-lg transition-all duration-300 border-2 border-gray-200 rounded-2xl focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 focus:outline-none"
+                className="w-full py-3 pl-10 pr-10 text-base transition-all duration-300 border-2 border-gray-200 md:py-4 md:pl-12 md:pr-12 md:text-lg rounded-2xl focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 focus:outline-none"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute p-2 text-gray-400 transition-colors transform -translate-y-1/2 rounded-full right-2 top-1/2 hover:text-gray-600 hover:bg-gray-100"
+                  className="absolute p-1.5 md:p-2 text-gray-400 transition-colors transform -translate-y-1/2 rounded-full right-2 top-1/2 hover:text-gray-600 hover:bg-gray-100"
                 >
-                  <HiXMark className="w-5 h-5" />
+                  <HiXMark className="w-4 h-4 md:w-5 md:h-5" />
                 </button>
               )}
             </div>
           </div>
 
           {/* Category Filter */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
+          <div className="flex flex-wrap justify-center gap-2 mb-12 md:gap-3">
             {categories.map((cat) => {
               const Icon = cat.icon;
               const colors = getColorClasses(cat.color);
@@ -251,7 +251,7 @@ const FAQ = () => {
                   key={cat.id}
                   onClick={() => setSelectedCategory(cat.id)}
                   className={`
-                    flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold
+                    flex items-center gap-1.5 md:gap-2 px-3 py-2 md:px-5 md:py-2.5 rounded-full font-semibold text-sm md:text-base
                     transition-all duration-300 transform
                     ${isActive 
                       ? `bg-gradient-to-r ${colors.gradient} text-white shadow-lg scale-105` 
@@ -259,10 +259,10 @@ const FAQ = () => {
                     }
                   `}
                 >
-                  <Icon className="w-5 h-5" />
+                  <Icon className="w-4 h-4 md:w-5 md:h-5" />
                   <span>{cat.name}</span>
                   {isActive && (
-                    <span className="px-2 py-0.5 text-xs bg-white/30 rounded-full">
+                    <span className="px-1.5 md:px-2 py-0.5 text-xs bg-white/30 rounded-full">
                       {faqs.filter(f => cat.id === 'all' || f.category === cat.id).length}
                     </span>
                   )}

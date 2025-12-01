@@ -150,7 +150,7 @@ const Activities = () => {
   }, [itemsToShow, items.length, selectedActivity]);
 
   return (
-    <section className="relative py-20 overflow-hidden bg-gradient-to-b from-white via-emerald-50/30 to-white">
+    <section className="relative py-20 overflow-hidden bg-gradient-to-b from-teal-50/30 via-cyan-50/20 to-white">
       
       {/* Background Decorations */}
       <div className="absolute top-0 left-0 w-64 h-64 rounded-full bg-emerald-200 mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>

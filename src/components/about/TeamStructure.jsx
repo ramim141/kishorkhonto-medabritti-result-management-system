@@ -161,14 +161,14 @@ const TeamStructure = () => {
             </div>
           </div>
 
-          <div className="pt-8 mt-8 text-center border-t-2 border-gray-200">
+          {/* <div className="pt-8 mt-8 text-center border-t-2 border-gray-200">
             <p className="mb-6 text-lg text-gray-700">
               আমাদের টিমে যোগ দিয়ে আপনিও পরিবর্তনের অংশীদার হোন
             </p>
             <button className="px-8 py-3 font-semibold text-white transition-all transform rounded-lg shadow-lg bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 hover:-translate-y-1">
               স্বেচ্ছাসেবক হিসেবে যোগ দিন
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

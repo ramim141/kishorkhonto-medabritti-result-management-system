@@ -21,15 +21,15 @@ const Committee = () => {
 
   const members = [
     { 
-      name: "আবু জুবায়ের", 
-      role: "চেয়ারম্যান", 
+      name: "আবু জুবায়ের", 
+      role: "চেয়ারম্যান", 
       img: AbuJubayer_chairman,
       coverImage: coverPhotoCommittee,
       facebook: '#'
     },
     { 
-      name: "তোফায়েল আহমদ", 
-      role: "ভাইস চেয়ারম্যান", 
+      name: "তোফায়েল আহমদ", 
+      role: "ভাইস চেয়ারম্যান", 
       img: Tofayel_vicechairman,
       coverImage: coverPhotoCommittee,
       facebook: 'https://www.facebook.com/tufael.ahmed.54922'
@@ -63,7 +63,7 @@ const Committee = () => {
       facebook: 'https://www.facebook.com/mataher.chowdhury.1'
     },
     { 
-      name: "রিয়াজ উদ্দিন", 
+      name: "রিয়াজ উদ্দিন", 
       role: "সহকারী পরিচালক", 
       img: riyaz_assistant_poricalok,
       coverImage: coverPhotoCommittee,
@@ -77,14 +77,14 @@ const Committee = () => {
       facebook: 'https://www.facebook.com/sultan.mahmud.239321'
     },
     {
-      name: "ইয়াসিন আহমদ",
+      name: "ইয়াসিন আহমদ",
       role: "সহকারী পরিচালক",   
       img: yeasin_assistant_poricalok,
       coverImage: coverPhotoCommittee,
       facebook: 'https://www.facebook.com/yasinahmed.yasinahmed.549'
     },
     {
-      name: "ময়নুল ইসলাম",
+      name: "ময়নুল ইসলাম",
       role: "সহকারী পরিচালক",   
       img: moynulIslam_assistant_poricalok,
       coverImage: coverPhotoCommittee,
@@ -129,22 +129,26 @@ const Committee = () => {
   }, [itemsToShow, members.length]);
 
   return (
-    <section className="relative py-20 overflow-hidden bg-white">
+    // ========== UPDATED BACKGROUND ==========
+    <section className="relative py-20 overflow-hidden bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50">
       
-      <div className="absolute top-0 right-0 w-1/3 h-full skew-x-12 bg-gradient-to-l from-emerald-50/50 to-transparent"></div>
-      <div className="absolute bottom-0 left-0 w-64 h-64 -translate-x-1/2 translate-y-1/2 rounded-full bg-emerald-100/50 blur-3xl"></div>
+      {/* ========== UPDATED DECORATIVE BLOBS ========== */}
+      <div className="absolute top-0 right-0 w-96 h-96 -translate-y-1/2 translate-x-1/2 rounded-full bg-gradient-to-br from-emerald-200/50 to-teal-200/50 blur-3xl"></div>
+      <div className="absolute bottom-0 left-0 w-64 h-64 -translate-x-1/2 translate-y-1/2 rounded-full bg-gradient-to-br from-teal-200/60 to-cyan-200/60 blur-3xl"></div>
+      <div className="absolute w-48 h-48 rounded-full top-1/3 left-1/4 bg-emerald-100/40 blur-2xl"></div>
+      <div className="absolute hidden w-32 h-32 rounded-full md:block bottom-1/4 right-1/4 bg-cyan-100/50 blur-xl"></div>
 
       <div className="container relative px-4 mx-auto">
         
         <div className="mb-16 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 mb-4 text-sm font-semibold rounded-full text-emerald-700 bg-emerald-100">
+          <div className="inline-flex items-center gap-2 px-4 py-2 mb-4 text-sm font-semibold rounded-full text-emerald-700 bg-emerald-100/80 backdrop-blur-sm">
             <HiSparkles className="w-5 h-5" />
             আমাদের টিম
           </div>
           <h2 className="text-4xl font-bold text-gray-800 md:text-5xl">
             পরিচালনা <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600">পর্ষদ</span>
           </h2>
-          <p className="mt-4 text-gray-500">যাদের নিরলস পরিশ্রমে এগিয়ে চলছে আমাদের কার্যক্রম</p>
+          <p className="mt-4 text-gray-600">যাদের নিরলস পরিশ্রমে এগিয়ে চলছে আমাদের কার্যক্রম</p>
           <div className="w-24 h-1.5 mx-auto mt-6 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500"></div>
         </div>
 
@@ -161,56 +165,64 @@ const Committee = () => {
                   className="flex-shrink-0 px-4"
                   style={{ width: `${100 / itemsToShow}%` }}
                 >
-                  <div className="group relative h-full bg-white rounded-[2rem] shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100 overflow-hidden group-hover:bg-emerald-50/30 group-hover:border-emerald-200">
+                  {/* ========== UPDATED CARD STYLING ========== */}
+                  <div className="group relative h-full bg-white/80 backdrop-blur-sm rounded-[2rem] shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-white/60 overflow-hidden hover:bg-white hover:border-emerald-100">
                     
                     {/* TOP BACKGROUND AREA */}
                     <div className="relative h-32 overflow-hidden">
                       
                       {/* 1. Default Green Gradient (Visible Initially) */}
-                      <div className="absolute inset-0 transition-opacity duration-500 bg-gradient-to-br from-emerald-500 to-teal-600 group-hover:opacity-0">
+                      <div className="absolute inset-0 transition-opacity duration-500 bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500 group-hover:opacity-0">
                         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+                        {/* Animated Shimmer Effect */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                       </div>
 
                       {/* 2. Hover Image Background (Hidden Initially, Fades In on Hover) */}
                       <div 
-                        className="absolute inset-0 transition-opacity duration-700 transform bg-center bg-cover opacity-0 group-hover:opacity-100 group-hover:scale-110"
+                        className="absolute inset-0 transition-all duration-700 transform bg-center bg-cover opacity-0 group-hover:opacity-100 group-hover:scale-110"
                         style={{ backgroundImage: `url(${member.coverImage})` }}
                       >
                         {/* Dark Overlay for text readability if needed */}
-                        <div className="absolute inset-0 bg-black/20"></div>
+                        <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/30 to-black/20"></div>
                       </div>
 
                       {/* Bottom Fade for smooth transition to white body */}
-                      <div className="absolute bottom-0 left-0 right-0 h-16 transition-colors duration-500 bg-gradient-to-t from-white to-transparent group-hover:from-emerald-50/90"></div>
+                      <div className="absolute bottom-0 left-0 right-0 h-16 transition-colors duration-500 bg-gradient-to-t from-white/80 to-transparent group-hover:from-white"></div>
                     </div>
 
                     <div className="relative px-6 pb-8 -mt-16 text-center">
                       
                       <div className="relative inline-block mb-4">
-                        <div className="absolute inset-0 transition-opacity duration-500 rounded-full opacity-0 bg-gradient-to-r from-emerald-400 to-teal-500 blur-md group-hover:opacity-50"></div>
-                        <div className="relative w-32 h-32 p-1 transition-transform duration-500 bg-white rounded-full shadow-lg group-hover:scale-105">
+                        {/* Glow Effect Behind Avatar */}
+                        <div className="absolute inset-0 transition-all duration-500 rounded-full opacity-0 bg-gradient-to-r from-emerald-400 to-teal-500 blur-lg group-hover:opacity-60 group-hover:scale-110"></div>
+                        <div className="relative w-32 h-32 p-1 transition-all duration-500 bg-white rounded-full shadow-lg group-hover:scale-105 group-hover:shadow-xl group-hover:shadow-emerald-200/50">
                           <img 
                             src={member.img} 
                             alt={member.name} 
                             className="object-cover w-full h-full border-2 rounded-full border-emerald-50" 
                           />
                           
-                          <div className="absolute inset-0 flex items-center justify-center gap-2 bg-black/40 backdrop-blur-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <a href={member.facebook} target="_blank" rel="noopener noreferrer" className="p-2 text-white transition-colors rounded-full bg-white/20 hover:bg-emerald-500">
-                              <FaFacebookF size={14} />
+                          {/* Social Icon Overlay */}
+                          <div className="absolute inset-0 flex items-center justify-center gap-2 transition-opacity duration-300 bg-black/40 backdrop-blur-[2px] rounded-full opacity-0 group-hover:opacity-100">
+                            <a href={member.facebook} target="_blank" rel="noopener noreferrer" className="p-2.5 text-white transition-all rounded-full bg-white/20 hover:bg-emerald-500 hover:scale-110">
+                              <FaFacebookF size={16} />
                             </a>
                           </div>
                         </div>
                       </div>
 
-                      <h3 className="mb-1 text-xl font-bold text-gray-800 transition-colors group-hover:text-emerald-700">
+                      <h3 className="mb-2 text-xl font-bold text-gray-800 transition-colors group-hover:text-emerald-700">
                         {member.name}
                       </h3>
-                      <span className="inline-block px-4 py-1 text-sm font-medium transition-all bg-white border rounded-full shadow-sm text-emerald-600 border-emerald-100 group-hover:bg-emerald-100 group-hover:border-emerald-200">
+                      <span className="inline-block px-4 py-1.5 text-sm font-medium transition-all bg-gradient-to-r from-emerald-50 to-teal-50 border rounded-full shadow-sm text-emerald-600 border-emerald-100 group-hover:from-emerald-100 group-hover:to-teal-100 group-hover:border-emerald-200 group-hover:shadow-md">
                         {member.role}
                       </span>
 
-                      <div className="w-full h-1 mt-6 transition-all duration-500 bg-gradient-to-r from-transparent via-gray-200 to-transparent group-hover:via-emerald-400"></div>
+                      {/* Bottom Decorative Line */}
+                      <div className="w-full h-1 mt-6 overflow-hidden rounded-full bg-gray-100/80">
+                        <div className="w-0 h-full transition-all duration-500 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400 group-hover:w-full"></div>
+                      </div>
                     </div>
 
                   </div>
@@ -219,15 +231,16 @@ const Committee = () => {
             </div>
           </div>
 
+          {/* ========== UPDATED NAVIGATION BUTTONS ========== */}
           <button 
             onClick={prevSlide}
             disabled={currentIndex === 0}
             className={`
               hidden md:flex items-center justify-center
               absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 lg:-translate-x-16
-              w-12 h-12 rounded-full bg-white shadow-lg border border-gray-100
-              text-gray-600 hover:text-emerald-600 hover:border-emerald-200
-              transition-all duration-300 hover:scale-110
+              w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border border-emerald-100
+              text-emerald-600 hover:text-white hover:bg-gradient-to-r hover:from-emerald-500 hover:to-teal-500
+              transition-all duration-300 hover:scale-110 hover:shadow-xl hover:shadow-emerald-200/50
               disabled:opacity-0 disabled:cursor-not-allowed
               z-10
             `}
@@ -241,9 +254,9 @@ const Committee = () => {
             className={`
               hidden md:flex items-center justify-center
               absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 lg:translate-x-16
-              w-12 h-12 rounded-full bg-white shadow-lg border border-gray-100
-              text-gray-600 hover:text-emerald-600 hover:border-emerald-200
-              transition-all duration-300 hover:scale-110
+              w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border border-emerald-100
+              text-emerald-600 hover:text-white hover:bg-gradient-to-r hover:from-emerald-500 hover:to-teal-500
+              transition-all duration-300 hover:scale-110 hover:shadow-xl hover:shadow-emerald-200/50
               disabled:opacity-0 disabled:cursor-not-allowed
               z-10
             `}
@@ -251,16 +264,17 @@ const Committee = () => {
             <HiChevronRight className="w-6 h-6" />
           </button>
 
-          <div className="flex justify-center gap-3 mt-4">
+          {/* ========== UPDATED PAGINATION DOTS ========== */}
+          <div className="flex justify-center gap-3 mt-6">
             {Array.from({ length: members.length - itemsToShow + 1 }).map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setCurrentIndex(idx)}
                 className={`
-                  h-2 rounded-full transition-all duration-500 ease-out
+                  h-2.5 rounded-full transition-all duration-500 ease-out
                   ${currentIndex === idx 
-                    ? 'w-8 bg-emerald-500 shadow-lg shadow-emerald-500/30' 
-                    : 'w-2 bg-gray-300 hover:bg-emerald-300'
+                    ? 'w-10 bg-gradient-to-r from-emerald-500 to-teal-500 shadow-lg shadow-emerald-400/40' 
+                    : 'w-2.5 bg-emerald-200 hover:bg-emerald-300'
                   }
                 `}
               />

@@ -301,45 +301,6 @@ const HistoryTimeline = () => {
             })}
           </div>
         </div>
-
-        {/* Bottom CTA - Enhanced */}
-        <div className={`
-          relative max-w-3xl p-8 mx-auto mt-20 overflow-hidden text-center 
-          border-2 border-transparent shadow-2xl md:p-12 rounded-3xl 
-          bg-gradient-to-br from-white via-emerald-50/50 to-teal-50/50
-          hover:shadow-emerald-500/20
-          transition-all duration-500
-          group
-        `}>
-          
-          {/* Gradient Border */}
-          <div className="absolute inset-0 transition-opacity duration-500 opacity-0 bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 rounded-3xl group-hover:opacity-100 blur-xl"></div>
-          
-          {/* Content */}
-          <div className="relative z-10">
-            <div className="inline-flex items-center justify-center w-20 h-20 mx-auto mb-6 transition-all duration-500 shadow-lg bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl group-hover:scale-110 group-hover:rotate-6">
-              <HiCheckCircle className="w-10 h-10 text-white" />
-            </div>
-            
-            <h3 className="mb-3 text-3xl font-bold text-gray-800 md:text-4xl">
-              আমাদের সাথে যুক্ত হোন
-            </h3>
-            
-            <p className="mb-8 text-lg text-gray-600">
-              এই গৌরবময় যাত্রার অংশীদার হয়ে পরবর্তী প্রজন্মের মেধাবী শিক্ষার্থীদের স্বপ্ন পূরণে সাহায্য করুন
-            </p>
-            
-            <div className="flex flex-wrap justify-center gap-4">
-              <button className="px-8 py-4 font-bold text-white transition-all transform shadow-lg bg-gradient-to-r from-emerald-600 to-teal-600 rounded-xl hover:shadow-2xl hover:shadow-emerald-500/50 hover:-translate-y-1 hover:scale-105 group-hover:from-emerald-700 group-hover:to-teal-700">
-                স্বেচ্ছাসেবক হন
-              </button>
-            </div>
-          </div>
-
-          {/* Decorative Elements */}
-          <div className="absolute w-32 h-32 transition-opacity duration-500 rounded-full bg-emerald-200 -top-16 -left-16 opacity-20 blur-2xl group-hover:opacity-40"></div>
-          <div className="absolute w-32 h-32 transition-opacity duration-500 bg-teal-200 rounded-full -bottom-16 -right-16 opacity-20 blur-2xl group-hover:opacity-40"></div>
-        </div>
       </div>
     </section>
   );

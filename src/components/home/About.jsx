@@ -117,7 +117,7 @@ const AboutContent = ({ description, features }) => (
 
 const About = () => {
   return (
-    <section className="py-16 overflow-hidden bg-white">
+    <section className="py-16 overflow-hidden bg-gradient-to-b from-white via-emerald-50/20 to-teal-50/30">
       <div className="container px-4 mx-auto">
         <div className="mx-auto max-w-7xl">
           <SectionHeader 

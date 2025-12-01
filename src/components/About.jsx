@@ -5,6 +5,7 @@ import CoreValues from './about/CoreValues';
 import HistoryTimeline from './about/HistoryTimeline';
 import Achievements from './about/Achievements';
 import TeamStructure from './about/TeamStructure';
+import JoinUs from './about/JoinUs';
 
 const About = () => {
   return (
@@ -15,6 +16,7 @@ const About = () => {
       <CoreValues />
       {/* <Achievements /> */}
       <TeamStructure />
+      {/* <JoinUs /> */}
     </div>
   );
 };

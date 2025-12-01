@@ -97,14 +97,14 @@ const AboutHero = () => {
           </p>
 
           {/* Stats Row */}
-          <div className="grid max-w-4xl grid-cols-2 gap-6 mx-auto mt-12 md:grid-cols-4">
+          <div className="grid max-w-4xl grid-cols-2 gap-4 mx-auto mt-12 md:grid-cols-4 md:gap-6">
             {stats.map((stat, index) => {
               const Icon = stat.icon;
               return (
                 <div
                   key={index}
                   className={`
-                    group relative p-6 overflow-hidden
+                    group relative p-4 md:p-6 overflow-hidden
                     bg-white backdrop-blur-sm
                     border-2 border-gray-100
                     shadow-lg rounded-2xl 
@@ -138,7 +138,7 @@ const AboutHero = () => {
                     {/* Icon */}
                     <div className={`
                       inline-flex items-center justify-center
-                      w-14 h-14 mb-4 rounded-xl
+                      w-10 h-10 md:w-14 md:h-14 mb-3 md:mb-4 rounded-xl
                       ${stat.iconBg} ${stat.iconColor}
                       ${stat.hoverIconColor}
                       group-hover:bg-white/20
@@ -146,13 +146,13 @@ const AboutHero = () => {
                       transition-all duration-500
                       shadow-md group-hover:shadow-lg
                     `}>
-                      <Icon className="w-7 h-7" />
+                      <Icon className="w-5 h-5 md:w-7 md:h-7" />
                     </div>
 
                     {/* Animated Ring Around Icon */}
                     <div className={`
                       absolute top-0 left-1/2 -translate-x-1/2
-                      w-14 h-14 rounded-xl
+                      w-10 h-10 md:w-14 md:h-14 rounded-xl
                       bg-white/30
                       opacity-0 group-hover:opacity-50
                       scale-100 group-hover:scale-150
@@ -162,7 +162,7 @@ const AboutHero = () => {
 
                     {/* Number */}
                     <div className={`
-                      text-4xl font-bold mb-2
+                      text-2xl md:text-4xl font-bold mb-1 md:mb-2
                       text-transparent bg-clip-text 
                       bg-gradient-to-r ${stat.gradient}
                       group-hover:text-white
@@ -175,7 +175,7 @@ const AboutHero = () => {
 
                     {/* Label */}
                     <div className={`
-                      text-sm font-semibold text-gray-600 
+                      text-xs md:text-sm font-semibold text-gray-600 
                       ${stat.hoverTextColor}
                       transition-colors duration-300
                     `}>
