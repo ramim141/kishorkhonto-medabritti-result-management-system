@@ -32,7 +32,7 @@ const SearchPage = () => {
   const resetSearch = () => { setResult(null); setInputRoll(''); };
 
   return (
-    <div className="flex flex-col items-center w-full px-4 py-10">
+    <div className="flex flex-col items-center w-full min-h-[calc(100vh-160px)] px-4 py-16 md:py-20">
       {!result && (
         <SearchForm 
           onSearch={handleSearch}
