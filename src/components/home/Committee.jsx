@@ -36,21 +36,21 @@ const Committee = () => {
     },
     { 
       name: "মাহমুদুর রহমান", 
-      role: "সহকারী পরিচালক", 
+      role: "সহকারী পৃষ্ঠপোষক", 
       img: MahmudurRahman_assistant_poricalok,
       coverImage: coverPhotoCommittee,
       facebook: '#'
     },
     { 
       name: "এম আহমদ আমীম",   
-      role: "সহকারী পরিচালক", 
+      role: "সহকারী পৃষ্ঠপোষক", 
       img: M_ahmedamim_assistant_poricalok,
       coverImage: coverPhotoCommittee,
       facebook: 'https://www.facebook.com/ahmed.amim.1'
     },
     { 
       name: "শেখ মুফাক্কির হোসাইন", 
-      role: "সহকারী পরিচালক",  
+      role: "সহকারী পৃষ্ঠপোষক",  
       img: mufakkir_assistant_poricalok,
       coverImage: coverPhotoCommittee,
       facebook: 'https://www.facebook.com/sheikh.mufakkir'
@@ -64,35 +64,35 @@ const Committee = () => {
     },
     { 
       name: "রিয়াজ উদ্দিন", 
-      role: "সহকারী পরিচালক", 
+      role: "সহকারী পৃষ্ঠপোষক", 
       img: riyaz_assistant_poricalok,
       coverImage: coverPhotoCommittee,
       facebook: 'https://www.facebook.com/riyaj.uddin.7146'
     },
     {
       name: "সুলতান মাহমুদ",
-      role: "সহকারী পরিচালক",  
+      role: "সহকারী পৃষ্ঠপোষক",  
       img: sultan_assistant_poricalok,
       coverImage: coverPhotoCommittee,
       facebook: 'https://www.facebook.com/sultan.mahmud.239321'
     },
     {
       name: "ইয়াসিন আহমদ",
-      role: "সহকারী পরিচালক",   
+      role: "সহকারী পৃষ্ঠপোষক",   
       img: yeasin_assistant_poricalok,
       coverImage: coverPhotoCommittee,
       facebook: 'https://www.facebook.com/yasinahmed.yasinahmed.549'
     },
     {
       name: "ময়নুল ইসলাম",
-      role: "সহকারী পরিচালক",   
+      role: "সহকারী পৃষ্ঠপোষক",   
       img: moynulIslam_assistant_poricalok,
       coverImage: coverPhotoCommittee,
       facebook: 'https://www.facebook.com/mdmoynulislam.mayon.3'
     },
     {
       name: "আবু তাহের",
-      role: "সহকারী পরিচালক",  
+      role: "সহকারী পৃষ্ঠপোষক",  
       img: taher_assistant_poricalok,
       coverImage: coverPhotoCommittee,
       facebook: 'https://www.facebook.com/taher200135'
@@ -133,7 +133,7 @@ const Committee = () => {
     <section className="relative py-20 overflow-hidden bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50">
       
       {/* ========== UPDATED DECORATIVE BLOBS ========== */}
-      <div className="absolute top-0 right-0 w-96 h-96 -translate-y-1/2 translate-x-1/2 rounded-full bg-gradient-to-br from-emerald-200/50 to-teal-200/50 blur-3xl"></div>
+      <div className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 rounded-full w-96 h-96 bg-gradient-to-br from-emerald-200/50 to-teal-200/50 blur-3xl"></div>
       <div className="absolute bottom-0 left-0 w-64 h-64 -translate-x-1/2 translate-y-1/2 rounded-full bg-gradient-to-br from-teal-200/60 to-cyan-200/60 blur-3xl"></div>
       <div className="absolute w-48 h-48 rounded-full top-1/3 left-1/4 bg-emerald-100/40 blur-2xl"></div>
       <div className="absolute hidden w-32 h-32 rounded-full md:block bottom-1/4 right-1/4 bg-cyan-100/50 blur-xl"></div>
@@ -175,7 +175,7 @@ const Committee = () => {
                       <div className="absolute inset-0 transition-opacity duration-500 bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500 group-hover:opacity-0">
                         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
                         {/* Animated Shimmer Effect */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                        <div className="absolute inset-0 transition-transform duration-1000 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent group-hover:translate-x-full"></div>
                       </div>
 
                       {/* 2. Hover Image Background (Hidden Initially, Fades In on Hover) */}

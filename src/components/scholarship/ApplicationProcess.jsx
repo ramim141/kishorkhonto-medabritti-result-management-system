@@ -57,11 +57,16 @@ const APPLICATION_PROCESS = [
 
 const ApplicationProcess = () => {
   return (
-    <div className="relative p-8 mb-12 overflow-hidden transition-all duration-300 bg-white border border-gray-100 shadow-lg md:p-10 rounded-3xl hover:shadow-xl">
+    <section className="relative py-16 overflow-hidden bg-gradient-to-br from-cyan-100/60 via-blue-50/40 via-purple-50/30 to-indigo-100/50 md:py-20">
       
-      {/* Background Decorations */}
-      <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-gradient-to-br from-cyan-100/50 to-blue-100/50 blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-      <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full bg-gradient-to-br from-purple-100/50 to-pink-100/50 blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+      {/* Full Section Background Decorations */}
+      <div className="absolute top-0 left-0 -translate-x-1/4 -translate-y-1/4 rounded-full w-[500px] h-[500px] bg-gradient-to-br from-cyan-200/50 to-blue-200/40 blur-3xl"></div>
+      <div className="absolute top-0 right-0 translate-x-1/4 -translate-y-1/4 rounded-full w-[400px] h-[400px] bg-gradient-to-br from-purple-200/40 to-pink-200/30 blur-3xl"></div>
+      <div className="absolute w-[450px] h-[450px] -translate-x-1/2 -translate-y-1/2 rounded-full top-1/2 left-1/2 bg-gradient-to-br from-blue-200/35 to-indigo-200/25 blur-3xl"></div>
+      <div className="absolute bottom-0 left-1/4 translate-y-1/4 rounded-full w-[350px] h-[350px] bg-gradient-to-br from-emerald-200/30 to-teal-200/25 blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4 rounded-full w-[400px] h-[400px] bg-gradient-to-br from-amber-200/30 to-orange-200/25 blur-3xl"></div>
+      
+      <div className="container relative z-10 px-4 mx-auto max-w-7xl">
       
       {/* Header */}
       <div className="relative z-10 flex flex-col items-center justify-center mb-12">
@@ -214,8 +219,8 @@ const ApplicationProcess = () => {
           })}
         </div>
       </div>
-    
-    </div>
+      </div>
+    </section>
   );
 };
 

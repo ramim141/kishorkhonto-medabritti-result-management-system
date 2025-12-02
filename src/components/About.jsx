@@ -9,7 +9,7 @@ import JoinUs from './about/JoinUs';
 
 const About = () => {
   return (
-    <div className="min-h-screen bg-white animate-fade-in">
+    <div className="min-h-screen animate-fade-in">
       <AboutHero />
       <HistoryTimeline />
       <MissionVision />

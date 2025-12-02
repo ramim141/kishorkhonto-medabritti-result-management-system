@@ -8,8 +8,7 @@ import Contact from './Contact';
 // ============= MAIN COMPONENT =============
 const ScholarshipDetails = () => {
   return (
-    <div className="w-full bg-white">
-      <div className="container px-4 py-16 mx-auto max-w-7xl">
+    <div className="w-full">
         
         {/* Header & Info Cards */}
         <ScholarshipHero />
@@ -26,7 +25,6 @@ const ScholarshipDetails = () => {
         {/* যোগাযোগ */}
         <Contact />
 
-      </div>
     </div>
   );
 };
