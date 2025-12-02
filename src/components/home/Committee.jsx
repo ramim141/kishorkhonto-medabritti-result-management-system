@@ -36,21 +36,21 @@ const Committee = () => {
     },
     { 
       name: "মাহমুদুর রহমান", 
-      role: "সহকারী পৃষ্ঠপোষক", 
+      role: "পৃষ্ঠপোষক", 
       img: MahmudurRahman_assistant_poricalok,
       coverImage: coverPhotoCommittee,
       facebook: '#'
     },
     { 
       name: "এম আহমদ আমীম",   
-      role: "সহকারী পৃষ্ঠপোষক", 
+      role: "পৃষ্ঠপোষক", 
       img: M_ahmedamim_assistant_poricalok,
       coverImage: coverPhotoCommittee,
       facebook: 'https://www.facebook.com/ahmed.amim.1'
     },
     { 
       name: "শেখ মুফাক্কির হোসাইন", 
-      role: "সহকারী পৃষ্ঠপোষক",  
+      role: "পৃষ্ঠপোষক",  
       img: mufakkir_assistant_poricalok,
       coverImage: coverPhotoCommittee,
       facebook: 'https://www.facebook.com/sheikh.mufakkir'
@@ -64,14 +64,14 @@ const Committee = () => {
     },
     { 
       name: "রিয়াজ উদ্দিন", 
-      role: "সহকারী পৃষ্ঠপোষক", 
+      role: "পৃষ্ঠপোষক", 
       img: riyaz_assistant_poricalok,
       coverImage: coverPhotoCommittee,
       facebook: 'https://www.facebook.com/riyaj.uddin.7146'
     },
     {
       name: "সুলতান মাহমুদ",
-      role: "সহকারী পৃষ্ঠপোষক",  
+      role: "পৃষ্ঠপোষক",  
       img: sultan_assistant_poricalok,
       coverImage: coverPhotoCommittee,
       facebook: 'https://www.facebook.com/sultan.mahmud.239321'
@@ -85,14 +85,14 @@ const Committee = () => {
     },
     {
       name: "ময়নুল ইসলাম",
-      role: "সহকারী পৃষ্ঠপোষক",   
+      role: "পৃষ্ঠপোষক",   
       img: moynulIslam_assistant_poricalok,
       coverImage: coverPhotoCommittee,
       facebook: 'https://www.facebook.com/mdmoynulislam.mayon.3'
     },
     {
       name: "আবু তাহের",
-      role: "সহকারী পৃষ্ঠপোষক",  
+      role: "পৃষ্ঠপোষক",  
       img: taher_assistant_poricalok,
       coverImage: coverPhotoCommittee,
       facebook: 'https://www.facebook.com/taher200135'
