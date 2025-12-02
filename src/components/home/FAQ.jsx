@@ -14,21 +14,18 @@ import {
   HiDocumentText,
   HiShieldCheck
 } from 'react-icons/hi2';
+import { FaWhatsapp } from 'react-icons/fa';
 
-const FAQ = () => {
-  const [openIndex, setOpenIndex] = useState(null);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
+// Move data arrays outside component to prevent re-creation on each render
+const categories = [
+  { id: 'all', name: 'সকল', icon: HiQuestionMarkCircle, color: 'emerald' },
+  { id: 'eligibility', name: 'যোগ্যতা', icon: HiAcademicCap, color: 'blue' },
+  { id: 'registration', name: 'রেজিস্ট্রেশন', icon: HiDocumentText, color: 'purple' },
+  { id: 'exam', name: 'পরীক্ষা', icon: HiCheckBadge, color: 'cyan' },
+  { id: 'payment', name: 'পেমেন্ট', icon: HiCurrencyDollar, color: 'amber' },
+];
 
-  const categories = [
-    { id: 'all', name: 'সকল', icon: HiQuestionMarkCircle, color: 'emerald' },
-    { id: 'eligibility', name: 'যোগ্যতা', icon: HiAcademicCap, color: 'blue' },
-    { id: 'registration', name: 'রেজিস্ট্রেশন', icon: HiDocumentText, color: 'purple' },
-    { id: 'exam', name: 'পরীক্ষা', icon: HiCheckBadge, color: 'cyan' },
-    { id: 'payment', name: 'পেমেন্ট', icon: HiCurrencyDollar, color: 'amber' },
-  ];
-
-  const faqs = [
+const faqs = [
     {
       category: 'eligibility',
       question: "মেধাবৃত্তি পরীক্ষায় অংশগ্রহণের যোগ্যতা কী?",
@@ -101,6 +98,11 @@ const FAQ = () => {
     }
   ];
 
+const FAQ = () => {
+  const [openIndex, setOpenIndex] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('all');
+
   const toggleFAQ = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
@@ -113,7 +115,7 @@ const FAQ = () => {
       const matchesCategory = selectedCategory === 'all' || faq.category === selectedCategory;
       return matchesSearch && matchesCategory;
     });
-  }, [searchQuery, selectedCategory, faqs]);
+  }, [searchQuery, selectedCategory]);
 
   const getColorClasses = (color) => {
     const colors = {
@@ -392,14 +394,14 @@ const FAQ = () => {
             <div className="absolute top-0 left-0 right-0 h-1 transition-all duration-500 bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 opacity-80 group-hover:h-1.5"></div>
             
             {/* Background Glow */}
-            <div className="absolute transition-opacity duration-500 rounded-full opacity-0 -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-emerald-400/20 to-teal-400/20 blur-3xl group-hover:opacity-100"></div>
+            <div className="absolute w-40 h-40 transition-opacity duration-500 rounded-full opacity-0 -top-20 -right-20 bg-gradient-to-br from-emerald-400/20 to-teal-400/20 blur-3xl group-hover:opacity-100"></div>
             
             <div className="relative z-10 text-center">
               {/* Icon with Ring */}
               <div className="relative inline-flex items-center justify-center mb-5">
                 <div className="absolute w-24 h-24 transition-all duration-500 border-2 border-dashed rounded-full opacity-0 border-emerald-200 group-hover:opacity-100 group-hover:animate-spin-slow"></div>
-                <div className="flex items-center justify-center w-18 h-18 p-5 transition-all duration-500 shadow-lg bg-gradient-to-br from-emerald-500 via-emerald-500 to-teal-500 rounded-2xl group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-emerald-400/40">
-                  <HiQuestionMarkCircle className="w-9 h-9 text-white" />
+                <div className="flex items-center justify-center p-5 transition-all duration-500 shadow-lg w-18 h-18 bg-gradient-to-br from-emerald-500 via-emerald-500 to-teal-500 rounded-2xl group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-emerald-400/40">
+                  <HiQuestionMarkCircle className="text-white w-9 h-9" />
                 </div>
               </div>
               
@@ -412,12 +414,12 @@ const FAQ = () => {
               </div>
               
               {/* Label */}
-              <p className="font-semibold tracking-wide text-gray-500 uppercase text-sm">প্রশ্ন ও উত্তর</p>
+              <p className="text-sm font-semibold tracking-wide text-gray-500 uppercase">প্রশ্ন ও উত্তর</p>
               
               {/* Bottom Decorative Dots */}
               <div className="flex justify-center gap-1.5 mt-4">
                 <div className="w-2 h-2 transition-all duration-300 rounded-full bg-emerald-400 group-hover:w-4"></div>
-                <div className="w-2 h-2 transition-all duration-300 delay-75 rounded-full bg-teal-400 group-hover:w-4"></div>
+                <div className="w-2 h-2 transition-all duration-300 delay-75 bg-teal-400 rounded-full group-hover:w-4"></div>
                 <div className="w-2 h-2 transition-all duration-300 delay-150 rounded-full bg-cyan-400 group-hover:w-4"></div>
               </div>
             </div>
@@ -428,13 +430,13 @@ const FAQ = () => {
             
             <div className="absolute top-0 left-0 right-0 h-1 transition-all duration-500 bg-gradient-to-r from-purple-400 via-pink-400 to-rose-400 opacity-80 group-hover:h-1.5"></div>
             
-            <div className="absolute transition-opacity duration-500 rounded-full opacity-0 -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-purple-400/20 to-pink-400/20 blur-3xl group-hover:opacity-100"></div>
+            <div className="absolute w-40 h-40 transition-opacity duration-500 rounded-full opacity-0 -top-20 -right-20 bg-gradient-to-br from-purple-400/20 to-pink-400/20 blur-3xl group-hover:opacity-100"></div>
             
             <div className="relative z-10 text-center">
               <div className="relative inline-flex items-center justify-center mb-5">
                 <div className="absolute w-24 h-24 transition-all duration-500 border-2 border-purple-200 border-dashed rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-spin-slow"></div>
-                <div className="flex items-center justify-center w-18 h-18 p-5 transition-all duration-500 shadow-lg bg-gradient-to-br from-purple-500 via-purple-500 to-pink-500 rounded-2xl group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-purple-400/40">
-                  <HiAcademicCap className="w-9 h-9 text-white" />
+                <div className="flex items-center justify-center p-5 transition-all duration-500 shadow-lg w-18 h-18 bg-gradient-to-br from-purple-500 via-purple-500 to-pink-500 rounded-2xl group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-purple-400/40">
+                  <HiAcademicCap className="text-white w-9 h-9" />
                 </div>
               </div>
               
@@ -459,13 +461,13 @@ const FAQ = () => {
             
             <div className="absolute top-0 left-0 right-0 h-1 transition-all duration-500 bg-gradient-to-r from-blue-400 via-indigo-400 to-violet-400 opacity-80 group-hover:h-1.5"></div>
             
-            <div className="absolute transition-opacity duration-500 rounded-full opacity-0 -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-blue-400/20 to-indigo-400/20 blur-3xl group-hover:opacity-100"></div>
+            <div className="absolute w-40 h-40 transition-opacity duration-500 rounded-full opacity-0 -top-20 -right-20 bg-gradient-to-br from-blue-400/20 to-indigo-400/20 blur-3xl group-hover:opacity-100"></div>
             
             <div className="relative z-10 text-center">
               <div className="relative inline-flex items-center justify-center mb-5">
                 <div className="absolute w-24 h-24 transition-all duration-500 border-2 border-blue-200 border-dashed rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-spin-slow"></div>
-                <div className="flex items-center justify-center w-18 h-18 p-5 transition-all duration-500 shadow-lg bg-gradient-to-br from-blue-500 via-blue-500 to-indigo-500 rounded-2xl group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-blue-400/40">
-                  <HiLightBulb className="w-9 h-9 text-white" />
+                <div className="flex items-center justify-center p-5 transition-all duration-500 shadow-lg w-18 h-18 bg-gradient-to-br from-blue-500 via-blue-500 to-indigo-500 rounded-2xl group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-blue-400/40">
+                  <HiLightBulb className="text-white w-9 h-9" />
                 </div>
               </div>
               
@@ -477,45 +479,66 @@ const FAQ = () => {
               
               <div className="flex justify-center gap-1.5 mt-4">
                 <div className="w-2 h-2 transition-all duration-300 bg-blue-400 rounded-full group-hover:w-4"></div>
-                <div className="w-2 h-2 transition-all duration-300 delay-75 rounded-full bg-indigo-400 group-hover:w-4"></div>
-                <div className="w-2 h-2 transition-all duration-300 delay-150 bg-violet-400 rounded-full group-hover:w-4"></div>
+                <div className="w-2 h-2 transition-all duration-300 delay-75 bg-indigo-400 rounded-full group-hover:w-4"></div>
+                <div className="w-2 h-2 transition-all duration-300 delay-150 rounded-full bg-violet-400 group-hover:w-4"></div>
               </div>
             </div>
           </div>
 
         </div>
 
-          {/* Contact CTA */}
-          <div className="relative p-8 mt-12 overflow-hidden text-center border-2 border-dashed rounded-2xl bg-gradient-to-br from-emerald-50 via-white to-teal-50 border-emerald-200">
+          {/* Contact CTA - Compact */}
+          <div className="relative p-6 mt-12 overflow-hidden text-center border-2 border-dashed sm:p-8 rounded-2xl bg-gradient-to-br from-emerald-50 via-white to-teal-50 border-emerald-200">
             {/* Decorative Elements */}
             <div className="absolute w-32 h-32 rounded-full bg-emerald-200 -top-16 -left-16 opacity-30 blur-2xl"></div>
             <div className="absolute w-32 h-32 bg-teal-200 rounded-full -bottom-16 -right-16 opacity-30 blur-2xl"></div>
 
             <div className="relative z-10">
-              <div className="inline-flex items-center justify-center w-16 h-16 mb-4 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl">
-                <HiQuestionMarkCircle className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="mb-2 text-2xl font-bold text-gray-800">
+              <h3 className="mb-2 text-xl font-bold text-gray-800 sm:text-2xl">
                 আপনার প্রশ্নের উত্তর পাননি?
               </h3>
-              <p className="max-w-xl mx-auto mb-6 text-gray-600">
-                আমাদের সাথে সরাসরি যোগাযোগ করুন। আমরা সাহায্য করতে প্রস্তুত এবং আপনার সকল প্রশ্নের উত্তর দিতে খুশি হবো।
+              <p className="max-w-md mx-auto mb-6 text-sm text-gray-600 sm:text-base">
+                আমাদের সাথে সরাসরি যোগাযোগ করুন
               </p>
-              <div className="flex flex-wrap justify-center gap-4">
+              
+              {/* Contact Icons */}
+              <div className="flex justify-center gap-4">
+                
+                {/* WhatsApp */}
                 <a
-                  href="tel:+8801711000000"
-                  className="inline-flex items-center gap-2 px-6 py-3 font-semibold text-white transition-all transform shadow-lg bg-gradient-to-r from-emerald-600 to-teal-600 rounded-xl hover:shadow-2xl hover:shadow-emerald-500/50 hover:-translate-y-1 hover:scale-105"
+                  href="https://wa.me/8801711000000"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col items-center gap-2 p-4 transition-all duration-300 bg-white border border-gray-100 shadow-md rounded-2xl hover:shadow-xl hover:-translate-y-2 hover:border-green-300 group"
                 >
-                  <HiPhone className="w-5 h-5" />
-                  ফোন করুন
+                  <div className="flex items-center justify-center transition-all duration-300 bg-green-100 w-14 h-14 rounded-xl group-hover:bg-green-500 group-hover:scale-110">
+                    <FaWhatsapp className="text-green-600 transition-colors duration-300 w-7 h-7 group-hover:text-white" />
+                  </div>
+                  <span className="text-sm font-semibold text-gray-700">WhatsApp</span>
                 </a>
+                
+                {/* Email */}
                 <a
                   href="mailto:info@kishorkhonto.com"
-                  className="inline-flex items-center gap-2 px-6 py-3 font-semibold transition-all transform bg-white border-2 shadow-lg text-emerald-700 border-emerald-600 rounded-xl hover:bg-emerald-600 hover:text-white hover:-translate-y-1 hover:scale-105"
+                  className="flex flex-col items-center gap-2 p-4 transition-all duration-300 bg-white border border-gray-100 shadow-md rounded-2xl hover:shadow-xl hover:-translate-y-2 hover:border-blue-300 group"
                 >
-                  <HiEnvelope className="w-5 h-5" />
-                  ইমেইল করুন
+                  <div className="flex items-center justify-center transition-all duration-300 bg-blue-100 w-14 h-14 rounded-xl group-hover:bg-blue-500 group-hover:scale-110">
+                    <HiEnvelope className="text-blue-600 transition-colors duration-300 w-7 h-7 group-hover:text-white" />
+                  </div>
+                  <span className="text-sm font-semibold text-gray-700">ইমেইল</span>
                 </a>
+                
+                {/* Phone */}
+                <a
+                  href="tel:+8801711000000"
+                  className="flex flex-col items-center gap-2 p-4 transition-all duration-300 bg-white border border-gray-100 shadow-md rounded-2xl hover:shadow-xl hover:-translate-y-2 hover:border-emerald-300 group"
+                >
+                  <div className="flex items-center justify-center transition-all duration-300 w-14 h-14 rounded-xl bg-emerald-100 group-hover:bg-emerald-500 group-hover:scale-110">
+                    <HiPhone className="transition-colors duration-300 w-7 h-7 text-emerald-600 group-hover:text-white" />
+                  </div>
+                  <span className="text-sm font-semibold text-gray-700">ফোন</span>
+                </a>
+                
               </div>
             </div>
           </div>

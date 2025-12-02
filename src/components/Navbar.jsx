@@ -55,7 +55,14 @@ const Navbar = () => {
             </NavLink>
           </li>
           
-          {/* ৩. রোল নাম্বার লিস্ট পেজ */}
+          {/* ৩. পরীক্ষা (মেধাবৃত্তির বিস্তারিত) */}
+          <li>
+            <NavLink to="/scholarship" className={getLinkClass}>
+              পরীক্ষা
+            </NavLink>
+          </li>
+          
+          {/* ৪. রোল নাম্বার লিস্ট পেজ */}
           <li>
             <NavLink to="/list" className={getLinkClass}>
                মেধাবৃত্তি - ২০২৫
