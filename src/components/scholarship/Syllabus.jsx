@@ -95,7 +95,7 @@ const SYLLABUS_DATA = [
         name: 'সাধারণ জ্ঞান',
         icon: HiLightBulb,
         topics: [
-          'সাধারণ জ্ঞানের জন্য (জানুয়ারি - জুলাই২৫) কিশোরকণ্ঠ এবং বিশেষ সংখ্যা "অরেঞ্জ" সংগ্রহ করতে হবে।'
+          'সাধারণ জ্ঞানের জন্য (জানুয়ারি - জুলাই২৫) কিশোরকণ্ঠ এবং বিশেষ সংখ্যা "অন্বেষণ" সংগ্রহ করতে হবে।'
         ]
       }
     ]
@@ -137,7 +137,7 @@ const SYLLABUS_DATA = [
         name: 'সাধারণ জ্ঞান',
         icon: HiLightBulb,
         topics: [
-          'সাধারণ জ্ঞানের জন্য (জানুয়ারি - জুলাই২৫) কিশোরকণ্ঠ এবং বিশেষ সংখ্যা "অরেঞ্জ" সংগ্রহ করতে হবে।'
+          'সাধারণ জ্ঞানের জন্য (জানুয়ারি - জুলাই২৫) কিশোরকণ্ঠ এবং বিশেষ সংখ্যা "অন্বেষণ" সংগ্রহ করতে হবে।'
         ]
       }
     ]
@@ -180,7 +180,7 @@ const SYLLABUS_DATA = [
         name: 'সাধারণ জ্ঞান',
         icon: HiLightBulb,
         topics: [
-          'সাধারণ জ্ঞানের জন্য (জানুয়ারি - জুলাই২৫) কিশোরকণ্ঠ এবং বিশেষ সংখ্যা "অরেঞ্জ" সংগ্রহ করতে হবে।'
+          'সাধারণ জ্ঞানের জন্য (জানুয়ারি - জুলাই২৫) কিশোরকণ্ঠ এবং বিশেষ সংখ্যা "অন্বেষণ" সংগ্রহ করতে হবে।'
         ]
       }
     ]
@@ -222,7 +222,7 @@ const SYLLABUS_DATA = [
         name: 'সাধারণ জ্ঞান',
         icon: HiLightBulb,
         topics: [
-          'সাধারণ জ্ঞানের জন্য (জানুয়ারি - জুলাই২৫) কিশোরকণ্ঠ এবং বিশেষ সংখ্যা "অরেঞ্জ" সংগ্রহ করতে হবে।'
+          'সাধারণ জ্ঞানের জন্য (জানুয়ারি - জুলাই - ২৫) কিশোরকণ্ঠ এবং বিশেষ সংখ্যা "অন্বেষণ" সংগ্রহ করতে হবে।'
         ]
       }
     ]
@@ -399,6 +399,12 @@ const COLOR_CLASSES = {
   }
 };
 
+// বাংলা সংখ্যায় রূপান্তর
+const toBengaliNumber = (num) => {
+  const bengaliDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+  return num.toString().replace(/[0-9]/g, (digit) => bengaliDigits[digit]);
+};
+
 const Syllabus = () => {
   const [openAccordion, setOpenAccordion] = useState(null);
 
@@ -429,7 +435,7 @@ const Syllabus = () => {
             <div className="flex-1">
               <h3 className="mb-1 text-lg font-bold text-amber-800">বিশেষ দ্রষ্টব্য</h3>
               <p className="text-sm text-amber-700 sm:text-base">
-                সাধারণ জ্ঞানের জন্য (জানুয়ারি - জুলাই২৫) কিশোরকণ্ঠ এবং বিশেষ সংখ্যা <span className="font-bold">"অরেঞ্জ"</span> সংগ্রহ করতে হবে।
+                সাধারণ জ্ঞানের জন্য (জানুয়ারি - জুলাই - ২৫) কিশোরকণ্ঠ এবং বিশেষ সংখ্যা <span className="font-bold">"অন্বেষণ"</span> সংগ্রহ করতে হবে।
               </p>
             </div>
           </div>
@@ -455,7 +461,7 @@ const Syllabus = () => {
             <div className="sm:ml-auto">
               <span className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-indigo-700 bg-indigo-100 rounded-full">
                 <HiAcademicCap className="w-5 h-5" />
-                {SYLLABUS_DATA.length} টি শ্রেণি
+                {toBengaliNumber(SYLLABUS_DATA.length)} টি শ্রেণি
               </span>
             </div>
           </div>
@@ -521,7 +527,7 @@ const Syllabus = () => {
                       <div className="flex items-center gap-3">
                         <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/80 text-gray-600 text-sm font-medium shadow-sm">
                           <HiBookOpen className="w-4 h-4" />
-                          {item.subjects.length} টি বিষয়
+                          {toBengaliNumber(item.subjects.length)} টি বিষয়
                         </span>
                         
                         <div className={`

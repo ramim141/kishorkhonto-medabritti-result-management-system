@@ -11,7 +11,7 @@ import {
 const APPLICATION_PROCESS = [
   { 
     step: '১', 
-    label: 'ফর্ম সংগ্রহ', 
+    label: 'ফরম সংগ্রহ', 
     value: 'আমাদের অফিস থেকে আবেদন ফর্ম সংগ্রহ করুন',
     icon: HiDocumentText,
     gradient: 'from-emerald-500 to-teal-500',
@@ -22,8 +22,8 @@ const APPLICATION_PROCESS = [
   },
   { 
     step: '২', 
-    label: 'প্রয়োজনীয় কাগজপত্র', 
-    value: 'সত্যায়িত মার্কশিট, জন্ম নিবন্ধন, ছবি',
+    label: 'ফরম পূরণ ও পেমেন্ট সম্পন্ন', 
+    value: 'প্রয়োজনীয় তথ্য পূরণ করে ফি প্রদান করুন',
     icon: HiClipboardDocumentList,
     gradient: 'from-blue-500 to-indigo-500',
     bgGradient: 'from-blue-50 to-indigo-50',
@@ -33,8 +33,8 @@ const APPLICATION_PROCESS = [
   },
   { 
     step: '৩', 
-    label: 'ফর্ম জমা', 
-    value: 'নির্ধারিত সময়ের মধ্যে ফর্ম জমা দিন',
+    label: 'ফরম জমা ও অন্বেষণ সংগ্রহ', 
+    value: 'নির্ধারিত সময়ের মধ্যে নির্ধারিত ঠিক ফরম জমা দিন',
     icon: HiPaperAirplane,
     gradient: 'from-violet-500 to-purple-500',
     bgGradient: 'from-violet-50 to-purple-50',

@@ -39,7 +39,7 @@ const Committee = () => {
       role: "পৃষ্ঠপোষক", 
       img: MahmudurRahman_assistant_poricalok,
       coverImage: coverPhotoCommittee,
-      facebook: '#'
+      facebook: 'https://www.facebook.com/Mahmudhasan9996'
     },
     { 
       name: "এম আহমদ আমীম",   
@@ -78,7 +78,7 @@ const Committee = () => {
     },
     {
       name: "ইয়াসিন আহমদ",
-      role: "সহকারী পৃষ্ঠপোষক",   
+      role: "পৃষ্ঠপোষক",   
       img: yeasin_assistant_poricalok,
       coverImage: coverPhotoCommittee,
       facebook: 'https://www.facebook.com/yasinahmed.yasinahmed.549'

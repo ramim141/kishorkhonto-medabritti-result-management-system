@@ -1,6 +1,12 @@
 import React, { useState, useMemo } from 'react';
 import { HiMapPin, HiPhone, HiSparkles, HiBookOpen, HiGlobeAsiaAustralia } from 'react-icons/hi2';
 
+// বাংলা সংখ্যায় রূপান্তর
+const toBengaliNumber = (num) => {
+  const bengaliDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+  return num.toString().replace(/[0-9]/g, (digit) => bengaliDigits[digit]);
+};
+
 // Organized by উপজেলা (Upazila) - matching the image structure
 const LOCATION_DATA = [
   {
@@ -381,7 +387,7 @@ const FormSubmit = () => {
         <div className="flex justify-center mb-6">
           <div className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white shadow-lg rounded-2xl bg-gradient-to-r from-blue-600 to-cyan-600">
             <span className="flex items-center justify-center font-bold text-blue-600 bg-white rounded-full w-7 h-7">
-              {filteredData.length}
+              {toBengaliNumber(filteredData.length)}
             </span>
             টি উপজেলার তথ্য দেখানো হচ্ছে
           </div>

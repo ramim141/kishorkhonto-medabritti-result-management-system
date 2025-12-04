@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 // import logo from '../assets/images/Logo.png';
-import logo from '../assets/images/logo4.png';
+// import logo from '../assets/images/logo4.png';
+import logo from '../assets/images/logo_new.png';
 // import logo from '../assets/images/Logo.png';
 
 const Navbar = () => {
@@ -83,9 +84,11 @@ const Navbar = () => {
             </NavLink>
           </li>
           
-          {/* ৫. Contact (আপাতত ডামি) */}
-          <li className="text-white/90 hover:text-white hover:drop-shadow-md hover:scale-110 cursor-pointer font-bold text-[19px] transition-all duration-200">
-            যোগাযোগ
+          {/* ৫. Contact */}
+          <li>
+            <NavLink to="/contact" className={getLinkClass}>
+              যোগাযোগ
+            </NavLink>
           </li>
         </ul>
 
@@ -149,9 +152,13 @@ const Navbar = () => {
             ফলাফল (২০২৪)
           </NavLink>
 
-          <div className="px-6 py-3 font-medium text-gray-700 hover:text-[#1a5d45]">
+          <NavLink 
+            to="/contact" 
+            onClick={closeMobileMenu}
+            className={getMobileLinkClass}
+          >
             যোগাযোগ
-          </div>
+          </NavLink>
         </div>
       )}
     </nav>
