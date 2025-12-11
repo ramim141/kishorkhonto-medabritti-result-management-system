@@ -1,12 +1,6 @@
 import React from 'react';
 
 const ResultCard = ({ data, onReset, onPrint }) => {
-  // Convert English numbers to Bengali numbers
-  const toBengaliNumber = (num) => {
-    const bengaliDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
-    return String(num).split('').map(digit => bengaliDigits[digit] || digit).join('');
-  };
-
   return (
     <div className="w-full max-w-3xl">
       {/* Card with gradient background matching SearchForm */}
@@ -50,13 +44,18 @@ const ResultCard = ({ data, onReset, onPrint }) => {
               <th className="w-1/3 p-3 font-bold text-left bg-gray-100 border-r-2 border-black">শিক্ষা প্রতিষ্ঠান</th>
               <td className="p-3">{data.school}</td>
             </tr>
-            <tr className="border-b-2 border-black bg-green-50">
-              <th className="w-1/3 p-3 text-lg font-bold text-left border-r-2 border-black">মোট নম্বর</th>
-              <td className="p-3 text-xl font-bold">{toBengaliNumber(data.total_marks)}</td>
-            </tr>
             <tr>
               <th className="w-1/3 p-3 text-lg font-bold text-left bg-gray-100 border-r-2 border-black">ফলাফল</th>
               <td className="p-3 text-xl font-extrabold uppercase">{data.category}</td>
+            </tr>
+            <tr className="border-t-2 border-black">
+              <td colSpan="2" className="p-4 text-center">
+                {data.category && data.category.toLowerCase() !== 'fail' ? (
+                  <p className="text-lg font-bold text-green-700">🎉 অভিনন্দন! আপনি {data.category} বৃত্তি পেয়েছেন</p>
+                ) : (
+                  <p className="text-lg font-bold text-red-700">দুঃখিত! আপনি মেধাবৃত্তি পরীক্ষায় উত্তীর্ণ হননি</p>
+                )}
+              </td>
             </tr>
           </tbody>
         </table>
@@ -143,32 +142,27 @@ const ResultCard = ({ data, onReset, onPrint }) => {
           </div>
         </div>
 
-        {/* Marks & Category Display - Highlighted */}
-        <div className="p-4 mb-16 border-2 shadow-lg bg-gradient-to-br from-emerald-100 to-teal-100 rounded-xl border-emerald-300">
-          <div className="grid grid-cols-2 gap-3">
-            {/* Total Marks */}
-            <div className="text-center">
-              <div className="flex flex-col items-center justify-center mb-2">
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 mb-1 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                </svg>
-                <span className="text-xs font-bold text-emerald-800">মোট নম্বর</span>
-              </div>
-              <p className="text-3xl font-extrabold text-emerald-700 md:text-4xl">{toBengaliNumber(data.total_marks)}</p>
-            </div>
-
-            {/* Category/Status */}
-            <div className="text-center">
-              <div className="flex flex-col items-center justify-center mb-2">
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 mb-1 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                </svg>
-                <span className="text-xs font-bold text-teal-800">ফলাফল</span>
-              </div>
-              <p className="text-2xl font-extrabold text-teal-700 uppercase md:text-3xl">{data.category}</p>
+        {/* Result Message Display - Highlighted */}
+        {data.category && data.category.toLowerCase() !== 'fail' ? (
+          <div className="p-6 mb-16 text-center border-2 shadow-lg bg-gradient-to-br from-emerald-100 to-teal-100 rounded-xl border-emerald-300">
+            <div className="flex flex-col items-center justify-center gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-16 h-16 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+              </svg>
+              <p className="text-2xl font-extrabold text-emerald-700 md:text-3xl">🎉 অভিনন্দন!</p>
+              <p className="text-xl font-bold text-emerald-800 md:text-2xl">আপনি <span className="text-teal-700">{data.category}</span> বৃত্তি পেয়েছেন</p>
             </div>
           </div>
-        </div>
+        ) : (
+          <div className="p-6 mb-16 text-center border-2 shadow-lg bg-gradient-to-br from-red-100 to-orange-100 rounded-xl border-red-300">
+            <div className="flex flex-col items-center justify-center gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-16 h-16 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+              <p className="text-xl font-bold text-red-700 md:text-2xl">দুঃখিত! আপনি মেধাবৃত্তি পরীক্ষায় উত্তীর্ণ হননি</p>
+            </div>
+          </div>
+        )}
       </div>
 
         {/* Action Buttons (Hidden on Print) */}

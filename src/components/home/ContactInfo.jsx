@@ -28,8 +28,8 @@ const ContactInfo = () => {
                 </svg>
               </div>
               <h3 className="mb-2 text-xl font-bold text-gray-800">ফোন</h3>
-              <p className="text-gray-600">+৮৮০ ১৭১১-০০০০০০</p>
-              <p className="text-gray-600">+৮৮০ ১৮১১-০০০০০০</p>
+              <p className="text-gray-600">+৮৮০ ১৭৯১-৬২৯৯৯৬</p>
+              <p className="text-gray-600">+৮৮০ ১৭৭৩-৬৫৬৩৯৬</p>
             </div>
 
             {/* Email */}

@@ -20,7 +20,7 @@ const SearchPage = () => {
       const data = await response.json();
       const student = data.find((s) => s.roll === inputRoll.trim());
       if (student) setResult(student);
-      else setError('No result found for this Roll Number.');
+      else setError('দুঃখিত! আপনি মেধাবৃত্তি পরীক্ষায় উত্তীর্ণ হননি');
     } catch (err) {
       setError('Error fetching data.');
     } finally {
