@@ -46,7 +46,7 @@ const Result_info = () => {
                 </div>
                 <div className="flex-1">
                   <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 leading-relaxed">
-                    কিশোরকণ্ঠ মেধাবৃত্তি ২০২৫ এর রেজাল্ট আগামী <span className="text-emerald-600">১৩ ডিসেম্বর ২০২৫</span> সকাল <span className="text-emerald-600">১১ টায়</span> প্রকাশ করা হবে।
+                    কিশোরকণ্ঠ মেধাবৃত্তি ২০২৫ এর রেজাল্ট আগামী <span className="text-emerald-600">১৩ ডিসেম্বর ২০২৫</span> সকাল <span className="text-emerald-600">সকাল ১০:৩০ টায়</span> প্রকাশ করা হবে।
                   </h2>
                 </div>
               </div>
