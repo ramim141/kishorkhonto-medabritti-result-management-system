@@ -8,21 +8,18 @@ import Contact from './Contact';
 // ============= MAIN COMPONENT =============
 const ScholarshipDetails = () => {
   return (
-    <div className="w-full">
+    <div className="w-full bg-gradient-to-br from-slate-50 via-white to-blue-50/30">
         
         {/* Header & Info Cards */}
         <ScholarshipHero />
 
-        {/* আবেদন প্রক্রিয়া */}
         <ApplicationProcess />
 
-        {/* পরীক্ষার সিলেবাস & বিশেষ দ্রষ্টব্য */}
+  
         <Syllabus />
 
-        {/* রেজিস্ট্রেশন & ঠিকানা */}
         <FormSubmit />
 
-        {/* যোগাযোগ */}
         <Contact />
 
     </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { HiAcademicCap, HiBookOpen } from 'react-icons/hi2';
 
 // ============= DATA CONSTANTS =============
@@ -95,7 +96,7 @@ const FeatureItem = ({ icon, title, description, bgColor, textColor }) => {
   );
 };
 
-const AboutContent = ({ description, features }) => (
+const AboutContent = ({ description, features, onNavigate }) => (
   <div className="space-y-6">
     <p className="text-lg leading-relaxed text-gray-600">
       <span className="font-bold text-gray-800">কিশোরকণ্ঠ পাঠক ফোরাম সিলেট জেলা পশ্চিম</span> {description.replace('কিশোরকণ্ঠ পাঠক ফোরাম, সিলেট মহানগর', '')}
@@ -108,7 +109,7 @@ const AboutContent = ({ description, features }) => (
     </div>
 
     <div className="pt-4">
-      <button href="/about" className="px-8 py-3 font-semibold text-white transition-all transform rounded-lg shadow-lg bg-emerald-600 hover:bg-emerald-700 hover:-translate-y-1">
+      <button onClick={onNavigate} className="px-8 py-3 font-semibold text-white transition-all transform rounded-lg shadow-lg bg-emerald-600 hover:bg-emerald-700 hover:-translate-y-1 cursor-pointer">
         আরও জানুন
       </button>
     </div>
@@ -116,6 +117,12 @@ const AboutContent = ({ description, features }) => (
 );
 
 const About = () => {
+  const navigate = useNavigate();
+
+  const handleNavigateToAbout = () => {
+    navigate('/about');
+  };
+
   return (
     <section className="py-16 overflow-hidden bg-gradient-to-b from-white via-emerald-50/20 to-teal-50/30">
       <div className="container px-4 mx-auto">
@@ -133,6 +140,7 @@ const About = () => {
             <AboutContent 
               description={ABOUT_DATA.description}
               features={FEATURES}
+              onNavigate={handleNavigateToAbout}
             />
           </div>
         </div>

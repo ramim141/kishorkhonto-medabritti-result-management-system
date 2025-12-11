@@ -1,171 +1,396 @@
-import React, { useState, useEffect } from 'react';
-import bannerImage from '../../assets/images/result-list-banner2.jpg';
+"use client"
+
+import { useState, useEffect } from "react"
+import {
+  HiAcademicCap,
+  HiTrophy,
+  HiCheckBadge,
+  HiSparkles,
+  HiChevronDown,
+  HiChevronUp,
+} from "react-icons/hi2"
 
 const ResultList = () => {
-  const [groupedData, setGroupedData] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [openClass, setOpenClass] = useState(null);
+  const [groupedData, setGroupedData] = useState({})
+  const [loading, setLoading] = useState(true)
+  const [searchRoll, setSearchRoll] = useState("")
+  const [selectedClass, setSelectedClass] = useState('all')
+  const [expandedClasses, setExpandedClasses] = useState(new Set())
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+
+  // Convert English numbers to Bengali
+  const toBengaliNumber = (num) => {
+    const bengaliDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯']
+    return num.toString().split('').map(digit => bengaliDigits[digit] || digit).join('')
+  }
 
   useEffect(() => {
-    fetch('/results.json')
+    fetch("/results.json")
       .then((res) => res.json())
       .then((data) => {
-        const groups = {};
-        
+        const groups = {}
+
         data.forEach((student) => {
-          const className = `শ্রেণি ${student.class}`;
-          
+          const className = `শ্রেণি ${student.class}`
+
           if (!groups[className]) {
-            groups[className] = { count: 0, categories: {} };
+            groups[className] = { count: 0, categories: {} }
           }
-          
-          let categoryName = student.category;
-          if(categoryName.toLowerCase().includes('talent')) categoryName = 'ট্যালেন্টপুল';
-          else if(categoryName.toLowerCase().includes('genral') || categoryName.toLowerCase().includes('general')) categoryName = 'সাধারণ';
-          else if(categoryName.toLowerCase().includes('normal')) categoryName = 'সাধারণ';
+
+          let categoryName = student.category
+          if (categoryName.toLowerCase().includes("talent")) categoryName = "ট্যালেন্টপুল"
+          else if (categoryName.toLowerCase().includes("genral") || categoryName.toLowerCase().includes("general"))
+            categoryName = "সাধারণ"
+          else if (categoryName.toLowerCase().includes("normal")) categoryName = "সাধারণ"
 
           if (!groups[className].categories[categoryName]) {
-            groups[className].categories[categoryName] = [];
+            groups[className].categories[categoryName] = []
           }
 
-          groups[className].categories[categoryName].push(student.roll);
-          groups[className].count += 1;
-        });
+          groups[className].categories[categoryName].push(student.roll)
+          groups[className].count += 1
+        })
 
-        setGroupedData(groups);
-        setLoading(false);
+        setGroupedData(groups)
+        // Expand all classes by default
+        setExpandedClasses(new Set(Object.keys(groups)))
+        setLoading(false)
       })
-      .catch((err) => console.error("Failed to load list", err));
-  }, []);
+      .catch((err) => console.error("Failed to load list", err))
+  }, [])
 
-  const toggleAccordion = (className) => {
-    setOpenClass(openClass === className ? null : className);
-  };
+  const filterRolls = (rolls) => {
+    if (!searchRoll) return rolls
+    return rolls.filter((roll) => roll.toString().includes(searchRoll))
+  }
+
+  const toggleClass = (className) => {
+    setExpandedClasses((prev) => {
+      const newSet = new Set(prev)
+      if (newSet.has(className)) {
+        newSet.delete(className)
+      } else {
+        newSet.add(className)
+      }
+      return newSet
+    })
+  }
+
+  const totalStudents = Object.values(groupedData).reduce((sum, cls) => sum + cls.count, 0)
+  const totalExaminees = 15000
+
+  // ---------- SORTING LOGIC START ----------
+  const bengaliToEnglish = (str) => {
+    const bengaliDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯']
+    return str.split('').map(char => {
+      const index = bengaliDigits.indexOf(char)
+      return index !== -1 ? index.toString() : char
+    }).join('')
+  }
+  
+
+  const classData = Object.keys(groupedData).sort((a, b) => {
+    const numA = parseInt(bengaliToEnglish(a).match(/\d+/)?.[0] || '0')
+    const numB = parseInt(bengaliToEnglish(b).match(/\d+/)?.[0] || '0')
+    return numA - numB 
+  })
+  // ---------- SORTING LOGIC END ----------
+
+  const filteredClasses = selectedClass === 'all' ? classData : classData.filter(c => c === selectedClass)
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
+      <div className="flex items-center justify-center min-h-screen bg-white">
         <div className="text-center">
-          <svg className="w-16 h-16 mx-auto mb-4 text-emerald-600 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-          </svg>
-          <p className="text-xl font-semibold text-emerald-700">লোডিং হচ্ছে...</p>
+          <div className="relative w-20 h-20 mx-auto mb-6">
+            <div className="absolute inset-0 border-2 border-emerald-500/20 rounded-full" />
+            <div className="absolute inset-0 border-2 border-transparent border-t-emerald-500 rounded-full animate-spin" />
+            <HiTrophy className="absolute w-8 h-8 text-emerald-500 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+          </div>
+          <p className="text-xl font-medium text-gray-900">ফলাফল লোড হচ্ছে...</p>
+          <p className="mt-2 text-sm text-gray-500">অনুগ্রহ করে অপেক্ষা করুন</p>
         </div>
       </div>
-    );
+    )
   }
 
   return (
-    <div className="w-full px-4 py-8 mx-auto max-w-7xl md:py-12">
-      {/* Header Section with gradient and icon */}
-      <div 
-        className="relative p-8 mb-10 overflow-hidden text-center border-2 shadow-xl md:p-12 rounded-2xl border-emerald-200/50 group"
-      >
-        {/* Background Image as absolutely positioned <img> (no negative z-index) */}
-        <img 
-          src={bannerImage} 
-          alt="Result List Banner" 
-          className="absolute inset-0 object-cover w-full h-full transition-transform duration-700 ease-out group-hover:scale-105"
-        />
-        {/* Light overlay for readability */}
-        <div className="absolute inset-0 bg-white/55 "></div>
-        
-          {/* Content wrapper to ensure text sits above overlay */}
-          <div className="relative z-10">
-        
-        
-        <h1 className="mb-4 text-3xl font-extrabold text-green-700 md:text-4xl lg:text-5xl">
-          কিশোরকণ্ঠ মেধাবৃত্তি পরীক্ষার ফলাফল - ২০২৫
-        </h1>
-        <p className="text-lg font-medium text-teal-700 md:text-xl">শ্রেণি ভিত্তিক উত্তীর্ণ শিক্ষার্থীদের তালিকা</p>
-        
-        {/* Total count badge */}
-        <div className="inline-flex items-center gap-2 px-6 py-3 mt-6 font-bold text-white shadow-lg bg-gradient-to-r from-emerald-600 to-teal-600 rounded-xl">
-          <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-          </svg>
-          <span className="text-lg">মোট শিক্ষার্থী: {Object.values(groupedData).reduce((sum, cls) => sum + cls.count, 0)} জন</span>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 text-gray-900">
+      {/* Hero Section */}
+      <header className="relative overflow-hidden bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-700 border-b border-emerald-500">
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-40 -left-40 w-96 h-96 bg-emerald-400/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute -bottom-40 -right-40 w-[600px] h-[600px] bg-cyan-400/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
         </div>
-          </div>
-      </div>
+        
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
+            backgroundSize: '40px 40px'
+          }}></div>
+        </div>
 
-      {/* Accordion List */}
-      <div className="space-y-5">
-        {Object.keys(groupedData).sort().map((className) => (
-          <div key={className} className="overflow-hidden transition-all duration-300 border-2 shadow-lg bg-gradient-to-br from-white to-emerald-50/30 rounded-2xl border-emerald-200/50 hover:shadow-xl">
-            
-            {/* Accordion Header */}
-            <button
-              onClick={() => toggleAccordion(className)}
-              className="w-full p-5 text-left transition-all duration-300 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 md:p-6"
-            >
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3 md:gap-4">
-                  <div className="p-2 bg-white rounded-lg shadow-md md:p-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-emerald-600 md:w-7 md:h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h2 className="text-xl font-extrabold text-white md:text-2xl">{className}</h2>
-                    <span className="inline-flex items-center gap-1 px-3 py-1 mt-1 text-xs font-semibold bg-white rounded-full text-emerald-700 md:text-sm">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                      </svg>
-                      মোট: {groupedData[className].count} জন
-                    </span>
-                  </div>
+        <div className="relative max-w-6xl mx-auto px-4 py-16 md:py-24">
+          <div className="text-center">
+            <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 text-xs font-semibold tracking-wider text-white uppercase bg-white/20 backdrop-blur-sm border border-white/30 rounded-full shadow-lg">
+              <HiSparkles className="w-4 h-4" />
+              <span>২০২৫ সালের ফলাফল</span>
+            </div>
+
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-white drop-shadow-lg">কিশোরকণ্ঠ মেধাবৃত্তি</h1>
+            <p className="text-lg text-white/90 max-w-xl mx-auto drop-shadow-md">শ্রেণি ভিত্তিক উত্তীর্ণ শিক্ষার্থীদের সম্পূর্ণ তালিকা</p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 max-w-4xl mx-auto">
+              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 hover:scale-105 shadow-xl">
+                <div className="flex items-center justify-center w-12 h-12 mx-auto mb-4 bg-white/20 rounded-xl">
+                  <HiAcademicCap className="w-7 h-7 text-white" />
                 </div>
-                <div className={`transform transition-all duration-300 ${openClass === className ? 'rotate-180' : 'rotate-0'}`}>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="text-white w-7 h-7 md:w-8 md:h-8">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                  </svg>
-                </div>
+                <p className="text-3xl md:text-4xl font-bold text-white mb-1">{toBengaliNumber(totalExaminees)}</p>
+                <p className="text-sm text-white/80">মোট পরীক্ষার্থী</p>
               </div>
+              
+              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 hover:scale-105 shadow-xl">
+                <div className="flex items-center justify-center w-12 h-12 mx-auto mb-4 bg-white/20 rounded-xl">
+                  <HiTrophy className="w-7 h-7 text-white" />
+                </div>
+                <p className="text-3xl md:text-4xl font-bold text-white mb-1">{toBengaliNumber(totalStudents)}</p>
+                <p className="text-sm text-white/80">স্কলারশিপ প্রাপ্ত</p>
+              </div>
+              
+              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 hover:scale-105 shadow-xl">
+                <div className="flex items-center justify-center w-12 h-12 mx-auto mb-4 bg-white/20 rounded-xl">
+                  <HiCheckBadge className="w-7 h-7 text-white" />
+                </div>
+                <p className="text-3xl md:text-4xl font-bold text-white mb-1">
+                  {toBengaliNumber(((totalStudents / totalExaminees) * 100).toFixed(1))}%
+                </p>
+                <p className="text-sm text-white/80">সফলতার হার</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="max-w-6xl mx-auto px-4 py-12">
+        
+        {/* Class Filter Tabs - Desktop: Tabs, Mobile: Dropdown */}
+        
+        {/* Mobile Dropdown */}
+        <div className="md:hidden mb-10">
+          <div className="relative">
+            <button
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              className="w-full flex items-center justify-between px-6 py-4 bg-white border-2 border-gray-200 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              <div className="flex items-center gap-3">
+                <HiAcademicCap className="w-6 h-6 text-emerald-600" />
+                <span className="font-bold text-base text-gray-900">
+                  {selectedClass === 'all' ? 'সকল শ্রেণি' : selectedClass}
+                </span>
+              </div>
+              {isDropdownOpen ? (
+                <HiChevronUp className="w-6 h-6 text-gray-600" />
+              ) : (
+                <HiChevronDown className="w-6 h-6 text-gray-600" />
+              )}
             </button>
 
-            {/* Accordion Body with animation */}
-            {openClass === className && (
-              <div className="p-5 bg-white/80 backdrop-blur-sm md:p-7 animate-fade-in-down">
-                {Object.keys(groupedData[className].categories).map((cat, idx) => (
-                  <div key={cat} className={`${idx > 0 ? 'mt-7 pt-7 border-t-2 border-emerald-100' : ''}`}>
-                    {/* Category Header */}
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="p-2 rounded-lg shadow-md bg-gradient-to-r from-amber-500 to-orange-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                        </svg>
-                      </div>
-                      <h3 className="text-xl font-extrabold text-amber-600 md:text-2xl">
-                        {cat} 
-                      </h3>
-                      <span className="px-3 py-1 text-sm font-bold text-white rounded-full shadow-md bg-gradient-to-r from-amber-500 to-orange-500">
-                        {groupedData[className].categories[cat].length} জন
-                      </span>
-                    </div>
-                    
-                    {/* Roll Numbers Grid */}
-                    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-                      {groupedData[className].categories[cat].sort().map((roll) => (
-                        <div 
-                          key={roll} 
-                          className="relative px-4 py-3 overflow-hidden font-bold text-center transition-all duration-300 border-2 shadow-md group bg-gradient-to-br from-emerald-50 to-teal-50 text-emerald-700 rounded-xl border-emerald-200 hover:shadow-xl hover:scale-105 hover:from-emerald-100 hover:to-teal-100"
-                        >
-                          <div className="absolute inset-0 transition-opacity duration-300 opacity-0 bg-gradient-to-r from-emerald-400/10 to-teal-400/10 group-hover:opacity-100"></div>
-                          <span className="relative z-10 text-base md:text-lg">{roll}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
+            {/* Dropdown Menu */}
+            {isDropdownOpen && (
+              <div className="absolute top-full left-0 right-0 mt-2 bg-white border-2 border-gray-200 rounded-xl shadow-2xl z-50 max-h-80 overflow-y-auto">
+                <button
+                  onClick={() => {
+                    setSelectedClass('all')
+                    setIsDropdownOpen(false)
+                  }}
+                  className={`w-full flex items-center gap-3 px-6 py-4 transition-all duration-200 ${
+                    selectedClass === 'all'
+                      ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white'
+                      : 'hover:bg-gradient-to-r hover:from-emerald-50 hover:to-teal-50 text-gray-700'
+                  }`}
+                >
+                  <HiCheckBadge className={`w-5 h-5 ${selectedClass === 'all' ? 'text-white' : 'text-emerald-600'}`} />
+                  <span className="font-bold">সকল শ্রেণি</span>
+                </button>
+                
+                {classData.map((className, index) => {
+                  const colors = [
+                    { from: 'from-blue-600', to: 'to-cyan-600', light: 'from-blue-50 to-cyan-50', icon: 'text-blue-600' },
+                    { from: 'from-purple-600', to: 'to-pink-600', light: 'from-purple-50 to-pink-50', icon: 'text-purple-600' },
+                    { from: 'from-emerald-600', to: 'to-teal-600', light: 'from-emerald-50 to-teal-50', icon: 'text-emerald-600' },
+                    { from: 'from-orange-600', to: 'to-red-600', light: 'from-orange-50 to-red-50', icon: 'text-orange-600' },
+                    { from: 'from-indigo-600', to: 'to-purple-600', light: 'from-indigo-50 to-purple-50', icon: 'text-indigo-600' },
+                  ][index % 5];
+
+                  return (
+                    <button
+                      key={className}
+                      onClick={() => {
+                        setSelectedClass(className)
+                        setIsDropdownOpen(false)
+                      }}
+                      className={`w-full flex items-center gap-3 px-6 py-4 transition-all duration-200 border-t border-gray-100 ${
+                        selectedClass === className
+                          ? `bg-gradient-to-r ${colors.from} ${colors.to} text-white`
+                          : `hover:bg-gradient-to-r hover:${colors.light} text-gray-700`
+                      }`}
+                    >
+                      <HiAcademicCap className={`w-5 h-5 ${selectedClass === className ? 'text-white' : colors.icon}`} />
+                      <span className="font-bold">{className}</span>
+                      {selectedClass === className && (
+                        <HiCheckBadge className="w-5 h-5 text-white ml-auto" />
+                      )}
+                    </button>
+                  );
+                })}
               </div>
             )}
           </div>
-        ))}
-      </div>
-    </div>
-  );
-};
+        </div>
 
-export default ResultList;
+        {/* Desktop Tabs */}
+        <div className="hidden md:flex md:flex-wrap items-center justify-center gap-3 mb-10">
+          <button
+            onClick={() => setSelectedClass('all')}
+            className={`px-6 py-3 font-bold text-base rounded-xl transition-all duration-300 shadow-md ${
+              selectedClass === 'all'
+                ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg scale-105 shadow-emerald-500/30'
+                : 'bg-white text-gray-700 border-2 border-gray-200 hover:border-emerald-500 hover:shadow-lg hover:scale-105 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-teal-50'
+            }`}
+          >
+            সকল শ্রেণি
+          </button>
+          
+          {classData.map((className, index) => {
+            const colors = [
+              'from-blue-600 to-cyan-600',
+              'from-purple-600 to-pink-600',
+              'from-emerald-600 to-teal-600',
+              'from-orange-600 to-red-600',
+              'from-indigo-600 to-purple-600',
+            ][index % 5];
+
+            return (
+              <button
+                key={className}
+                onClick={() => setSelectedClass(className)}
+                className={`px-6 py-3 font-bold text-base rounded-xl transition-all duration-300 shadow-md ${
+                  selectedClass === className
+                    ? `bg-gradient-to-r ${colors} text-white shadow-lg scale-105 shadow-${colors.split('-')[1]}-500/30`
+                    : 'bg-white text-gray-700 border-2 border-gray-200 hover:border-emerald-500 hover:shadow-lg hover:scale-105 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-teal-50'
+                }`}
+              >
+                {className}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Class Accordion Cards */}
+        <div className="space-y-6">
+          {filteredClasses.map((className) => {
+            const isExpanded = expandedClasses.has(className)
+
+            return (
+              <div key={className} className="bg-white border-2 border-gray-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.01]">
+                {/* Class Header - Clickable */}
+                <button
+                  onClick={() => toggleClass(className)}
+                  className="w-full flex items-center justify-between p-6 bg-gradient-to-r from-emerald-50/50 to-teal-50/50 hover:from-emerald-100/70 hover:to-teal-100/70 transition-all duration-300"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-14 h-14 flex items-center justify-center bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl shadow-lg">
+                      <HiAcademicCap className="w-7 h-7 text-white" />
+                    </div>
+                    <div className="text-left">
+                      <h2 className="text-xl md:text-2xl font-bold text-gray-900">{className}</h2>
+                      <p className="text-sm text-gray-600 flex items-center gap-1.5">
+                        <HiCheckBadge className="w-4 h-4 text-emerald-600" />
+                        {toBengaliNumber(groupedData[className].count)} জন উত্তীর্ণ
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <span className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-emerald-700 bg-gradient-to-r from-emerald-100 to-teal-100 rounded-full shadow-sm">
+                      <HiSparkles className="w-3.5 h-3.5" />
+                      {toBengaliNumber(Object.keys(groupedData[className].categories).length)} ক্যাটেগরি
+                    </span>
+                    {isExpanded ? (
+                      <HiChevronUp className="w-6 h-6 text-emerald-600" />
+                    ) : (
+                      <HiChevronDown className="w-6 h-6 text-emerald-600" />
+                    )}
+                  </div>
+                </button>
+
+                {/* Expanded Content */}
+                {isExpanded && (
+                  <div className="border-t-2 border-gray-200 bg-gradient-to-br from-gray-50/50 to-white">
+                    {Object.keys(groupedData[className].categories).map((cat) => {
+                      const allRolls = groupedData[className].categories[cat]
+                      const filteredRolls = filterRolls(allRolls)
+
+                      return (
+                        <div key={cat} className="p-6 md:p-8 border-b border-gray-200 last:border-b-0">
+                          {/* Category Header */}
+                          <div className="flex items-center justify-between mb-6">
+                            <div className="flex items-center gap-3">
+                              <div className="w-3 h-3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 shadow-lg" />
+                              <h3 className="text-lg md:text-xl font-bold text-gray-900">{cat}</h3>
+                              <span className="px-3 py-1 text-xs font-semibold text-emerald-700 bg-gradient-to-r from-emerald-100 to-teal-100 rounded-full shadow-sm">
+                                {toBengaliNumber(filteredRolls.length)} জন
+                              </span>
+                            </div>
+                            {searchRoll && filteredRolls.length === 0 && (
+                              <span className="text-sm font-semibold text-red-500">ফলাফল নেই</span>
+                            )}
+                          </div>
+
+                          {/* Roll Numbers Grid */}
+                          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
+                            {filteredRolls
+                              .sort((a, b) => a - b)
+                              .map((roll) => {
+                                const isHighlighted = searchRoll && roll.toString().includes(searchRoll)
+
+                                return (
+                                  <div
+                                    key={roll}
+                                    className={`relative px-3 py-3 text-center rounded-xl text-sm font-semibold transition-all duration-300 ${
+                                      isHighlighted
+                                        ? "bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-xl shadow-emerald-500/40 scale-110 animate-pulse"
+                                        : "bg-white text-gray-900 hover:bg-gradient-to-br hover:from-emerald-50 hover:to-teal-50 border-2 border-gray-200 hover:border-emerald-400 hover:shadow-lg hover:scale-105"
+                                    }`}
+                                  >
+                                    {toBengaliNumber(roll)}
+                                    {isHighlighted && (
+                                      <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-yellow-400 rounded-full border-2 border-white shadow-lg animate-ping" />
+                                    )}
+                                  </div>
+                                )
+                              })}
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                )}
+              </div>
+            )
+          })}
+        </div>
+
+        {/* Footer */}
+        <footer className="mt-20 text-center">
+          <div className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-emerald-700 bg-gradient-to-r from-emerald-50 to-teal-50 border-2 border-emerald-200 rounded-full shadow-lg">
+            <HiCheckBadge className="w-5 h-5 text-emerald-600" />
+            <span>সকল তথ্য সঠিক এবং যাচাইকৃত</span>
+          </div>
+        </footer>
+      </main>
+    </div>
+  )
+}
+
+export default ResultList

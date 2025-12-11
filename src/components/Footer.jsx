@@ -1,11 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 // import logo from '../assets/images/Logo.png';
 import logo from '../assets/images/logo_new.png';
 
 const Footer = () => {
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
-    <footer className="bg-slate-900 text-slate-300 print:hidden">
+    <footer className="bg-slate-900 text-slate-300 print:hidden relative">
       {/* Main Footer Content */}
       <div className="container px-4 py-16 mx-auto max-w-7xl">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
@@ -109,13 +131,37 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-8 mt-12 text-center border-t border-slate-800">
           <p className="text-sm text-slate-500">
-            &copy; {new Date().getFullYear()} কিশোরকণ্ঠ পাঠক ফোরাম, সিলেট মহানগর। সর্বস্বত্ব সংরক্ষিত।
+            &copy; {new Date().getFullYear()} কিশোরকণ্ঠ পাঠক ফোরাম, সিলেট জেলা পশ্চিম। সর্বস্বত্ব সংরক্ষিত।
           </p>
           <p className="mt-2 text-xs text-slate-600">
             Developed by <span className="text-emerald-500">Ramim Ahmed</span>
           </p>
         </div>
       </div>
+
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 z-50 p-3 bg-emerald-600 text-white rounded-full shadow-lg hover:bg-emerald-700 transition-all duration-300 hover:scale-110 animate-bounce"
+          aria-label="Scroll to top"
+        >
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M5 10l7-7m0 0l7 7m-7-7v18"
+            />
+          </svg>
+        </button>
+      )}
     </footer>
   );
 };

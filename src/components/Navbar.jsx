@@ -6,22 +6,19 @@ import logo from '../assets/images/logo_new.png';
 // import logo from '../assets/images/Logo.png';
 
 const Navbar = () => {
-  // মোবাইল মেনু খোলা বা বন্ধ রাখার স্টেট
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // মেনু টগল করার ফাংশন
   const toggleMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
-  // মোবাইলে লিংকে ক্লিক করলে পেজ চেঞ্জ হবে এবং মেনু বন্ধ হবে
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
 
-  // একটিভ লিংক স্টাইল করার হেল্পার ফাংশন
   const getLinkClass = ({ isActive }) => 
     `cursor-pointer transition-all duration-200 text-[19px] font-bold hover:scale-110 ${isActive 
-      ? 'text-white font-bold drop-shadow-md' // একটিভ হলে সাদা এবং বোল্ড
-      : 'text-white/90 hover:text-white hover:drop-shadow-md'}`; // সাধারণ অবস্থায় সাদা
+      ? 'text-white font-bold drop-shadow-md' 
+      : 'text-white/90 hover:text-white hover:drop-shadow-md'}`; 
 
   const getMobileLinkClass = ({ isActive }) => 
     `block px-6 py-3 border-b border-gray-50 font-medium ${isActive ? 'text-[#1a5d45] bg-green-50' : 'text-gray-700'}`;
@@ -39,44 +36,38 @@ const Navbar = () => {
            />
         </Link>
 
-        {/* DESKTOP MENU (বড় স্ক্রিনে দেখাবে) */}
+        {/* DESKTOP MENU */}
         <ul className="items-center hidden gap-8 md:flex">
-          
-          {/* ১. হোম বাটন */}
           <li>
             <NavLink to="/home" className={getLinkClass}>
               হোম
             </NavLink>
           </li>
           
-          {/* ২. আমাদের সম্পর্কে */}
           <li>
             <NavLink to="/about" className={getLinkClass}>
               আমাদের সম্পর্কে
             </NavLink>
           </li>
-          
-          {/* ৩. পরীক্ষা (মেধাবৃত্তির বিস্তারিত) */}
+
           <li>
             <NavLink to="/scholarship" className={getLinkClass}>
               পরীক্ষা
             </NavLink>
           </li>
-          
-          {/* ৪. রোল নাম্বার লিস্ট পেজ */}
+
           <li>
-            <NavLink to="/list" className={getLinkClass}>
+            <NavLink to="/result-info" className={getLinkClass}>
                মেধাবৃত্তি - ২০২৫
             </NavLink>
           </li>
-          
-          {/* ৪. রেজাল্ট সার্চ বাটন (Special Design) */}
+
           <li>
             <NavLink 
               to="/search"
               className={({ isActive }) => `px-5 py-2.5 rounded-lg shadow-lg transition-all duration-200 hover:scale-105 font-semibold text-base block ${
                 isActive 
-                ? 'bg-white text-emerald-700 hover:bg-gray-100' // একটিভ থাকলে
+                ? 'bg-white text-emerald-700 hover:bg-gray-100' 
                 : 'bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 border border-white/30' // সাধারণ অবস্থায়
               }`}
             >
@@ -92,7 +83,7 @@ const Navbar = () => {
           </li>
         </ul>
 
-        {/* MOBILE MENU ICON (হ্যামবার্গার আইকন) */}
+        {/* MOBILE MENU ICON */}
         <div className="p-2 text-white transition rounded cursor-pointer md:hidden hover:bg-white/20" onClick={toggleMenu}>
           {isMobileMenuOpen ? (
             // Close Icon (X)
@@ -108,7 +99,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* MOBILE DROPDOWN MENU (মোবাইলে ক্লিক করলে বের হবে) */}
+      {/* MOBILE DROPDOWN MENU */}
       {isMobileMenuOpen && (
         <div className="absolute left-0 flex flex-col w-full bg-white border-t border-gray-100 shadow-xl md:hidden top-20 animate-fade-in-down">
           
