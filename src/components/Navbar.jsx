@@ -140,7 +140,7 @@ const Navbar = () => {
             onClick={closeMobileMenu}
             className={({ isActive }) => `block px-6 py-3 border-b border-gray-50 font-bold ${isActive ? 'text-[#1a5d45] bg-green-50' : 'text-[#2e8b57]'}`}
           >
-            ফলাফল (২০২৪)
+            ফলাফল (২০২৫)
           </NavLink>
 
           <NavLink 
