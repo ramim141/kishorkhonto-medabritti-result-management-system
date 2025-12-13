@@ -1,10 +1,88 @@
-import React from 'react';
-import { HiPhone, HiEnvelope, HiSparkles } from 'react-icons/hi2';
+import React, { useState } from 'react';
+import { HiPhone, HiEnvelope, HiSparkles, HiXMark, HiCheckCircle, HiClipboard } from 'react-icons/hi2';
 
 const Contact = () => {
+  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
+  const emailAddress = 'kishorkanthasylwest@gmail.com';
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(emailAddress);
+    setIsCopied(true);
+    setTimeout(() => setIsCopied(false), 2000);
+  };
+
   return (
     <section className="relative py-16 overflow-hidden bg-gradient-to-br from-emerald-100/60 via-teal-50/40 via-cyan-50/30 to-blue-100/50 md:py-20">
       
+      {/* Email Modal */}
+      {isEmailModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fadeIn">
+          <div className="relative w-full max-w-md overflow-hidden transition-all transform bg-white shadow-2xl rounded-2xl animate-slideUp">
+            {/* Close Button */}
+            <button
+              onClick={() => setIsEmailModalOpen(false)}
+              className="absolute z-10 p-2 transition-colors bg-white rounded-full shadow-lg top-4 right-4 hover:bg-gray-100 group"
+            >
+              <HiXMark className="w-5 h-5 text-gray-600 transition-transform group-hover:rotate-90" />
+            </button>
+
+            {/* Modal Content */}
+            <div className="p-6 text-center sm:p-8">
+              {/* Icon */}
+              <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 sm:w-20 sm:h-20">
+                <HiEnvelope className="w-10 h-10 text-white sm:w-12 sm:h-12" />
+              </div>
+
+              {/* Title */}
+              <h3 className="mb-4 text-xl font-bold text-transparent sm:text-2xl bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text">
+                আমাদের ইমেইল ঠিকানা
+              </h3>
+
+              {/* Email Address */}
+              <div className="p-4 mb-4 border-2 border-emerald-200 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl">
+                <p className="text-base font-semibold break-all text-emerald-700 sm:text-lg">
+                  {emailAddress}
+                </p>
+              </div>
+
+              {/* Buttons */}
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <button
+                  onClick={handleCopyEmail}
+                  className="flex items-center justify-center flex-1 gap-2 px-4 py-3 font-semibold text-white transition-all transform rounded-lg shadow-lg bg-gradient-to-r from-teal-600 to-emerald-600 hover:scale-105 hover:shadow-xl"
+                >
+                  {isCopied ? (
+                    <>
+                      <HiCheckCircle className="w-5 h-5" />
+                      কপি হয়েছে!
+                    </>
+                  ) : (
+                    <>
+                      <HiClipboard className="w-5 h-5" />
+                      ইমেইল কপি করুন
+                    </>
+                  )}
+                </button>
+                <a
+                  href={`https://mail.google.com/mail/?view=cm&to=${emailAddress}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center flex-1 gap-2 px-4 py-3 font-semibold transition-all transform border-2 rounded-lg border-emerald-600 text-emerald-600 hover:scale-105 hover:bg-emerald-50"
+                >
+                  <HiEnvelope className="w-5 h-5" />
+                  ইমেইল পাঠান
+                </a>
+              </div>
+            </div>
+
+            {/* Decorative Elements */}
+            <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-gradient-to-br from-emerald-400/20 to-teal-400/20 blur-3xl -z-10"></div>
+            <div className="absolute bottom-0 left-0 w-24 h-24 rounded-full bg-gradient-to-tr from-teal-400/20 to-emerald-400/20 blur-2xl -z-10"></div>
+          </div>
+        </div>
+      )}
+
       {/* Full Section Background Decorations */}
       <div className="absolute top-0 left-0 -translate-x-1/4 -translate-y-1/4 rounded-full w-[400px] h-[400px] bg-gradient-to-br from-emerald-200/50 to-teal-200/40 blur-3xl"></div>
       <div className="absolute top-0 right-0 translate-x-1/4 -translate-y-1/4 rounded-full w-[350px] h-[350px] bg-gradient-to-br from-cyan-200/40 to-blue-200/30 blur-3xl"></div>
@@ -49,13 +127,13 @@ const Contact = () => {
                 <HiPhone className="w-5 h-5" />
                 ফোন করুন
               </a>
-              <a 
-                href="mailto:kishorkanthasylwest@gmail.com" 
+              <button 
+                onClick={() => setIsEmailModalOpen(true)}
                 className="inline-flex items-center gap-2 px-8 py-3 font-semibold text-white transition-all transform border-2 border-white rounded-xl hover:bg-white hover:text-emerald-600 hover:scale-105"
               >
                 <HiEnvelope className="w-5 h-5" />
                 ইমেইল করুন
-              </a>
+              </button>
             </div>
           </div>
           

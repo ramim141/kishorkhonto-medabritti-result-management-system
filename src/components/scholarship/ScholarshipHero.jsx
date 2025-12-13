@@ -15,14 +15,14 @@ import {
 
 const SCHOLARSHIP_INFO = {
   examDetails: [
-    { label: 'পরীক্ষার ধরন', value: 'লিখিত পরীক্ষা (বহুনির্বাচনী ও সৃজনশীল)', icon: HiDocumentText },
+    { label: 'পরীক্ষার ধরন', value: 'লিখিত পরীক্ষা (বহুনির্বাচনী)', icon: HiDocumentText },
     { label: 'বিষয়সমূহ', value: 'বাংলা, ইংরেজি, গণিত, সাধারণ জ্ঞান', icon: HiBookOpen },
     { label: 'মোট নম্বর', value: '১০০ নম্বর (প্রতি বিষয় ২৫ নম্বর)', icon: HiStar },
     { label: 'পরীক্ষার সময়', value: '২ ঘণ্টা', icon: HiClock }
   ],
   eligibility: [
-    { label: 'শ্রেণি', value: '৫ম থেকে ১০ম শ্রেণির শিক্ষার্থী', icon: HiAcademicCap },
-    { label: 'এলাকা', value: 'সিলেট মহানগর এবং আশেপাশের এলাকা', icon: HiUserGroup },
+    { label: 'শ্রেণি', value: '৪র্থ থেকে ১০ম শ্রেণির শিক্ষার্থী', icon: HiAcademicCap },
+    { label: 'এলাকা', value: 'সিলেট জেলা পশ্চিম এবং আশেপাশের এলাকা', icon: HiUserGroup },
     { label: 'নূন্যতম যোগ্যতা', value: 'পূর্ববর্তী ক্লাসে ৬০% নম্বর প্রয়োজন', icon: HiCheckBadge },
     { label: 'নিয়মিত শিক্ষার্থী', value: 'স্বীকৃত শিক্ষা প্রতিষ্ঠানে অধ্যয়নরত', icon: HiDocumentText }
   ],
@@ -269,8 +269,8 @@ const ScholarshipHero = () => {
         {/* Bottom Stats */}
       <div className="grid max-w-4xl grid-cols-2 gap-3 mx-auto mt-10 md:grid-cols-4 md:gap-4">
         {[
-          { number: '৫০০+', label: 'বৃত্তিপ্রাপ্ত শিক্ষার্থী', icon: HiTrophy, color: 'amber' },
-          { number: '১০,০০০+', label: 'অংশগ্রহণকারী', icon: HiUserGroup, color: 'emerald' },
+          { number: '৮০০+', label: 'বৃত্তিপ্রাপ্ত শিক্ষার্থী', icon: HiTrophy, color: 'amber' },
+          { number: '৩৬০০০+', label: 'অংশগ্রহণকারী', icon: HiUserGroup, color: 'emerald' },
           { number: '৪০+', label: 'বছরের অভিজ্ঞতা', icon: HiAcademicCap, color: 'blue' },
           { number: '১০০%', label: 'স্বচ্ছ প্রক্রিয়া', icon: HiCheckBadge, color: 'violet' }
         ].map((stat, index) => {

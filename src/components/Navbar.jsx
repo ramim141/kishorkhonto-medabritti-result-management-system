@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-// import logo from '../assets/images/Logo.png';
+import logo from '../assets/images/logo3.png';
 // import logo from '../assets/images/logo4.png';
-import logo from '../assets/images/logo_new.png';
+// import logo from '../assets/images/logo_new.png';
 // import logo from '../assets/images/Logo.png';
 
 const Navbar = () => {
@@ -57,7 +57,7 @@ const Navbar = () => {
           </li>
 
           <li>
-            <NavLink to="/result-info" className={getLinkClass}>
+            <NavLink to="/list" className={getLinkClass}>
                মেধাবৃত্তি - ২০২৫
             </NavLink>
           </li>

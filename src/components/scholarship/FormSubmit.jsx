@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { HiMapPin, HiPhone, HiSparkles, HiBookOpen, HiGlobeAsiaAustralia } from 'react-icons/hi2';
+import { HiMapPin, HiPhone, HiSparkles, HiBookOpen, HiGlobeAsiaAustralia, HiXMark, HiInformationCircle } from 'react-icons/hi2';
 
 // বাংলা সংখ্যায় রূপান্তর
 const toBengaliNumber = (num) => {
@@ -180,7 +180,7 @@ const COLOR_CLASSES = {
   },
 };
 
-const RegistrationCTA = () => (
+const RegistrationCTA = ({ onOpenModal }) => (
   <div className="relative p-8 mb-12 overflow-hidden text-center rounded-2xl bg-gradient-to-br from-teal-500 via-emerald-600 to-cyan-600">
     <div className="absolute top-0 left-0 w-full h-full opacity-10">
       <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -198,7 +198,10 @@ const RegistrationCTA = () => (
         সীমিত সময়
       </div>
       <h2 className="mb-4 text-3xl font-bold text-white">এখনই রেজিস্ট্রেশন করুন</h2>
-      <button className="px-8 py-3 font-semibold transition-all transform bg-white rounded-lg text-emerald-700 hover:scale-105 hover:shadow-lg">
+      <button 
+        onClick={onOpenModal}
+        className="px-8 py-3 font-semibold transition-all transform bg-white rounded-lg text-emerald-700 hover:scale-105 hover:shadow-lg"
+      >
         অনলাইন রেজিস্ট্রেশন
       </button>
       <p className="mt-4 text-white/90">অথবা আপনার স্কুল প্রতিনিধির সাথে যোগাযোগ করুন</p>
@@ -266,6 +269,7 @@ const UpazilaCard = ({ upazila, locations, contacts, color }) => {
 
 const FormSubmit = () => {
   const [selectedUpazila, setSelectedUpazila] = useState('all');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // উপজেলা ক্যাটাগরি লিস্ট
   const upazilaCategories = useMemo(() => {
@@ -322,6 +326,51 @@ const FormSubmit = () => {
   return (
     <section className="relative py-16 overflow-hidden bg-gradient-to-br from-cyan-100/60 via-blue-50/40 via-sky-50/30 to-teal-100/50 md:py-20">
       
+      {/* Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fadeIn">
+          <div className="relative w-full max-w-md overflow-hidden transition-all transform bg-white shadow-2xl rounded-2xl animate-slideUp">
+            {/* Close Button */}
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="absolute z-10 p-2 transition-colors bg-white rounded-full shadow-lg top-4 right-4 hover:bg-gray-100 group"
+            >
+              <HiXMark className="w-5 h-5 text-gray-600 transition-transform group-hover:rotate-90" />
+            </button>
+
+            {/* Modal Content */}
+            <div className="p-6 text-center sm:p-8">
+              {/* Icon */}
+              <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 sm:w-20 sm:h-20">
+                <HiInformationCircle className="w-10 h-10 text-white sm:w-12 sm:h-12" />
+              </div>
+
+              {/* Title */}
+              <h3 className="mb-4 text-xl font-bold text-transparent sm:text-2xl bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text">
+                রেজিস্ট্রেশন শীঘ্রই শুরু হবে
+              </h3>
+
+              {/* Message */}
+              <p className="mb-6 text-base leading-relaxed text-gray-700 sm:text-lg">
+                ২০২৬ সালের কিশোরকণ্ঠ মেধাবৃত্তি পরীক্ষার সার্কুলার প্রকাশিত হলে আপনি আবেদন করতে পারবেন
+              </p>
+
+              {/* Close Button */}
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="px-6 py-3 font-semibold text-white transition-all transform rounded-lg shadow-lg bg-gradient-to-r from-blue-600 to-cyan-600 hover:scale-105 hover:shadow-xl"
+              >
+                বুঝেছি
+              </button>
+            </div>
+
+            {/* Decorative Elements */}
+            <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-gradient-to-br from-blue-400/20 to-cyan-400/20 blur-3xl -z-10"></div>
+            <div className="absolute bottom-0 left-0 w-24 h-24 rounded-full bg-gradient-to-tr from-cyan-400/20 to-teal-400/20 blur-2xl -z-10"></div>
+          </div>
+        </div>
+      )}
+
       {/* Full Section Background Decorations */}
       <div className="absolute top-0 left-0 -translate-x-1/4 -translate-y-1/4 rounded-full w-[500px] h-[500px] bg-gradient-to-br from-blue-200/50 to-cyan-200/40 blur-3xl"></div>
       <div className="absolute top-0 right-0 translate-x-1/4 -translate-y-1/4 rounded-full w-[400px] h-[400px] bg-gradient-to-br from-teal-200/40 to-emerald-200/30 blur-3xl"></div>
@@ -345,7 +394,7 @@ const FormSubmit = () => {
         </div>
         
         {/* রেজিস্ট্রেশন CTA */}
-        <RegistrationCTA />
+        <RegistrationCTA onOpenModal={() => setIsModalOpen(true)} />
 
         {/* উপজেলা Category Filter - FAQ Style */}
         <div className="p-4 mb-10 bg-white border shadow-xl sm:p-6 backdrop-blur-md rounded-2xl sm:rounded-3xl border-blue-100/50">

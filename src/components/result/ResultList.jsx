@@ -8,6 +8,7 @@ import {
   HiSparkles,
   HiChevronDown,
   HiChevronUp,
+  HiBuildingOffice2,
 } from "react-icons/hi2"
 
 const ResultList = () => {
@@ -17,6 +18,7 @@ const ResultList = () => {
   const [selectedClass, setSelectedClass] = useState('all')
   const [expandedClasses, setExpandedClasses] = useState(new Set())
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const [bestStudents, setBestStudents] = useState([])
 
   // Convert English numbers to Bengali
   const toBengaliNumber = (num) => {
@@ -29,6 +31,7 @@ const ResultList = () => {
       .then((res) => res.json())
       .then((data) => {
         const groups = {}
+        const bestList = []
 
         data.forEach((student) => {
           const className = `শ্রেণি ${student.class}`
@@ -42,6 +45,12 @@ const ResultList = () => {
           else if (categoryName.toLowerCase().includes("genral") || categoryName.toLowerCase().includes("general"))
             categoryName = "সাধারণ"
           else if (categoryName.toLowerCase().includes("normal")) categoryName = "সাধারণ"
+          else if (categoryName.toLowerCase().includes("special")) categoryName = "বিশেষ"
+          else if (categoryName.includes("শ্রেণিভিত্তিক সেরা")) {
+            categoryName = "শ্রেণিভিত্তিক সেরা"
+            // Add to best students list
+            bestList.push(student)
+          }
 
           if (!groups[className].categories[categoryName]) {
             groups[className].categories[categoryName] = []
@@ -52,6 +61,7 @@ const ResultList = () => {
         })
 
         setGroupedData(groups)
+        setBestStudents(bestList)
         // Expand all classes by default
         setExpandedClasses(new Set(Object.keys(groups)))
         setLoading(false)
@@ -77,7 +87,22 @@ const ResultList = () => {
   }
 
   const totalStudents = Object.values(groupedData).reduce((sum, cls) => sum + cls.count, 0)
-  const totalExaminees = 15000
+  const totalExaminees = 7350
+  
+  // Calculate category-wise totals
+  const talentCount = Object.values(groupedData).reduce((sum, cls) => {
+    return sum + (cls.categories['ট্যালেন্টপুল']?.length || 0)
+  }, 0)
+  
+  const generalCount = Object.values(groupedData).reduce((sum, cls) => {
+    return sum + (cls.categories['সাধারণ']?.length || 0)
+  }, 0)
+  
+  const specialCount = Object.values(groupedData).reduce((sum, cls) => {
+    return sum + (cls.categories['বিশেষ']?.length || 0)
+  }, 0)
+  
+  const bestCount = bestStudents.length
 
   // ---------- SORTING LOGIC START ----------
   const bengaliToEnglish = (str) => {
@@ -96,16 +121,21 @@ const ResultList = () => {
   })
   // ---------- SORTING LOGIC END ----------
 
-  const filteredClasses = selectedClass === 'all' ? classData : classData.filter(c => c === selectedClass)
+  // Filter classes based on selection - if 'best' is selected, filter to show only classes with 'শ্রেণিভিত্তিক সেরা' category
+  const filteredClasses = selectedClass === 'all' 
+    ? classData 
+    : selectedClass === 'best'
+    ? classData.filter(className => groupedData[className].categories['শ্রেণিভিত্তিক সেরা'])
+    : classData.filter(c => c === selectedClass)
 
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-white">
         <div className="text-center">
           <div className="relative w-20 h-20 mx-auto mb-6">
-            <div className="absolute inset-0 border-2 border-emerald-500/20 rounded-full" />
-            <div className="absolute inset-0 border-2 border-transparent border-t-emerald-500 rounded-full animate-spin" />
-            <HiTrophy className="absolute w-8 h-8 text-emerald-500 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+            <div className="absolute inset-0 border-2 rounded-full border-emerald-500/20" />
+            <div className="absolute inset-0 border-2 border-transparent rounded-full border-t-emerald-500 animate-spin" />
+            <HiTrophy className="absolute w-8 h-8 -translate-x-1/2 -translate-y-1/2 text-emerald-500 top-1/2 left-1/2" />
           </div>
           <p className="text-xl font-medium text-gray-900">ফলাফল লোড হচ্ছে...</p>
           <p className="mt-2 text-sm text-gray-500">অনুগ্রহ করে অপেক্ষা করুন</p>
@@ -115,11 +145,11 @@ const ResultList = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30 text-gray-900">
+    <div className="min-h-screen text-gray-900 bg-gradient-to-br from-slate-50 via-white to-blue-50/30">
       {/* Hero Section */}
-      <header className="relative overflow-hidden bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-700 border-b border-emerald-500">
+      <header className="relative overflow-hidden border-b bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-700 border-emerald-500">
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -left-40 w-96 h-96 bg-emerald-400/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute rounded-full -top-40 -left-40 w-96 h-96 bg-emerald-400/20 blur-3xl animate-pulse"></div>
           <div className="absolute -bottom-40 -right-40 w-[600px] h-[600px] bg-cyan-400/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
         </div>
         
@@ -130,63 +160,92 @@ const ResultList = () => {
           }}></div>
         </div>
 
-        <div className="relative max-w-6xl mx-auto px-4 py-16 md:py-24">
+        <div className="relative max-w-6xl px-4 py-16 mx-auto md:py-24">
           <div className="text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 text-xs font-semibold tracking-wider text-white uppercase bg-white/20 backdrop-blur-sm border border-white/30 rounded-full shadow-lg">
+            <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 text-xs font-semibold tracking-wider text-white uppercase border rounded-full shadow-lg bg-white/20 backdrop-blur-sm border-white/30">
               <HiSparkles className="w-4 h-4" />
               <span>২০২৫ সালের ফলাফল</span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-white drop-shadow-lg">কিশোরকণ্ঠ মেধাবৃত্তি</h1>
-            <p className="text-lg text-white/90 max-w-xl mx-auto drop-shadow-md">শ্রেণি ভিত্তিক উত্তীর্ণ শিক্ষার্থীদের সম্পূর্ণ তালিকা</p>
+            <h1 className="mb-4 text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl drop-shadow-lg">কিশোরকণ্ঠ মেধাবৃত্তি</h1>
+            <p className="max-w-xl mx-auto text-lg text-white/90 drop-shadow-md">শ্রেণি ভিত্তিক উত্তীর্ণ শিক্ষার্থীদের সম্পূর্ণ তালিকা</p>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 max-w-4xl mx-auto">
-              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 hover:scale-105 shadow-xl">
+            <div className="grid max-w-5xl grid-cols-1 gap-6 mx-auto mt-12 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+              <div className="p-6 transition-all duration-300 border shadow-xl bg-white/10 backdrop-blur-md border-white/20 rounded-2xl hover:bg-white/20 hover:scale-105">
                 <div className="flex items-center justify-center w-12 h-12 mx-auto mb-4 bg-white/20 rounded-xl">
-                  <HiAcademicCap className="w-7 h-7 text-white" />
+                  <HiAcademicCap className="text-white w-7 h-7" />
                 </div>
-                <p className="text-3xl md:text-4xl font-bold text-white mb-1">{toBengaliNumber(totalExaminees)}</p>
+                <p className="mb-1 text-3xl font-bold text-white md:text-4xl">{toBengaliNumber(totalExaminees)}</p>
                 <p className="text-sm text-white/80">মোট পরীক্ষার্থী</p>
               </div>
               
-              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 hover:scale-105 shadow-xl">
+              <div className="p-6 transition-all duration-300 border shadow-xl bg-white/10 backdrop-blur-md border-white/20 rounded-2xl hover:bg-white/20 hover:scale-105">
                 <div className="flex items-center justify-center w-12 h-12 mx-auto mb-4 bg-white/20 rounded-xl">
-                  <HiTrophy className="w-7 h-7 text-white" />
+                  <HiTrophy className="text-white w-7 h-7" />
                 </div>
-                <p className="text-3xl md:text-4xl font-bold text-white mb-1">{toBengaliNumber(totalStudents)}</p>
-                <p className="text-sm text-white/80">স্কলারশিপ প্রাপ্ত</p>
+                <p className="mb-1 text-3xl font-bold text-white md:text-4xl">{toBengaliNumber(totalStudents)}</p>
+                <p className="text-sm text-white/80">মেধাবৃত্তি প্রাপ্ত</p>
               </div>
               
-              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 hover:scale-105 shadow-xl">
+              {/* Talent pool scholarship total student number */}
+              <div className="p-6 transition-all duration-300 border shadow-xl bg-white/10 backdrop-blur-md border-white/20 rounded-2xl hover:bg-white/20 hover:scale-105">
                 <div className="flex items-center justify-center w-12 h-12 mx-auto mb-4 bg-white/20 rounded-xl">
-                  <HiCheckBadge className="w-7 h-7 text-white" />
+                  <HiSparkles className="text-white w-7 h-7" />
                 </div>
-                <p className="text-3xl md:text-4xl font-bold text-white mb-1">
-                  {toBengaliNumber(((totalStudents / totalExaminees) * 100).toFixed(1))}%
-                </p>
-                <p className="text-sm text-white/80">সফলতার হার</p>
+                <p className="mb-1 text-3xl font-bold text-white md:text-4xl">{toBengaliNumber(talentCount)}</p>
+                <p className="text-sm text-white/80">ট্যালেন্টপুল</p>
               </div>
+              
+              {/* General scholarship total student number */}
+              <div className="p-6 transition-all duration-300 border shadow-xl bg-white/10 backdrop-blur-md border-white/20 rounded-2xl hover:bg-white/20 hover:scale-105">
+                <div className="flex items-center justify-center w-12 h-12 mx-auto mb-4 bg-white/20 rounded-xl">
+                  <HiCheckBadge className="text-white w-7 h-7" />
+                </div>
+                <p className="mb-1 text-3xl font-bold text-white md:text-4xl">{toBengaliNumber(generalCount)}</p>
+                <p className="text-sm text-white/80">সাধারণ</p>
+              </div>
+
+              {/* Special scholarship total student number */}
+              <div className="p-6 transition-all duration-300 border shadow-xl bg-white/10 backdrop-blur-md border-white/20 rounded-2xl hover:bg-white/20 hover:scale-105">
+                <div className="flex items-center justify-center w-12 h-12 mx-auto mb-4 bg-purple-400/30 rounded-xl">
+                  <HiSparkles className="text-purple-200 w-7 h-7" />
+                </div>
+                <p className="mb-1 text-3xl font-bold text-white md:text-4xl">{toBengaliNumber(specialCount)}</p>
+                <p className="text-sm text-white/80">বিশেষ</p>
+              </div>
+
+              {/* Best per class scholarship total student number */}
+              <div className="p-6 transition-all duration-300 border shadow-xl bg-white/10 backdrop-blur-md border-white/20 rounded-2xl hover:bg-white/20 hover:scale-105">
+                <div className="flex items-center justify-center w-12 h-12 mx-auto mb-4 bg-yellow-400/30 rounded-xl">
+                  <HiTrophy className="text-yellow-200 w-7 h-7" />
+                </div>
+                <p className="mb-1 text-3xl font-bold text-white md:text-4xl">{toBengaliNumber(bestCount)}</p>
+                <p className="text-sm text-white/80">শ্রেণিভিত্তিক সেরা</p>
+              </div>
+              
+              
+              
             </div>
           </div>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="max-w-6xl mx-auto px-4 py-12">
+      <main className="max-w-6xl px-4 py-12 mx-auto">
         
         {/* Class Filter Tabs - Desktop: Tabs, Mobile: Dropdown */}
         
         {/* Mobile Dropdown */}
-        <div className="md:hidden mb-10">
+        <div className="mb-10 md:hidden">
           <div className="relative">
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="w-full flex items-center justify-between px-6 py-4 bg-white border-2 border-gray-200 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+              className="flex items-center justify-between w-full px-6 py-4 transition-all duration-300 bg-white border-2 border-gray-200 shadow-lg rounded-xl hover:shadow-xl"
             >
               <div className="flex items-center gap-3">
                 <HiAcademicCap className="w-6 h-6 text-emerald-600" />
-                <span className="font-bold text-base text-gray-900">
-                  {selectedClass === 'all' ? 'সকল শ্রেণি' : selectedClass}
+                <span className="text-base font-bold text-gray-900">
+                  {selectedClass === 'all' ? 'সকল শ্রেণি' : selectedClass === 'best' ? 'শ্রেনিভিত্তিক সেরা' : selectedClass}
                 </span>
               </div>
               {isDropdownOpen ? (
@@ -198,7 +257,7 @@ const ResultList = () => {
 
             {/* Dropdown Menu */}
             {isDropdownOpen && (
-              <div className="absolute top-full left-0 right-0 mt-2 bg-white border-2 border-gray-200 rounded-xl shadow-2xl z-50 max-h-80 overflow-y-auto">
+              <div className="absolute left-0 right-0 z-50 mt-2 overflow-y-auto bg-white border-2 border-gray-200 shadow-2xl top-full rounded-xl max-h-80">
                 <button
                   onClick={() => {
                     setSelectedClass('all')
@@ -212,6 +271,21 @@ const ResultList = () => {
                 >
                   <HiCheckBadge className={`w-5 h-5 ${selectedClass === 'all' ? 'text-white' : 'text-emerald-600'}`} />
                   <span className="font-bold">সকল শ্রেণি</span>
+                </button>
+                
+                <button
+                  onClick={() => {
+                    setSelectedClass('best')
+                    setIsDropdownOpen(false)
+                  }}
+                  className={`w-full flex items-center gap-3 px-6 py-4 transition-all duration-200 border-t border-gray-100 ${
+                    selectedClass === 'best'
+                      ? 'bg-gradient-to-r from-yellow-600 to-orange-600 text-white'
+                      : 'hover:bg-gradient-to-r hover:from-yellow-50 hover:to-orange-50 text-gray-700'
+                  }`}
+                >
+                  <HiTrophy className={`w-5 h-5 ${selectedClass === 'best' ? 'text-white' : 'text-yellow-600'}`} />
+                  <span className="font-bold">শ্রেনিভিত্তিক সেরা</span>
                 </button>
                 
                 {classData.map((className, index) => {
@@ -239,7 +313,7 @@ const ResultList = () => {
                       <HiAcademicCap className={`w-5 h-5 ${selectedClass === className ? 'text-white' : colors.icon}`} />
                       <span className="font-bold">{className}</span>
                       {selectedClass === className && (
-                        <HiCheckBadge className="w-5 h-5 text-white ml-auto" />
+                        <HiCheckBadge className="w-5 h-5 ml-auto text-white" />
                       )}
                     </button>
                   );
@@ -250,7 +324,7 @@ const ResultList = () => {
         </div>
 
         {/* Desktop Tabs */}
-        <div className="hidden md:flex md:flex-wrap items-center justify-center gap-3 mb-10">
+        <div className="items-center justify-center hidden gap-3 mb-10 md:flex md:flex-wrap">
           <button
             onClick={() => setSelectedClass('all')}
             className={`px-6 py-3 font-bold text-base rounded-xl transition-all duration-300 shadow-md ${
@@ -260,6 +334,17 @@ const ResultList = () => {
             }`}
           >
             সকল শ্রেণি
+          </button>
+          
+          <button
+            onClick={() => setSelectedClass('best')}
+            className={`px-6 py-3 font-bold text-base rounded-xl transition-all duration-300 shadow-md ${
+              selectedClass === 'best'
+                ? 'bg-gradient-to-r from-yellow-600 to-orange-600 text-white shadow-lg scale-105 shadow-yellow-500/30'
+                : 'bg-white text-gray-700 border-2 border-gray-200 hover:border-yellow-500 hover:shadow-lg hover:scale-105 hover:bg-gradient-to-r hover:from-yellow-50 hover:to-orange-50'
+            }`}
+          >
+            শ্রেনিভিত্তিক সেরা
           </button>
           
           {classData.map((className, index) => {
@@ -288,8 +373,133 @@ const ResultList = () => {
         </div>
 
         {/* Class Accordion Cards */}
-        <div className="space-y-6">
-          {filteredClasses.map((className) => {
+        {selectedClass === 'best' ? (
+          /* Best Students Table */
+          <div className="overflow-hidden bg-white border-2 border-gray-200 shadow-2xl rounded-2xl">
+            {/* Table Header */}
+            <div className="p-6 md:p-8 bg-gradient-to-r from-yellow-500 to-orange-600">
+              <div className="flex items-center gap-4 mb-2">
+                <div className="flex items-center justify-center shadow-2xl w-14 h-14 md:w-16 md:h-16 bg-white/20 backdrop-blur-sm rounded-xl">
+                  <HiTrophy className="w-8 h-8 text-white md:w-10 md:h-10" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-black text-white md:text-3xl drop-shadow-lg">শ্রেণিভিত্তিক সেরা শিক্ষার্থী</h2>
+                  <p className="mt-1 text-sm font-medium md:text-base text-white/90">প্রতি শ্রেণির সর্বোচ্চ নম্বর প্রাপ্ত</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Desktop Table - Hidden on Mobile */}
+            <div className="hidden overflow-x-auto md:block">
+              <table className="w-full">
+                <thead className="border-b-2 border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100">
+                  <tr>
+                    <th className="px-6 py-5 text-sm font-black tracking-wider text-left text-gray-700 uppercase">রোল নং</th>
+                    <th className="px-6 py-5 text-sm font-black tracking-wider text-left text-gray-700 uppercase">নাম</th>
+                    <th className="px-6 py-5 text-sm font-black tracking-wider text-left text-gray-700 uppercase">শিক্ষা প্রতিষ্ঠান</th>
+                    <th className="px-6 py-5 text-sm font-black tracking-wider text-left text-gray-700 uppercase">শ্রেণি</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  {bestStudents
+                    .sort((a, b) => {
+                      const classA = parseInt(bengaliToEnglish(a.class).match(/\d+/)?.[0] || '0')
+                      const classB = parseInt(bengaliToEnglish(b.class).match(/\d+/)?.[0] || '0')
+                      return classA - classB
+                    })
+                    .map((student, index) => (
+                      <tr key={student.roll} className="transition-all duration-300 group hover:bg-gradient-to-r hover:from-yellow-50 hover:to-orange-50">
+                        <td className="px-6 py-5">
+                          <div className="flex items-center gap-3">
+                            <div className="flex items-center justify-center w-10 h-10 shadow-lg bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl">
+                              <span className="text-sm font-bold text-white">{toBengaliNumber(index + 1)}</span>
+                            </div>
+                            <span className="text-base font-bold text-gray-900">{toBengaliNumber(student.roll)}</span>
+                          </div>
+                        </td>
+                        <td className="px-6 py-5">
+                          <div className="text-base font-bold text-gray-900">{student.name}</div>
+                        </td>
+                        <td className="px-6 py-5">
+                          <div className="text-base font-semibold text-gray-700">{student.school}</div>
+                        </td>
+                        <td className="px-6 py-5">
+                          <span className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-yellow-700 bg-gradient-to-r from-yellow-100 to-orange-100 rounded-full shadow-sm border border-yellow-200">
+                            <HiAcademicCap className="w-4 h-4" />
+                            {student.class}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Mobile Cards - Complete Info */}
+            <div className="block p-4 space-y-4 bg-gray-50 md:hidden">
+              {bestStudents
+                .sort((a, b) => {
+                  const classA = parseInt(bengaliToEnglish(a.class).match(/\d+/)?.[0] || '0')
+                  const classB = parseInt(bengaliToEnglish(b.class).match(/\d+/)?.[0] || '0')
+                  return classA - classB
+                })
+                .map((student, index) => (
+                  <div key={`mobile-${student.roll}`} className="overflow-hidden transition-all duration-300 bg-white border-2 border-gray-200 shadow-lg rounded-2xl hover:shadow-xl">
+                    {/* Card Header with Trophy */}
+                    <div className="flex items-center gap-3 p-4 bg-gradient-to-r from-yellow-500 to-orange-600">
+                      <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 shadow-lg bg-white/20 backdrop-blur-sm rounded-xl">
+                        <span className="text-lg font-black text-white">{toBengaliNumber(index + 1)}</span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-yellow-700 bg-white rounded-full shadow-md">
+                          <HiAcademicCap className="w-3.5 h-3.5" />
+                          {student.class}
+                        </span>
+                      </div>
+                      <HiTrophy className="w-8 h-8 text-white/90" />
+                    </div>
+                    
+                    {/* Card Body */}
+                    <div className="p-4 space-y-3">
+                      {/* Roll Number */}
+                      <div className="flex items-center gap-2 pb-3 border-b border-gray-200">
+                        <span className="text-xs font-semibold text-gray-500">রোল নং:</span>
+                        <span className="text-lg font-black text-gray-900">{toBengaliNumber(student.roll)}</span>
+                      </div>
+                      
+                      {/* Name */}
+                      <div>
+                        <p className="mb-1 text-xs font-semibold text-gray-500">শিক্ষার্থীর নাম</p>
+                        <p className="text-base font-bold text-gray-900">{student.name}</p>
+                      </div>
+                      
+                      {/* School */}
+                      <div className="pt-2">
+                        <p className="mb-1 text-xs font-semibold text-gray-500">শিক্ষা প্রতিষ্ঠান</p>
+                        <div className="flex items-start gap-2">
+                          <div className="flex items-center justify-center flex-shrink-0 w-8 h-8 mt-1 rounded-lg bg-gradient-to-br from-yellow-500 to-orange-600">
+                            <HiBuildingOffice2 className="w-4 h-4 text-white" />
+                          </div>
+                          <p className="flex-1 text-base font-bold leading-snug text-gray-900">{student.school}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+            </div>
+
+            {/* Table Footer */}
+            <div className="px-6 py-4 border-t-2 border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100">
+              <div className="flex items-center justify-center gap-2">
+                <HiCheckBadge className="w-5 h-5 text-yellow-600" />
+                <span className="text-sm font-bold text-gray-700">মোট {toBengaliNumber(bestStudents.length)} জন সেরা শিক্ষার্থী</span>
+              </div>
+            </div>
+          </div>
+        ) : (
+          /* Regular Class Accordion */
+          <div className="space-y-6">
+            {filteredClasses.map((className) => {
             const isExpanded = expandedClasses.has(className)
 
             return (
@@ -297,14 +507,14 @@ const ResultList = () => {
                 {/* Class Header - Clickable */}
                 <button
                   onClick={() => toggleClass(className)}
-                  className="w-full flex items-center justify-between p-6 bg-gradient-to-r from-emerald-50/50 to-teal-50/50 hover:from-emerald-100/70 hover:to-teal-100/70 transition-all duration-300"
+                  className="flex items-center justify-between w-full p-6 transition-all duration-300 bg-gradient-to-r from-emerald-50/50 to-teal-50/50 hover:from-emerald-100/70 hover:to-teal-100/70"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 flex items-center justify-center bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl shadow-lg">
-                      <HiAcademicCap className="w-7 h-7 text-white" />
+                    <div className="flex items-center justify-center shadow-lg w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl">
+                      <HiAcademicCap className="text-white w-7 h-7" />
                     </div>
                     <div className="text-left">
-                      <h2 className="text-xl md:text-2xl font-bold text-gray-900">{className}</h2>
+                      <h2 className="text-xl font-bold text-gray-900 md:text-2xl">{className}</h2>
                       <p className="text-sm text-gray-600 flex items-center gap-1.5">
                         <HiCheckBadge className="w-4 h-4 text-emerald-600" />
                         {toBengaliNumber(groupedData[className].count)} জন উত্তীর্ণ
@@ -327,18 +537,20 @@ const ResultList = () => {
                 {/* Expanded Content */}
                 {isExpanded && (
                   <div className="border-t-2 border-gray-200 bg-gradient-to-br from-gray-50/50 to-white">
-                    {Object.keys(groupedData[className].categories).map((cat) => {
+                    {Object.keys(groupedData[className].categories)
+                      .filter(cat => selectedClass === 'best' ? cat === 'শ্রেণিভিত্তিক সেরা' : true)
+                      .map((cat) => {
                       const allRolls = groupedData[className].categories[cat]
                       const filteredRolls = filterRolls(allRolls)
 
                       return (
-                        <div key={cat} className="p-6 md:p-8 border-b border-gray-200 last:border-b-0">
+                        <div key={cat} className="p-6 border-b border-gray-200 md:p-8 last:border-b-0">
                           {/* Category Header */}
                           <div className="flex items-center justify-between mb-6">
                             <div className="flex items-center gap-3">
-                              <div className="w-3 h-3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 shadow-lg" />
-                              <h3 className="text-lg md:text-xl font-bold text-gray-900">{cat}</h3>
-                              <span className="px-3 py-1 text-xs font-semibold text-emerald-700 bg-gradient-to-r from-emerald-100 to-teal-100 rounded-full shadow-sm">
+                              <div className="w-3 h-3 rounded-full shadow-lg bg-gradient-to-r from-emerald-500 to-teal-600" />
+                              <h3 className="text-lg font-bold text-gray-900 md:text-xl">{cat}</h3>
+                              <span className="px-3 py-1 text-xs font-semibold rounded-full shadow-sm text-emerald-700 bg-gradient-to-r from-emerald-100 to-teal-100">
                                 {toBengaliNumber(filteredRolls.length)} জন
                               </span>
                             </div>
@@ -348,7 +560,7 @@ const ResultList = () => {
                           </div>
 
                           {/* Roll Numbers Grid */}
-                          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
+                          <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
                             {filteredRolls
                               .sort((a, b) => a - b)
                               .map((roll) => {
@@ -380,10 +592,11 @@ const ResultList = () => {
             )
           })}
         </div>
+        )}
 
         {/* Footer */}
         <footer className="mt-20 text-center">
-          <div className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-emerald-700 bg-gradient-to-r from-emerald-50 to-teal-50 border-2 border-emerald-200 rounded-full shadow-lg">
+          <div className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold border-2 rounded-full shadow-lg text-emerald-700 bg-gradient-to-r from-emerald-50 to-teal-50 border-emerald-200">
             <HiCheckBadge className="w-5 h-5 text-emerald-600" />
             <span>সকল তথ্য সঠিক এবং যাচাইকৃত</span>
           </div>
