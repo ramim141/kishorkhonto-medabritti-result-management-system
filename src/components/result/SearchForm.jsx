@@ -29,7 +29,7 @@ const SearchForm = ({ onSearch, inputRoll, setInputRoll, loading, error }) => {
           <div className="relative">
             <input
               type="text"
-              placeholder="আপনার রোল নম্বর লিখুন"
+              placeholder="আপনার রোল নম্বর লিখুন (যেমন: 123456) "
               value={inputRoll}
               onChange={(e) => setInputRoll(e.target.value)}
               className="w-full p-4 pl-12 text-lg font-semibold transition-all duration-300 border-2 shadow-inner border-emerald-300 bg-white/80 backdrop-blur-sm rounded-xl focus:outline-none focus:border-emerald-600 focus:ring-4 focus:ring-emerald-200/50 hover:border-teal-400"
