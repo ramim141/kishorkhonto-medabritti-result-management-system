@@ -154,7 +154,7 @@ const ResultCard = ({ data, onReset, onPrint }) => {
             </div>
           </div>
         ) : (
-          <div className="p-6 mb-16 text-center border-2 shadow-lg bg-gradient-to-br from-red-100 to-orange-100 rounded-xl border-red-300">
+          <div className="p-6 mb-16 text-center border-2 border-red-300 shadow-lg bg-gradient-to-br from-red-100 to-orange-100 rounded-xl">
             <div className="flex flex-col items-center justify-center gap-3">
               <svg xmlns="http://www.w3.org/2000/svg" className="w-16 h-16 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -190,7 +190,7 @@ const ResultCard = ({ data, onReset, onPrint }) => {
         {/* Print Only Footer */}
         <div className="hidden pt-4 mt-6 text-sm text-center text-gray-600 border-t-2 border-gray-300 print:block">
           <p className="font-semibold">এই ফলাফলটি কম্পিউটার দ্বারা তৈরি।</p>
-          <p className="mt-1 text-xs">কিশোরকণ্ঠ পাঠক ফোরাম, সিলেট মহানগর</p>
+          <p className="mt-1 text-xs">কিশোরকণ্ঠ পাঠক ফোরাম, সিলেট জেলা পশ্চিম</p>
         </div>
 
       </div>
