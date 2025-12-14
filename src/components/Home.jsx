@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { HiSparkles, HiArrowRight } from 'react-icons/hi2';
+import { HiSparkles, HiArrowRight, HiBell } from 'react-icons/hi2';
 import Hero from './home/Hero';
 import About from './home/About';
 import Activities from './home/Activities';
@@ -10,9 +10,66 @@ import ContactInfo from './home/ContactInfo';
 import FAQ from './home/FAQ';
 
 const Home = () => {
+  // Latest notices for marquee
+  const latestNotices = [
+    {
+      id: 1,
+      title: "কিশোরকন্ঠ মেধাবৃত্তি - ২০২৫ এর ফলাফল প্রকাশিত হয়েছে",
+      type: "result"
+    },
+    {
+      id: 2,
+      title: "মেধাবৃত্তি পুরস্কার বিতরণী অনুষ্ঠান আগামী জানুয়ারি ২০২৫ মাসের প্রথম সপ্তাহে অনুষ্ঠিত হবে",
+      type: "event"
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-white animate-fade-in">
       <Hero />
+      
+      {/* Scrolling Notices Marquee */}
+      <div className="py-2 border-b shadow-sm sm:py-3 bg-gradient-to-r from-yellow-50 via-orange-50 to-red-50 border-yellow-200">
+        <div className="flex items-center gap-2 px-3 sm:gap-4 sm:px-4 max-w-7xl mx-auto">
+          <div className="flex items-center gap-1.5 px-3 py-1.5 sm:gap-2 sm:px-4 sm:py-2 font-bold border-2 border-yellow-500 rounded-lg bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 whitespace-nowrap flex-shrink-0 shadow-lg">
+            <HiBell className="w-4 h-4 sm:w-5 sm:h-5 animate-bounce" />
+            <span className="text-xs sm:text-sm md:text-base">সর্বশেষ</span>
+          </div>
+          <div className="flex-1 overflow-hidden">
+            <div className="animate-marquee whitespace-nowrap inline-block">
+              {latestNotices.map((notice, index) => (
+                <Link 
+                  key={notice.id} 
+                  to="/notice"
+                  className="inline-flex items-center gap-2 px-3 py-1 mx-2 sm:px-6 sm:mx-4 transition-colors duration-200 hover:text-emerald-600"
+                >
+                  <span className="text-xs font-semibold text-gray-800 sm:text-sm md:text-base">
+                    {notice.title}
+                  </span>
+                  {index < latestNotices.length - 1 && (
+                    <span className="text-lg sm:text-2xl text-yellow-500">★</span>
+                  )}
+                </Link>
+              ))}
+              {/* Duplicate for seamless loop */}
+              {latestNotices.map((notice, index) => (
+                <Link 
+                  key={`dup-${notice.id}`} 
+                  to="/notice"
+                  className="inline-flex items-center gap-2 px-3 py-1 mx-2 sm:px-6 sm:mx-4 transition-colors duration-200 hover:text-emerald-600"
+                >
+                  <span className="text-xs font-semibold text-gray-800 sm:text-sm md:text-base">
+                    {notice.title}
+                  </span>
+                  {index < latestNotices.length - 1 && (
+                    <span className="text-lg sm:text-2xl text-yellow-500">★</span>
+                  )}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
       
       {/* Notification Box for Results */}
       <div className="px-4 py-8 bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50">

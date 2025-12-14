@@ -74,6 +74,12 @@ const Navbar = () => {
               ফলাফল 
             </NavLink>
           </li>
+
+          <li>
+            <NavLink to="/notice" className={getLinkClass}>
+              নোটিস
+            </NavLink>
+          </li>
           
           {/* ৫. Contact */}
           <li>
@@ -141,6 +147,14 @@ const Navbar = () => {
             className={({ isActive }) => `block px-6 py-3 border-b border-gray-50 font-bold ${isActive ? 'text-[#1a5d45] bg-green-50' : 'text-[#2e8b57]'}`}
           >
             ফলাফল (২০২৫)
+          </NavLink>
+
+          <NavLink 
+            to="/notice" 
+            onClick={closeMobileMenu}
+            className={getMobileLinkClass}
+          >
+            নোটিস
           </NavLink>
 
           <NavLink 

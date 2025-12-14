@@ -71,6 +71,9 @@ const Footer = () => {
                 <Link to="/about" className="text-base font-medium transition-colors hover:text-yellow-200 hover:font-semibold hover:pl-2">আমাদের সম্পর্কে</Link>
               </li>
               <li>
+                <Link to="/notice" className="text-base font-medium transition-colors hover:text-yellow-200 hover:font-semibold hover:pl-2">নোটিস</Link>
+              </li>
+              <li>
                 <Link to="/list" className="text-base font-medium transition-colors hover:text-yellow-200 hover:font-semibold hover:pl-2">মেধাবৃত্তি - ২০২৫</Link>
               </li>
               <li>

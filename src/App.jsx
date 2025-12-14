@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import Home from './components/Home'; 
 import About from './components/About'; 
 import Contact from './components/Contact'; 
+import Notice from './components/Notice';
 import ResultList from './components/result/ResultList'; 
 import ScholarshipDetails from './components/scholarship/ScholarshipDetails'; 
 import SearchPage from './components/result/SearchPage';
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/notice" element={<Notice />} />
           <Route path="/list" element={<ResultList />} />
           <Route path="/scholarship" element={<ScholarshipDetails />} />
           <Route path="/search" element={<SearchPage />} />
